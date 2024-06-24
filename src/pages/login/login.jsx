@@ -1,36 +1,32 @@
 import { useContext, useEffect, useState } from 'react'
 import './login.css'
-import { AuthContext, ThemeContext } from '../../App';
+import { ThemeContext } from '../../App';
 import users from '../../assets/users.json'
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
   const themeSelector = useContext(ThemeContext)
-  const [auth, setAuth] = useContext(AuthContext)
 
   const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user')) || {}
 
   useEffect(() => {
-    if(localStorage.user !== null)
+    if(user.id !== null)
     {
-      users.forEach( user => {
-        if(user.id === localStorage.user)
-        {
-          setAuth(user)
-          navigate('/home')
-        }
+      users.forEach( element => {
+        if(element.id === user.id)
+          navigate('/home')     
       })
     }
   })
 
-  const submit = (event) => {
+  const submitHandler = (event) => {
     event.preventDefault()
     users.forEach( user => {
       if(user.username === event.target[0].value && user.password === event.target[1].value)
       {
-        setAuth(user)
-        localStorage.user = user.id
+        localStorage.setItem('user', JSON.stringify(user))
         navigate('/home')
       } else {
         window.alert("Wrong username or password, try again")
@@ -42,7 +38,7 @@ function Login() {
     <div className={`login-`+themeSelector}>
       <div className='decoration'></div>
       <div className='decoration2'></div>
-      <form onSubmit={submit}>
+      <form onSubmit={submitHandler}>
         <h2>LOGIN HERE</h2>
         <p>USERNAME</p>
         <input type='text' />
