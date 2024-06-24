@@ -15,7 +15,7 @@ function Login() {
     if(localStorage.user !== null)
     {
       users.forEach( user => {
-        if(user.id == localStorage.user)
+        if(user.id === localStorage.user)
         {
           setAuth(user)
           navigate('/home')
