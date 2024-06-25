@@ -9,6 +9,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { PiPuzzlePiece } from "react-icons/pi";
 import { PiBuildingFill } from "react-icons/pi";
 import { GiStarsStack } from "react-icons/gi";
+import { GreenButtonDark, GreenButtonLight } from '../../components/button-styled';
 
 function Dashboard() {
 
@@ -52,7 +53,9 @@ function Dashboard() {
                 <img src={user.picture}/>
                 <h4>{user.name+' '+user.lastName}</h4>
                 <p>{user.email}</p>
-                <button>Edit</button>
+                {themeSelector === 'dark' ? 
+                <GreenButtonDark>Edit</GreenButtonDark> : 
+                <GreenButtonLight>Edit</GreenButtonLight>}
             </div>
             <div className='footer'>
                 <h3>Travl Hotel Admin Dashboard</h3>
