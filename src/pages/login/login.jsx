@@ -16,7 +16,7 @@ function Login() {
     {
       users.forEach( element => {
         if(element.id === user.id)
-          navigate('/home')     
+          navigate('/Dashboard')     
       })
     }
   })
@@ -27,7 +27,7 @@ function Login() {
       if(user.username === event.target[0].value && user.password === event.target[1].value)
       {
         localStorage.setItem('user', JSON.stringify(user))
-        navigate('/home')
+        navigate('/Dashboard')
       } else {
         window.alert("Wrong username or password, try again")
       }
