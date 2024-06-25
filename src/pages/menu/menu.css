@@ -141,8 +141,7 @@
         }
 
         ul{
-            margin-top: 0.5em;
-            padding: 1em;
+            margin-top: 1em;
             list-style: none;
             padding-bottom: 3em;
 
@@ -151,7 +150,7 @@
                 align-items: center;
                 padding-block: 1em;
                 margin-block: 0.8em;
-                padding-left: 2em;
+                padding-left: 3em;
                 color: #799283;
                 
                 svg{
@@ -376,8 +375,7 @@
         }
 
         ul{
-            margin-top: 0.5em;
-            padding: 1em;
+            margin-top: 1em;
             list-style: none;
             padding-bottom: 3em;
 
@@ -386,7 +384,7 @@
                 align-items: center;
                 padding-block: 1em;
                 margin-block: 0.8em;
-                padding-left: 2em;
+                padding-left: 3em;
                 color: #686868;
                 
                 svg{
@@ -478,4 +476,14 @@
         padding-top: 6em;
         padding-left: 22.5em;
     }
+}
+
+.selected{
+    svg{
+        color: #E23428;
+    }
+    h3{
+        color: #E23428;
+    }
+    border-left: 4px solid #E23428;
 }

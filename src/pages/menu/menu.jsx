@@ -63,23 +63,38 @@ function Menu() {
                     </div>
                 </picture>
                 <ul>
-                    <li>
+                    <li className={
+                        location.pathname !== "/Dashboard" ? "" :
+                            "selected"
+                    } >
                         <LuLayoutDashboard />
                         <h3>Dashboard</h3>
                     </li>
-                    <li>
+                    <li className={
+                        location.pathname !== "/Room" ? "" :
+                            "selected"
+                    }>
                         <BiKey />
                         <h3>Room</h3>
                     </li>
-                    <li>
+                    <li className={
+                        location.pathname !== "/Bookings" ? "" :
+                            "selected"
+                    }>
                         <LuCalendarCheck2 />
                         <h3>Bookings</h3>
                     </li>
-                    <li>
+                    <li className={
+                        location.pathname !== "/Guest" ? "" :
+                            "selected"
+                    }>
                         <IoPersonOutline />
                         <h3>Guest</h3>
                     </li>
-                    <li>
+                    <li className={
+                        location.pathname !== "/Concierge" ? "" :
+                            "selected"
+                    }>
                         <PiPuzzlePiece />
                         <h3>Concierge</h3>
                     </li>
