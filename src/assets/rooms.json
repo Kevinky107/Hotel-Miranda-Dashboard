@@ -1,0 +1,1568 @@
+[
+    {
+        "id": 0,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 485,
+        "available": false
+    },
+    {
+        "id": 1,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 397,
+        "available": false
+    },
+    {
+        "id": 2,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 299,
+        "available": true
+    },
+    {
+        "id": 3,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 382,
+        "available": true
+    },
+    {
+        "id": 4,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 188,
+        "available": false
+    },
+    {
+        "id": 5,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 268,
+        "available": true
+    },
+    {
+        "id": 6,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 497,
+        "available": true
+    },
+    {
+        "id": 7,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 364,
+        "available": false
+    },
+    {
+        "id": 8,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 465,
+        "available": false
+    },
+    {
+        "id": 9,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 298,
+        "available": true
+    },
+    {
+        "id": 10,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 324,
+        "available": false
+    },
+    {
+        "id": 11,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 313,
+        "available": true
+    },
+    {
+        "id": 12,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 264,
+        "available": true
+    },
+    {
+        "id": 13,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 405,
+        "available": true
+    },
+    {
+        "id": 14,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 296,
+        "available": true
+    },
+    {
+        "id": 15,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 367,
+        "available": true
+    },
+    {
+        "id": 16,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 299,
+        "available": true
+    },
+    {
+        "id": 17,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 271,
+        "available": false
+    },
+    {
+        "id": 18,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 464,
+        "available": false
+    },
+    {
+        "id": 19,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 171,
+        "available": true
+    },
+    {
+        "id": 20,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 142,
+        "available": true
+    },
+    {
+        "id": 21,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 456,
+        "available": true
+    },
+    {
+        "id": 22,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 152,
+        "available": true
+    },
+    {
+        "id": 23,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 489,
+        "available": false
+    },
+    {
+        "id": 24,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 456,
+        "available": false
+    },
+    {
+        "id": 25,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 396,
+        "available": false
+    },
+    {
+        "id": 26,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 455,
+        "available": true
+    },
+    {
+        "id": 27,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 395,
+        "available": true
+    },
+    {
+        "id": 28,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 187,
+        "available": true
+    },
+    {
+        "id": 29,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 436,
+        "available": true
+    },
+    {
+        "id": 30,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 351,
+        "available": false
+    },
+    {
+        "id": 31,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 414,
+        "available": false
+    },
+    {
+        "id": 32,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 401,
+        "available": false
+    },
+    {
+        "id": 33,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 469,
+        "available": true
+    },
+    {
+        "id": 34,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 229,
+        "available": true
+    },
+    {
+        "id": 35,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 378,
+        "available": true
+    },
+    {
+        "id": 36,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 233,
+        "available": true
+    },
+    {
+        "id": 37,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 305,
+        "available": false
+    },
+    {
+        "id": 38,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 316,
+        "available": false
+    },
+    {
+        "id": 39,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 435,
+        "available": true
+    },
+    {
+        "id": 40,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 309,
+        "available": true
+    },
+    {
+        "id": 41,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 413,
+        "available": true
+    },
+    {
+        "id": 42,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 249,
+        "available": true
+    },
+    {
+        "id": 43,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 334,
+        "available": false
+    },
+    {
+        "id": 44,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 294,
+        "available": true
+    },
+    {
+        "id": 45,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 367,
+        "available": true
+    },
+    {
+        "id": 46,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 487,
+        "available": true
+    },
+    {
+        "id": 47,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 348,
+        "available": false
+    },
+    {
+        "id": 48,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 447,
+        "available": true
+    },
+    {
+        "id": 49,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 143,
+        "available": false
+    },
+    {
+        "id": 50,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 460,
+        "available": true
+    },
+    {
+        "id": 51,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 392,
+        "available": true
+    },
+    {
+        "id": 52,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 331,
+        "available": false
+    },
+    {
+        "id": 53,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 295,
+        "available": true
+    },
+    {
+        "id": 54,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 234,
+        "available": false
+    },
+    {
+        "id": 55,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 371,
+        "available": true
+    },
+    {
+        "id": 56,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 181,
+        "available": true
+    },
+    {
+        "id": 57,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 350,
+        "available": true
+    },
+    {
+        "id": 58,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 193,
+        "available": false
+    },
+    {
+        "id": 59,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 430,
+        "available": false
+    },
+    {
+        "id": 60,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 339,
+        "available": true
+    },
+    {
+        "id": 61,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 190,
+        "available": true
+    },
+    {
+        "id": 62,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 471,
+        "available": false
+    },
+    {
+        "id": 63,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 479,
+        "available": false
+    },
+    {
+        "id": 64,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 156,
+        "available": true
+    },
+    {
+        "id": 65,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 456,
+        "available": true
+    },
+    {
+        "id": 66,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 429,
+        "available": true
+    },
+    {
+        "id": 67,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 256,
+        "available": false
+    },
+    {
+        "id": 68,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 253,
+        "available": true
+    },
+    {
+        "id": 69,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 432,
+        "available": true
+    },
+    {
+        "id": 70,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 253,
+        "available": false
+    },
+    {
+        "id": 71,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 474,
+        "available": true
+    },
+    {
+        "id": 72,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 351,
+        "available": true
+    },
+    {
+        "id": 73,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 268,
+        "available": true
+    },
+    {
+        "id": 74,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 473,
+        "available": true
+    },
+    {
+        "id": 75,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 230,
+        "available": true
+    },
+    {
+        "id": 76,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 376,
+        "available": true
+    },
+    {
+        "id": 77,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 439,
+        "available": false
+    },
+    {
+        "id": 78,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 365,
+        "available": true
+    },
+    {
+        "id": 79,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 167,
+        "available": true
+    },
+    {
+        "id": 80,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 326,
+        "available": false
+    },
+    {
+        "id": 81,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 308,
+        "available": false
+    },
+    {
+        "id": 82,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 454,
+        "available": false
+    },
+    {
+        "id": 83,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 206,
+        "available": false
+    },
+    {
+        "id": 84,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 388,
+        "available": true
+    },
+    {
+        "id": 85,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 474,
+        "available": true
+    },
+    {
+        "id": 86,
+        "name": "Deluxe A-91234",
+        "bedtype": "Double Bed",
+        "floor": "A-1",
+        "facilities": [
+            "AC",
+            "Shower",
+            "Double Bed",
+            "Towel",
+            "Bathup",
+            "Cofee Set",
+            "LED TV",
+            "Wifi"
+        ],
+        "rate": 427,
+        "available": true
+    }
+]

@@ -9,10 +9,10 @@ function Login() {
   const themeSelector = useContext(ThemeContext)
 
   const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user')) || {}
+  let user = JSON.parse(localStorage.getItem('user')) || {}
 
   useEffect(() => {
-    if(user.id !== null)
+    if(user.id !== null && user.state === true)
     {
       users.forEach( element => {
         if(element.id === user.id)
@@ -23,15 +23,23 @@ function Login() {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    users.forEach( user => {
-      if(user.username === event.target[0].value && user.password === event.target[1].value)
+    let ok = false
+    users.forEach( element => {
+      if(element.email === event.target[0].value && element.password === event.target[1].value)
       {
-        localStorage.setItem('user', JSON.stringify(user))
-        navigate('/Dashboard')
-      } else {
-        window.alert("Wrong username or password, try again")
+        ok = true
+        localStorage.setItem('user', JSON.stringify(element))
       }
+        
     })
+
+    if(ok)
+    {
+      user = JSON.parse(localStorage.getItem('user'))
+      navigate('/Dashboard')
+    } else {
+      window.alert("Wrong username or password, try again")
+    }
   }
 
   return (
@@ -40,7 +48,7 @@ function Login() {
       <div className='decoration2'></div>
       <form onSubmit={submitHandler}>
         <h2>LOGIN HERE</h2>
-        <p>USERNAME</p>
+        <p>EMAIL</p>
         <input type='text' />
         <p>PASSWORD</p>
         <input type='password' />

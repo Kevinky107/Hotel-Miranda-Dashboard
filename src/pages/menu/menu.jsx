@@ -101,7 +101,7 @@ function Menu() {
                 </ul>
                 <div className='me'>
                     <img src={user.picture}/>
-                    <h4>{user.name+' '+user.lastName}</h4>
+                    <h4>{user.name}</h4>
                     <p>{user.email}</p>
                     {themeSelector === 'dark' ? 
                     <GreenButtonDark>Edit</GreenButtonDark> : 
