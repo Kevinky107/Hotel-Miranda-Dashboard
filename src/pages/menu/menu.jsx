@@ -66,35 +66,35 @@ function Menu() {
                     <li className={
                         location.pathname !== "/Dashboard" ? "" :
                             "selected"
-                    } >
+                    } onClick={() => {navigate("/Dashboard")}}>
                         <LuLayoutDashboard />
                         <h3>Dashboard</h3>
                     </li>
                     <li className={
                         location.pathname !== "/Room" ? "" :
                             "selected"
-                    }>
+                    } onClick={() => {navigate("/Room")}}>
                         <BiKey />
                         <h3>Room</h3>
                     </li>
                     <li className={
                         location.pathname !== "/Bookings" ? "" :
                             "selected"
-                    }>
+                    } onClick={() => {navigate("/Bookings")}}>
                         <LuCalendarCheck2 />
                         <h3>Bookings</h3>
                     </li>
                     <li className={
                         location.pathname !== "/Guest" ? "" :
                             "selected"
-                    }>
+                    }  onClick={() => {navigate("/Guest")}}>
                         <IoPersonOutline />
                         <h3>Guest</h3>
                     </li>
                     <li className={
                         location.pathname !== "/Concierge" ? "" :
                             "selected"
-                    }>
+                    }  onClick={() => {navigate("/Concierge")}}>
                         <PiPuzzlePiece />
                         <h3>Concierge</h3>
                     </li>
