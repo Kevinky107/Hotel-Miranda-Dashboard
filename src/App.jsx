@@ -3,7 +3,7 @@ import './App.css'
 
 import { createContext, useContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/dashboard/dashboard';
+import Menu from './pages/menu/menu';
 
 
 export const ThemeContext = createContext(null);
@@ -18,7 +18,7 @@ function App() {
       <ThemeContext.Provider value={theme}>
         <Routes>
             <Route path="/" element={ <Login /> } />
-            <Route path="/home" element={ <Dashboard /> } />
+            <Route path="/home" element={ <Menu /> } />
         </Routes>
       </ThemeContext.Provider>
     </BrowserRouter>
