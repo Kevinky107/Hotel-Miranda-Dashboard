@@ -1,20 +1,15 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './dashboard.css'
-import { AuthContext, ThemeContext } from '../../App';
-import { Outlet } from 'react-router-dom';
+import { ThemeContext } from '../../App';
 
 function Dashboard() {
 
-  const themeSelector = useContext(ThemeContext)
-  const [auth, setAuth] = useContext(AuthContext)
+  
 
   return (
-    <main className={`main-`+themeSelector}>
-        <aside>
-            HOLA
-        </aside>
-        <Outlet/>
-    </main>
+    <>
+    
+    </>
   )
 }
 
