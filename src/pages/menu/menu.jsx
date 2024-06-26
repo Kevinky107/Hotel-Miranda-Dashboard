@@ -14,11 +14,11 @@ import { BsArrowLeft } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-import { MenuContainer } from '../../components/menu/menu';
-import { LeftNavBar, NavBar, RightNavBar } from '../../components/menu/navBar';
-import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../../components/menu/sideMenu';
-import { ActualUser, ActualUserImage } from '../../components/menu/actualUser';
-import { Pages } from '../../components/pages';
+import { MenuContainer } from '../../components/menu/menu-styled';
+import { LeftNavBar, NavBar, RightNavBar } from '../../components/menu/navBar-styled';
+import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../../components/menu/sideMenu-styled';
+import { ActualUser, ActualUserImage } from '../../components/menu/actualUser-styled';
+import { Pages } from '../../components/pages-styled';
 
 
 function Menu() {

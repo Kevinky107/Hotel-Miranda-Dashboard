@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
-import './dashboard.css'
 import { ThemeContext } from '../../App';
 import { IoBedOutline } from "react-icons/io5";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { IoLogOutOutline, IoLogInOutline } from "react-icons/io5";
 import booking from '../../assets/bookings.json'
 import rooms from '../../assets/rooms.json'
+import { DashboardGrid } from '../../components/dashboard-styled';
+import { KPI, KPIpicture, KPItext } from '../../components/kpi-styled';
 
 function Dashboard() {
 
@@ -19,44 +20,44 @@ function Dashboard() {
   const checkout = booking.filter((element) => element.status === "check out").length
 
   return (
-    <div className={`dashboard-`+themeSelector}>
-        <div className='facts'>
-          <picture>
+    <DashboardGrid>
+        <KPI theme={themeSelector}>
+          <KPIpicture type="regular">
             <IoBedOutline />
-          </picture>
-          <div>
+          </KPIpicture>
+          <KPItext>
             <h3>{bookings}</h3>
             <h4>Bookings</h4>
-          </div>
-        </div>
-        <div className='facts'>
-          <picture className='picture2'>
+          </KPItext>
+        </KPI>
+        <KPI theme={themeSelector}>
+          <KPIpicture type="red">
             <LuCalendarCheck2 />
-          </picture>
-          <div>
+          </KPIpicture>
+          <KPItext>
             <h3>{occupation}</h3>
             <h4>Occupation</h4>
-          </div>
-        </div>
-        <div className='facts'>
-          <picture>
+          </KPItext>
+        </KPI>
+        <KPI theme={themeSelector}>
+          <KPIpicture type="regular">
             <IoLogOutOutline />
-          </picture>
-          <div>
+          </KPIpicture>
+          <KPItext>
             <h3>{checkin}</h3>
             <h4>Check In</h4>
-          </div>
-        </div>
-        <div className='facts'> 
-          <picture>
+          </KPItext>
+        </KPI>
+        <KPI theme={themeSelector}> 
+          <KPIpicture type="regular">
             <IoLogInOutline />
-          </picture>
-          <div>
+          </KPIpicture>
+          <KPItext>
             <h3>{checkout}</h3>
             <h4>Check Out</h4>
-          </div>
-        </div>
-    </div>
+          </KPItext>
+        </KPI>
+    </DashboardGrid>
   )
 }
 
