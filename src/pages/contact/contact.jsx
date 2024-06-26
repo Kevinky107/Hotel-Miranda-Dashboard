@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../App';
 
-function Guest() {
+function Contact() {
 
   
 
@@ -12,4 +12,4 @@ function Guest() {
   )
 }
 
-export default Guest
+export default Contact

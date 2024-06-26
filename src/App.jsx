@@ -7,7 +7,7 @@ import Menu from './pages/menu/menu';
 import Dashboard from './pages/dashboard/dashboard';
 import Bookings from './pages/bookings/bookings';
 import Room from './pages/room/room';
-import Guest from './pages/guest/guest';
+import Contact from './pages/contact/contact';
 import Concierge from './pages/concierge/concierge';
 
 
@@ -27,7 +27,7 @@ function App() {
               <Route path="/Dashboard" element={ <Dashboard /> } />
               <Route path="/Bookings" element={ <Bookings /> } />
               <Route path="/Room" element={ <Room /> } />
-              <Route path="/Guest" element={ <Guest /> } />
+              <Route path="/Contact" element={ <Contact /> } />
               <Route path="/Concierge" element={ <Concierge /> } />
             </Route>
         </Routes>

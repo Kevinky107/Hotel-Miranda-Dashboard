@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../App';
 import users from '../../assets/users.json'
 import { useNavigate } from 'react-router-dom';
-import { LoginBackground, LoginInputPassword, LoginInputText } from '../../components/login/login';
+import { LoginBackground, LoginInputPassword, LoginInputText } from '../../components/login';
 
 function Login() {
 

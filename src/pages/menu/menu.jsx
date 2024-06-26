@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import './menu.css'
 import { ThemeContext } from '../../App';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -15,7 +14,10 @@ import { BsArrowLeft } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-
+import { MenuContainer } from '../../components/menu/menu';
+import { LeftNavBar, NavBar, RightNavBar } from '../../components/menu/navBar';
+import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../../components/menu/sideMenu';
+import { ActualUser, ActualUserImage } from '../../components/menu/actualUser';
 
 
 function Menu() {
@@ -38,84 +40,84 @@ function Menu() {
   }
 
   return (
-    <main className={`main-`+themeSelector}>
-        <nav className={menu ? 'navmenu' : 'nav'}>
-            <div className='nav__left'>
+    <MenuContainer theme={themeSelector}>
+        <NavBar theme={themeSelector}>
+            <LeftNavBar size={menu ? 'small' : 'big'}>
                 {!menu ? 
                 <HiMenuAlt2 className='menu' onClick={() => {setMenu(!menu)}}/> : 
                 <BsArrowLeft className='menu' onClick={() => {setMenu(!menu)}}/>}
                 <h1>{location.pathname.slice(1)}</h1>
-            </div>
-            <div className='nav__right'>
+            </LeftNavBar>
+            <RightNavBar>
                 <MdOutlineEmail />
                 <FaRegBell />
                 <IoLogOutOutline onClick={logout}/>
-            </div>
-        </nav>
+            </RightNavBar>
+        </NavBar>
         {   menu &&
-            <aside>
-                <picture className='logo'>
+            <SideMenu>
+                <Logo>
                     <PiBuildingFill className='build'/>
                     <GiStarsStack className='stars'/>
-                    <div>
+                    <TextLogo>
                         <h1>travl</h1>
                         <h4>Hotel Admin Dashboard</h4>
-                    </div>
-                </picture>
-                <ul>
-                    <li className={
+                    </TextLogo>
+                </Logo>
+                <NavList>
+                    <NavListElement selected={
                         location.pathname !== "/Dashboard" ? "" :
                             "selected"
                     } onClick={() => {navigate("/Dashboard")}}>
                         <LuLayoutDashboard />
                         <h3>Dashboard</h3>
-                    </li>
-                    <li className={
+                    </NavListElement>
+                    <NavListElement selected={
                         location.pathname !== "/Room" ? "" :
                             "selected"
                     } onClick={() => {navigate("/Room")}}>
                         <BiKey />
                         <h3>Room</h3>
-                    </li>
-                    <li className={
+                    </NavListElement>
+                    <NavListElement selected={
                         location.pathname !== "/Bookings" ? "" :
                             "selected"
                     } onClick={() => {navigate("/Bookings")}}>
                         <LuCalendarCheck2 />
                         <h3>Bookings</h3>
-                    </li>
-                    <li className={
-                        location.pathname !== "/Guest" ? "" :
+                    </NavListElement>
+                    <NavListElement selected={
+                        location.pathname !== "/Contact" ? "" :
                             "selected"
-                    }  onClick={() => {navigate("/Guest")}}>
+                    }  onClick={() => {navigate("/Contact")}}>
                         <IoPersonOutline />
-                        <h3>Guest</h3>
-                    </li>
-                    <li className={
+                        <h3>Contact</h3>
+                    </NavListElement>
+                    <NavListElement selected={
                         location.pathname !== "/Concierge" ? "" :
                             "selected"
                     }  onClick={() => {navigate("/Concierge")}}>
                         <PiPuzzlePiece />
                         <h3>Concierge</h3>
-                    </li>
-                </ul>
-                <div className='me'>
-                    <img src={user.picture}/>
+                    </NavListElement>
+                </NavList>
+                <ActualUser>
+                    <ActualUserImage src={user.picture}/>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>
                     <GreenButton theme={themeSelector}>Edit</GreenButton>
-                </div>
-                <div className='footer'>
+                </ActualUser>
+                <SideMenuFooter>
                     <h3>Travl Hotel Admin Dashboard</h3>
                     <h4>© 2024 All Rights Reserved</h4>
                     <p>Made with ♥ by Kevin</p>
-                </div>
-            </aside>
+                </SideMenuFooter>
+            </SideMenu>
         }
         <div className={menu ? 'pagesmenu' : 'pages'}>
             <Outlet/>
         </div>
-    </main>
+    </MenuContainer>
   )
 }
 
