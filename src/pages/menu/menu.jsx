@@ -23,7 +23,7 @@ function Menu() {
   const themeSelector = useContext(ThemeContext)
   const user = JSON.parse(localStorage.getItem('user'))
 
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(true)
   const location = useLocation()
   const navigate = useNavigate()
 
