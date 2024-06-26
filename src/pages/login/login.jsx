@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react'
-import './login.css'
 import { ThemeContext } from '../../App';
 import users from '../../assets/users.json'
 import { useNavigate } from 'react-router-dom';
