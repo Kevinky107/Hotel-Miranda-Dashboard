@@ -9,7 +9,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { PiPuzzlePiece } from "react-icons/pi";
 import { PiBuildingFill } from "react-icons/pi";
 import { GiStarsStack } from "react-icons/gi";
-import { GreenButtonDark, GreenButtonLight } from '../../components/button-styled';
+import { GreenButton } from '../../components/button-styled';
 import { HiMenuAlt2 } from "react-icons/hi";
 import { BsArrowLeft } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
@@ -103,9 +103,7 @@ function Menu() {
                     <img src={user.picture}/>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>
-                    {themeSelector === 'dark' ? 
-                    <GreenButtonDark>Edit</GreenButtonDark> : 
-                    <GreenButtonLight>Edit</GreenButtonLight>}
+                    <GreenButton theme={themeSelector}>Edit</GreenButton>
                 </div>
                 <div className='footer'>
                     <h3>Travl Hotel Admin Dashboard</h3>

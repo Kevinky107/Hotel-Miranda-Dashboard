@@ -3,6 +3,7 @@ import './login.css'
 import { ThemeContext } from '../../App';
 import users from '../../assets/users.json'
 import { useNavigate } from 'react-router-dom';
+import { LoginBackground, LoginInputPassword, LoginInputText } from '../../components/login/login';
 
 function Login() {
 
@@ -42,19 +43,21 @@ function Login() {
     }
   }
 
+  //SI SE USA UN STYLED COMPONENT EL FORM DEJA DE PODER UTILIZAR EL EVENTO SUBMIT AL IGUAL QUE EL BOTTON
   return (
-    <div className={`login-`+themeSelector}>
+    <LoginBackground theme={themeSelector}>
       <div className='decoration'></div>
       <div className='decoration2'></div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}> 
         <h2>LOGIN HERE</h2>
         <p>EMAIL</p>
-        <input type='text' />
+        <LoginInputText />
         <p>PASSWORD</p>
-        <input type='password' />
+        <LoginInputPassword />
+        <br></br>
         <button>LOGIN</button>
       </form>
-    </div>
+    </LoginBackground>
   )
 }
 
