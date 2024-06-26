@@ -18,6 +18,7 @@ import { MenuContainer } from '../../components/menu/menu';
 import { LeftNavBar, NavBar, RightNavBar } from '../../components/menu/navBar';
 import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../../components/menu/sideMenu';
 import { ActualUser, ActualUserImage } from '../../components/menu/actualUser';
+import { Pages } from '../../components/pages';
 
 
 function Menu() {
@@ -114,9 +115,9 @@ function Menu() {
                 </SideMenuFooter>
             </SideMenu>
         }
-        <div className={menu ? 'pagesmenu' : 'pages'}>
+        <Pages size={menu ? 'small' : 'big'}>
             <Outlet/>
-        </div>
+        </Pages>
     </MenuContainer>
   )
 }
