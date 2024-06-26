@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 
 export const KPI = styled.div`
     padding: 1em;
-    width: 18em;
+    width: 120%;
     height: 6em;
     border-radius: 1em;
     display: flex;

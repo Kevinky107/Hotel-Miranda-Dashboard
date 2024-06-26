@@ -59,7 +59,7 @@ export const LoginBackground = styled.div`
 
         ${props => props.theme === 'light' ? `
             background-color: #FFFFFF;
-            box-shadow: 0 5px 10px 1px rgb(56, 56, 56);
+            box-shadow: 0 5px 10px 1px rgb(156, 156, 156);
             `:`
             background-color: #171717;
             box-shadow: 0 5px 10px 1px rgb(27, 27, 27);

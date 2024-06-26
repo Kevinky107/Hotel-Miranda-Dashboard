@@ -56,7 +56,7 @@ function Menu() {
             </RightNavBar>
         </NavBar>
         {   menu &&
-            <SideMenu>
+            <SideMenu theme={themeSelector}>
                 <Logo>
                     <PiBuildingFill className='build'/>
                     <GiStarsStack className='stars'/>
@@ -102,7 +102,7 @@ function Menu() {
                         <h3>Concierge</h3>
                     </NavListElement>
                 </NavList>
-                <ActualUser>
+                <ActualUser theme={themeSelector}>
                     <ActualUserImage src={user.picture}/>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>

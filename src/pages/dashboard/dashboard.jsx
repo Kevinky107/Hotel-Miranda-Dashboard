@@ -7,6 +7,7 @@ import booking from '../../assets/bookings.json'
 import rooms from '../../assets/rooms.json'
 import { DashboardGrid } from '../../components/dashboard-styled';
 import { KPI, KPIpicture, KPItext } from '../../components/kpi-styled';
+import CommentsSlider from '../../components/comment-slider/comment-slider';
 
 function Dashboard() {
 
@@ -57,6 +58,7 @@ function Dashboard() {
             <h4>Check Out</h4>
           </KPItext>
         </KPI>
+        <CommentsSlider />
     </DashboardGrid>
   )
 }
