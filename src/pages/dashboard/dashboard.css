@@ -52,7 +52,18 @@
 
         div{
             display: inline-flex;
+            flex-direction: column;
+
+            h3{
+                font-size: 2rem;
+            }
+
+            h4{
+                font-size: 0.8rem;
+                font-weight: 300;
+            }
         }
+
     }
 
 }

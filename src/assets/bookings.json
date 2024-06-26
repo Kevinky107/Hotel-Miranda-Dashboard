@@ -63,7 +63,7 @@
         "request": "do laboris eu dolore ipsum fugiat aliqua consequat voluptate excepteur",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Carles Miranda",
@@ -85,7 +85,7 @@
         "request": "fugiat duis Lorem esse",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Jorge Pulido",
@@ -96,7 +96,7 @@
         "request": "cillum",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Rubén Téllez",
@@ -107,7 +107,7 @@
         "request": "nisi duis aute ipsum",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Laura Cabán",
@@ -129,7 +129,7 @@
         "request": "officia eu ut eiusmod ullamco",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Salvador Espinosa",
@@ -140,7 +140,7 @@
         "request": "irure non culpa",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Carles Almonte",
@@ -151,7 +151,7 @@
         "request": "Lorem",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Miguel Pulido",
@@ -162,7 +162,7 @@
         "request": "cillum commodo nulla ut",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Miguel Bernal",
@@ -173,7 +173,7 @@
         "request": "sit aute enim irure incididunt incididunt minim Lorem et sunt",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Andrea Iglesias",
@@ -184,7 +184,7 @@
         "request": "adipisicing tempor deserunt adipisicing",
         "room-type": "regular",
         "room-id": "6",
-        "status": "check out"
+        "status": "check in"
     },
     {
         "guest": "Miguel Martínez",
