@@ -1,52 +1,62 @@
 import { useContext, useEffect, useState } from 'react'
-import './login.css'
 import { ThemeContext } from '../../App';
 import users from '../../assets/users.json'
 import { useNavigate } from 'react-router-dom';
+import { LoginBackground, LoginInputPassword, LoginInputText } from '../../components/login-styled';
 
 function Login() {
 
   const themeSelector = useContext(ThemeContext)
 
   const navigate = useNavigate()
-  const user = JSON.parse(localStorage.getItem('user')) || {}
+  let user = JSON.parse(localStorage.getItem('user')) || {}
 
   useEffect(() => {
-    if(user.id !== null)
+    if(user.id !== null && user.state === true)
     {
       users.forEach( element => {
         if(element.id === user.id)
-          navigate('/home')     
+          navigate('/Dashboard')     
       })
     }
   })
 
   const submitHandler = (event) => {
     event.preventDefault()
-    users.forEach( user => {
-      if(user.username === event.target[0].value && user.password === event.target[1].value)
+    let ok = false
+    users.forEach( element => {
+      if(element.email === event.target[0].value && element.password === event.target[1].value)
       {
-        localStorage.setItem('user', JSON.stringify(user))
-        navigate('/home')
-      } else {
-        window.alert("Wrong username or password, try again")
+        ok = true
+        localStorage.setItem('user', JSON.stringify(element))
       }
+        
     })
+
+    if(ok)
+    {
+      user = JSON.parse(localStorage.getItem('user'))
+      navigate('/Dashboard')
+    } else {
+      window.alert("Wrong username or password, try again")
+    }
   }
 
+  //SI SE USA UN STYLED COMPONENT EL FORM DEJA DE PODER UTILIZAR EL EVENTO SUBMIT AL IGUAL QUE EL BOTTON
   return (
-    <div className={`login-`+themeSelector}>
+    <LoginBackground theme={themeSelector}>
       <div className='decoration'></div>
       <div className='decoration2'></div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler}> 
         <h2>LOGIN HERE</h2>
-        <p>USERNAME</p>
-        <input type='text' />
+        <p>EMAIL</p>
+        <LoginInputText />
         <p>PASSWORD</p>
-        <input type='password' />
+        <LoginInputPassword />
+        <br></br>
         <button>LOGIN</button>
       </form>
-    </div>
+    </LoginBackground>
   )
 }
 

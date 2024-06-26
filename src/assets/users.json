@@ -1,11 +1,38 @@
 [
     {
-        "id": "0",
-        "username": "Kevin",
+        "id": 0,
         "password": "1234",
         "email": "Kevinagudomontil@gmail.com",
-        "name": "Kevin",
-        "lastName": "Agudo Montil",
-        "picture": "./yo.jpeg"
+        "name": "Kevin Agudo Montil",
+        "picture": "./yo.jpeg",
+        "post": "Manager",
+        "phone": "616422058",
+        "post-description" : "web manager",
+        "start-date" : "2024-06-24",
+        "state": true
+    },
+    {
+        "id": 1,
+        "password": "admin",
+        "email": "admin@gmail.com",
+        "name": "administrator",
+        "picture": "./yo.jpeg",
+        "post": "Manager",
+        "phone": "616422058",
+        "post-description" : "administrator",
+        "start-date" : "2024-06-17",
+        "state": true
+    },
+    {
+        "id": 2,
+        "password": "1234",
+        "email": "adran@gmail.com",
+        "name": "Adrian Agudo Montil",
+        "picture": "./yo.jpeg",
+        "post": "administrator",
+        "phone": "616422058",
+        "post-description" : "administrator",
+        "start-date" : "2024-06-24",
+        "state": true
     }
 ]
