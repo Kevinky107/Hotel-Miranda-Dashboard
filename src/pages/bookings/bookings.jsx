@@ -94,7 +94,10 @@ function Bookings() {
                 <Column >{booking.orderdate}</Column>
                 <Column >{booking.checkin}</Column>
                 <Column >{booking.checkout}</Column>
-                <Column><Notes>View Notes</Notes></Column>
+                {booking.note !== null ? 
+                  <Column><Notes theme={themeSelector} >View Notes</Notes></Column> : 
+                  <Column><Notes theme={themeSelector} disabled>View Notes</Notes></Column>
+                }
                 <Column>{booking.roomtype}</Column>
                 <Column>
                   <BookingStatus status={booking.status}>

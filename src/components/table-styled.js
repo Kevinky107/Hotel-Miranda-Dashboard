@@ -210,8 +210,39 @@ export const Number = styled.b`
 
 //Booking
 
-export const Notes = styled.p`
+export const Notes = styled.button`
+    padding-block: 0.7em;
+    tex-align: center;
+    width: 9em;
+    border-radius: 0.5em;
+    font-weight: 400;
 
+    ${props => props.theme === 'light' ? `
+        color: black;
+        background-color: #EEF9F2;
+        border: none;
+
+        &:disabled{
+            color: #799283;
+            border: 1px solid #135846;
+            background-color: white;
+        }
+        `:`
+        color: white;
+        background-color: #3D3D3D;
+        border: none;
+
+        &:disabled{
+            color: #135846;
+            border: 1px solid #135846;
+            background-color: #202020;
+        }
+    `
+    }
+
+    &:hover{
+            cursor: pointer;
+        }
 `
 
 export const BookingStatus = styled.p`
