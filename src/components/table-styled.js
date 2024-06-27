@@ -224,7 +224,7 @@ export const Notes = styled.button`
 
         &:disabled{
             color: #799283;
-            border: 1px solid #135846;
+            border: 1px solid #799283;
             background-color: white;
         }
         `:`
