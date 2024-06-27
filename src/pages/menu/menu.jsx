@@ -24,15 +24,16 @@ import { Pages } from '../../components/pages-styled';
 function Menu() {
 
   const themeSelector = useContext(ThemeContext)
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user')) || false
 
   const [menu, setMenu] = useState(true)
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(user === null)
+    if(!user) {
         navigate("/")
+    }
   })
 
   const logout = () => {

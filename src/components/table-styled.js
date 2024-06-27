@@ -14,6 +14,10 @@ export const Table = styled.table`
     }
 `
 
+export const TableBody = styled.tbody`
+
+`
+
 export const Row = styled.tr`
     
 `
