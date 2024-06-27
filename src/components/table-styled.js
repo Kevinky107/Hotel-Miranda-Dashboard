@@ -207,3 +207,24 @@ export const Number = styled.b`
     `
     }
 `
+
+//Booking
+
+export const Notes = styled.p`
+
+`
+
+export const BookingStatus = styled.p`
+    width: 6em;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    font-weight: 300;
+    border-radius: 0.5em;
+`
+
+export const TableBookingImg = styled.img`
+    width: 3em;
+    height: 3em;
+    border-radius: 0.4em;
+`
