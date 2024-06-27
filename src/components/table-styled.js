@@ -245,6 +245,7 @@ export const Notes = styled.button`
         }
 `
 
+
 export const BookingStatus = styled.p`
     width: 6em;
     color: white;
@@ -252,6 +253,25 @@ export const BookingStatus = styled.p`
     padding: 0.5em;
     font-weight: 300;
     border-radius: 0.5em;
+    ${({status}) => {
+        switch(status) {
+            case "check in":
+                return `
+                    color: #5AD07A;
+                    background-color: #BFFF9F55;
+                `;
+            case "check out": 
+                return `
+                    color: #E23428;
+                    background-color: #FF766655;
+                `;
+            case "in progress":
+                return`
+                    color: #FFFC2A; 
+                    background-color: #FFFEA055;
+                `;
+        }}
+    }
 `
 
 export const TableBookingImg = styled.img`
