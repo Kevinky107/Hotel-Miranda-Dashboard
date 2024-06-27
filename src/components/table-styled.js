@@ -150,6 +150,7 @@ export const TablePageButton = styled.button`
 
     ${props => props.type === 'selected' && `
         background-color: #135846;
+        color: white;
     `
     }
 
