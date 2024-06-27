@@ -1,9 +1,16 @@
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../App';
 import { RoomContainer } from '../../components/room-styled';
-import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer } from '../../components/table-styled';
+import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
+  TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
+  TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
+  RoomStatus, ViewMore, Price, Number, 
+  TableButton,
+  TablePageButtons,
+  TablePageButton} from '../../components/table-styled';
 import rooms from '../../assets/rooms.json'
 import { GreenButton } from '../../components/button-styled';
+import { TbEyePlus } from "react-icons/tb";
 
 function Room() {
 
@@ -69,7 +76,7 @@ function Room() {
           {
             roomPages[page].map((room, index) => 
               <Row key={index}>
-                <Column>
+                <Column width='27%'>
                   <TableFlexContainer>
                     <TableRoomImg src={room.images[0]} />
                     <TableElementIdentificator>
@@ -78,11 +85,21 @@ function Room() {
                     </TableElementIdentificator>
                   </TableFlexContainer>
                 </Column>
-                <Column>{room.type}</Column>
-                <Column>{room.amenities}</Column>
-                <Column>${room.price}/Night</Column>
-                <Column>${room.offer}/Night</Column>
-                <Column>{room.available ? "Available" : "Booked"}</Column>
+                <Column width='12%' >{room.type}</Column>
+                <Column width='27%' >
+                  <p>{room.amenities.map((element, index) => `${element} ${index < room.amenities.length-1 ? ', ' : ""}`)}</p>
+                </Column>
+                <Column width='12%'>
+                  <Price><Number theme={themeSelector}>${room.price}</Number>/Night</Price>
+                </Column>
+                <Column width='12%'>
+                  <Price><Number theme={themeSelector}>${room.offer}</Number>/Night</Price>
+                </Column>
+                <Column>
+                  <RoomStatus status={room.available ? "available" : "booked"}>
+                    {room.available ? "Available" : "Booked"}
+                  </RoomStatus>
+                </Column>
               </Row>
             )
           }
@@ -93,13 +110,15 @@ function Room() {
           <h4>Showing {pageSize * (page) + roomPages[page].length} of {list.length}</h4>
         </TablePages>
         <TableButtons>
-          <button onClick={() => page > 0 && setPage(page-1)}>Prev</button>
+          <TableButton theme={themeSelector} onClick={() => page > 0 && setPage(page-1)}>Prev</TableButton>
+          <TablePageButtons theme={themeSelector}>
           {
             roomPages.map((array, index) =>
-              (index === page || index >= page-2 && index <= page+2 ) && <button key={index} onClick={() => setPage(index)}>{index+1}</button> 
+              (index === page || index >= page-2 && index <= page+2 ) && <TablePageButton type={page === index ? 'selected' : 'none'} theme={themeSelector} key={index} onClick={() => setPage(index)}>{index+1}</TablePageButton> 
             )
           }
-          <button onClick={() => page+1 < roomPages.length && setPage(page+1)}>Next</button>
+          </TablePageButtons>
+          <TableButton theme={themeSelector} onClick={() => page+1 < roomPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
     </RoomContainer>
