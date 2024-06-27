@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../App';
-import { RoomContainer } from '../../components/room-styled';
+import { PageContainer } from '../../components/page-styled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
@@ -54,7 +54,7 @@ function Room() {
   }
 
   return (
-    <RoomContainer>
+    <PageContainer>
       <TableHeader>
         <TableSelect>
           <TableOption type={option === 0 ? 'selected' : ""} onClick={allRooms}>All Rooms</TableOption>
@@ -121,7 +121,7 @@ function Room() {
           <TableButton theme={themeSelector} onClick={() => page+1 < roomPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
-    </RoomContainer>
+    </PageContainer>
   )
 }
 
