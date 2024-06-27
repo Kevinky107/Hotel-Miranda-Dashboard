@@ -1,5 +1,9 @@
 import { styled } from 'styled-components';
 
+export const SwiperContainer = styled.div`
+    padding-right: 4em;
+`
+
 export const CommentSliderWrap = styled.article`
     grid-column-start: 1;
     grid-column-end: 5;
