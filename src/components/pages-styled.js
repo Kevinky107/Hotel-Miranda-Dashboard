@@ -8,7 +8,7 @@ export const Pages = styled.main`
 
     ${props => props.size === 'small' && `
         padding-left: 22.5em;
-        width: 80%;
+        width: 81.2%;
         
         `
     }

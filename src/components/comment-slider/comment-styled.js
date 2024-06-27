@@ -107,6 +107,7 @@ export const CommentCustomer = styled.div`
 
         p{
             font-size: 0.6rem;
+            color: #799283;
         }
     }
 
