@@ -1,5 +1,9 @@
 import { styled } from 'styled-components';
 
+export const SwiperContainer = styled.div`
+    padding-right: 4em;
+`
+
 export const CommentSliderWrap = styled.article`
     grid-column-start: 1;
     grid-column-end: 5;
@@ -122,10 +126,18 @@ export const CommentActions = styled.div`
     .check{
         color: green;
         padding-right: 0.5em;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 
     .cross{
         color: red;
+        
+        &:hover{
+            cursor: pointer;
+        }
     }
 
 `

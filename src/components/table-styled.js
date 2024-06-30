@@ -20,7 +20,13 @@ export const TableBody = styled.tbody`
 `
 
 export const Row = styled.tr`
-
+    ${props => props.type === "big" && `
+        
+        height: 7em;
+        
+    `
+    }
+    
 `
 
 export const Column = styled.td`
@@ -278,4 +284,32 @@ export const TableBookingImg = styled.img`
     width: 3em;
     height: 3em;
     border-radius: 0.4em;
+`
+
+//Contact
+export const CommentAction= styled.p`
+    display: inline-flex;
+    padding-right: 1em;
+
+    ${props => props.type === 'publish' ? ` 
+        color: green;
+        `:`
+        color: red;
+    `
+    }
+
+    &:hover{
+        cursor: pointer;
+    }
+`
+
+//Concierge
+
+export const UserStatus = styled.p`
+    ${props => props.state === 'active' ? ` 
+        color: green;
+        `:`
+        color: red;
+    `
+    }
 `
