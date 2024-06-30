@@ -74,6 +74,7 @@ export const TableFooter = styled.div`
 
 export const TablePages = styled.div`
     display: inline-flex;  
+    color: #686868; 
 
     h4{
         font-weight: 400;

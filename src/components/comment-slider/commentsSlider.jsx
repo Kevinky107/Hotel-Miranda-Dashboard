@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { CommentSliderWrap, CommentTitle } from './comment-styled';
+import { CommentSliderWrap, CommentTitle } from './commentStyled';
 import Comment from './comment';
 
 function CommentsSlider() {

@@ -1,14 +1,12 @@
-import Login from './pages/login/login';
-import './App.css'
-
+import Login from './pages/login';
 import { createContext, useContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Menu from './pages/menu/menu';
-import Dashboard from './pages/dashboard/dashboard';
-import Bookings from './pages/bookings/bookings';
-import Room from './pages/room/room';
-import Contact from './pages/contact/contact';
-import Concierge from './pages/concierge/concierge';
+import Menu from './pages/menu';
+import Dashboard from './pages/dashboard';
+import Bookings from './pages/bookings';
+import Room from './pages/room';
+import Contact from './pages/contact';
+import Concierge from './pages/concierge';
 
 
 export const ThemeContext = createContext(null);

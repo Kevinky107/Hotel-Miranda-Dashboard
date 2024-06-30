@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
-import { PageContainer } from '../../components/page-styled';
+import { ThemeContext } from '../App';
+import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons,
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, TableButton, TablePageButtons, TablePageButton,
-  UserStatus} from '../../components/table-styled';
-import users from '../../assets/users.json'
-import { GreenButton } from '../../components/button-styled';
+  UserStatus} from '../components/tableStyled';
+import users from '../assets/users.json'
+import { GreenButton } from '../components/buttonStyled';
 
 function Concierge() {
 

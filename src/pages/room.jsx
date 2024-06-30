@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
-import { PageContainer } from '../../components/page-styled';
+import { ThemeContext } from '../App';
+import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, ViewMore, Price, Number, 
   TableButton,
   TablePageButtons,
-  TablePageButton} from '../../components/table-styled';
-import rooms from '../../assets/rooms.json'
-import { GreenButton } from '../../components/button-styled';
+  TablePageButton} from '../components/tableStyled';
+import rooms from '../assets/rooms.json'
+import { GreenButton } from '../components/buttonStyled';
 import { TbEyePlus } from "react-icons/tb";
 
 function Room() {
