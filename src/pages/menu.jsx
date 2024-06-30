@@ -107,7 +107,7 @@ function Menu() {
                     <ActualUserImage src={user.picture}/>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>
-                    <GreenButton theme={themeSelector}>Edit</GreenButton>
+                    <GreenButton theme={themeSelector} onClick={() => navigate('/EditUserData')}>Edit</GreenButton>
                 </ActualUser>
                 <SideMenuFooter>
                     <h3>Travl Hotel Admin Dashboard</h3>

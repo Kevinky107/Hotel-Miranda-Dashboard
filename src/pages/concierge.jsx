@@ -8,6 +8,7 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   UserStatus} from '../components/tableStyled';
 import users from '../assets/users.json'
 import { GreenButton } from '../components/buttonStyled';
+import { useNavigate } from 'react-router-dom';
 
 function Concierge() {
 
@@ -22,6 +23,7 @@ function Concierge() {
     return aux 
   }
 
+  const navigate = useNavigate()
   const [option, setOption] = useState(0)
   const [list, setList] = useState(users)
   const [userPages, setUserPages] = useState(createPagination(list, pageSize))
@@ -58,7 +60,7 @@ function Concierge() {
           <TableOption type={option === 1 ? 'selected' : ""} onClick={activeUsers}>Active Employee</TableOption>
           <TableOption type={option === 2 ? 'selected' : ""} onClick={inactiveUsers}>Inactive Employee</TableOption>
         </TableSelect>
-        <GreenButton theme="dark">+ New Employee</GreenButton>
+        <GreenButton theme="dark" onClick={() => navigate('/NewEmployee')}>+ New Employee</GreenButton>
       </TableHeader>
       <Table theme={themeSelector}>
         <TableBody>
