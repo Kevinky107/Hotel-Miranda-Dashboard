@@ -3,7 +3,8 @@ import { ThemeContext } from '../../App';
 import { PageContainer } from '../../components/page-styled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
-  TableButton, TablePageButtons, TablePageButton } from '../../components/table-styled';
+  TableButton, TablePageButtons, TablePageButton, 
+  CommentAction} from '../../components/table-styled';
 import { SwiperContainer } from '../../components/comment-slider/comment-styled';
 import CommentsSlider from '../../components/comment-slider/comment-slider';
 
@@ -69,20 +70,20 @@ function Contact() {
             <ColumnTitle>Contact Id</ColumnTitle>
             <ColumnTitle>Date</ColumnTitle>
             <ColumnTitle>Customer</ColumnTitle>
-            <ColumnTitle>comment</ColumnTitle>
+            <ColumnTitle>Comment</ColumnTitle>
             <ColumnTitle>Action</ColumnTitle>
           </Row>
           {
             commentPages[page].map((comment, index) => 
-              <Row key={index}>
-                <Column>
+              <Row type='big' key={index}>
+                <Column width='10%'>
                       #{comment.id}
                 </Column>
-                <Column >{comment.date}</Column>
-                <Column >{comment.customer}</Column>
+                <Column width='10%'>{comment.date}</Column>
+                <Column width='15%'>{comment.customer}</Column>
                 <Column width='40%' >{comment.comment}</Column>
-                <Column>
-                  Publish Archive
+                <Column width='15%'>
+                  <CommentAction type='publish'>Publish</CommentAction><CommentAction type='archive'>Archive</CommentAction>
                 </Column>
               </Row>
             )

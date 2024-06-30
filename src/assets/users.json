@@ -7,8 +7,8 @@
         "picture": "./yo.jpeg",
         "post": "Manager",
         "phone": "616422058",
-        "post-description" : "web manager",
-        "start-date" : "2024-06-24",
+        "postdescription" : "full stack developer, is in charge of the operation of the website, its database and its visualization as well as its maintenance",
+        "startdate" : "2024-06-24",
         "state": true
     },
     {
@@ -16,23 +16,47 @@
         "password": "admin",
         "email": "admin@gmail.com",
         "name": "administrator",
-        "picture": "./yo.jpeg",
+        "picture": "./profile.jpg",
         "post": "Manager",
-        "phone": "616422058",
-        "post-description" : "administrator",
-        "start-date" : "2024-06-17",
+        "phone": "616123456",
+        "postdescription" : "administrator",
+        "startdate" : "2024-06-17",
         "state": true
     },
     {
         "id": 2,
         "password": "1234",
-        "email": "adran@gmail.com",
+        "email": "adrian@gmail.com",
         "name": "Adrian Agudo Montil",
-        "picture": "./yo.jpeg",
-        "post": "administrator",
-        "phone": "616422058",
-        "post-description" : "administrator",
-        "start-date" : "2024-06-24",
+        "picture": "./profile.jpg",
+        "post": "Room Service",
+        "phone": "616946376",
+        "postdescription" : "Clean rooms and change towels if necessary",
+        "startdate" : "2024-06-24",
         "state": true
+    },
+    {
+        "id": 3,
+        "password": "1234",
+        "email": "rocio@gmail.com",
+        "name": "Rocio Montil Lopez",
+        "picture": "./profile.jpg",
+        "post": "Reception",
+        "phone": "612234376",
+        "postdescription" : "Responsible for assisting new clients and resolving their doubts or problems",
+        "startdate" : "2024-06-24",
+        "state": true
+    },
+    {
+        "id": 4,
+        "password": "1234",
+        "email": "jose@gmail.com",
+        "name": "Jose Agudo Campano",
+        "picture": "./profile.jpg",
+        "post": "Room Service",
+        "phone": "612256476",
+        "postdescription" : "Clean rooms and change towels if necessary",
+        "startdate" : "2024-06-24",
+        "state": false
     }
 ]

@@ -126,10 +126,18 @@ export const CommentActions = styled.div`
     .check{
         color: green;
         padding-right: 0.5em;
+
+        &:hover{
+            cursor: pointer;
+        }
     }
 
     .cross{
         color: red;
+        
+        &:hover{
+            cursor: pointer;
+        }
     }
 
 `

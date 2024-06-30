@@ -4,6 +4,7 @@ export const SideMenu = styled.aside`
     position: fixed;
     width: 22em;
     height: 100%;
+    z-index: 3;
 
     ${props => props.theme === 'light' ? `
         background-color: #FFFFFF;
