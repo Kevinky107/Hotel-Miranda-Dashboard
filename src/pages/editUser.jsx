@@ -13,7 +13,7 @@ function EditUser() {
 
   return (
     <PageContainer>
-      <FormStyledWrapper>
+      <FormStyledWrapper theme={themeSelector}>
         <form>
           <h4>Image</h4>
           <FormStyledSection>
