@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/theme';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiKey } from "react-icons/bi";

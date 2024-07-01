@@ -1,5 +1,4 @@
 import Login from './pages/login';
-import { createContext, useContext } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './pages/menu';
 import Dashboard from './pages/dashboard';
@@ -10,8 +9,7 @@ import Concierge from './pages/concierge';
 import NewRoom from './pages/newRoom';
 import NewEmployee from './pages/newEmployee';
 import EditUser from './pages/editUser';
-
-export const ThemeContext = createContext(null);
+import { ThemeContext } from './context/theme';
 
 function App() {
 
