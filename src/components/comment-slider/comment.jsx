@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
+import { ThemeContext } from '../../context/theme';
 import { CommentText, CommentActions, CommentCard, CommentCustomer, CommentFooter } from './commentStyled';
 import { RxCrossCircled, RxCheckCircled } from "react-icons/rx";
 

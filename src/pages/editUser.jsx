@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
-import { ThemeContext } from '../App'
+import { ThemeContext } from '../context/theme';
 import { FormStyledWrapper } from '../components/formStyled'
 
 function EditUser() {

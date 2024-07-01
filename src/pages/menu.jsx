@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/theme';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiKey } from "react-icons/bi";
@@ -19,25 +19,27 @@ import { LeftNavBar, NavBar, RightNavBar } from '../components/menu/navBarStyled
 import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../components/menu/sideMenuStyled';
 import { ActualUser, ActualUserImage } from '../components/menu/actualUserStyled';
 import { Pages } from '../components/pagesStyled';
+import { AuthContext } from '../context/auth';
 
 
 function Menu() {
 
   const themeSelector = useContext(ThemeContext)
-  const user = JSON.parse(localStorage.getItem('user')) || false
+  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
 
   const [menu, setMenu] = useState(true)
   const location = useLocation()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(!user) {
+    if(contextAuth.id === null || !contextAuth.state ) {
         navigate("/")
     }
   })
 
   const logout = () => {
     localStorage.removeItem('user')
+    contextAuthDispatch({type: 'LOGOUT'})
     navigate("/")
   }
 
@@ -104,9 +106,9 @@ function Menu() {
                     </NavListElement>
                 </NavList>
                 <ActualUser theme={themeSelector}>
-                    <ActualUserImage src={user.picture}/>
-                    <h4>{user.name}</h4>
-                    <p>{user.email}</p>
+                    <ActualUserImage src={contextAuth.picture}/>
+                    <h4>{contextAuth.name}</h4>
+                    <p>{contextAuth.email}</p>
                     <GreenButton theme={themeSelector} onClick={() => navigate('/EditUserData')}>Edit</GreenButton>
                 </ActualUser>
                 <SideMenuFooter>
