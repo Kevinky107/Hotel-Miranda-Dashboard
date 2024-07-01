@@ -3,19 +3,19 @@ import { ThemeContext } from '../context/theme';
 import users from '../assets/users.json'
 import { useNavigate } from 'react-router-dom';
 import { LoginBackground, LoginInputPassword, LoginInputText } from '../components/loginStyled';
+import { AuthContext } from '../context/auth';
 
 function Login() {
 
   const themeSelector = useContext(ThemeContext)
-
+  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
   const navigate = useNavigate()
-  let user = JSON.parse(localStorage.getItem('user')) || {}
-
+  
   useEffect(() => {
-    if(user.id !== null && user.state === true)
+    if(contextAuth.id !== null && contextAuth.state === true)
     {
       users.forEach( element => {
-        if(element.id === user.id)
+        if(element.id === contextAuth.id)
           navigate('/Dashboard')     
       })
     }
@@ -35,10 +35,10 @@ function Login() {
 
     if(ok)
     {
-      user = JSON.parse(localStorage.getItem('user'))
+      contextAuthDispatch({type: 'LOGIN', payload: JSON.parse(localStorage.getItem('user'))})
       navigate('/Dashboard')
     } else {
-      window.alert("Wrong username or password, try again")
+      window.alert("Wrong email or password, try again")
     }
   }
 
