@@ -11,7 +11,6 @@ import NewRoom from './pages/newRoom';
 import NewEmployee from './pages/newEmployee';
 import EditUser from './pages/editUser';
 
-
 export const ThemeContext = createContext(null);
 
 function App() {

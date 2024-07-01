@@ -12,7 +12,8 @@ function EditUser() {
     <PageContainer>
       <FormStyledWrapper>
         <form>
-          <h4>Images</h4>
+          <h4>Image</h4>
+          <img width='50em' src={user.picture} />
           <input type='file' />
           <h4>Name</h4>
           <input type='text' value={user.name} />
@@ -31,11 +32,7 @@ function EditUser() {
           <h4>Job Description</h4>
           <input type='text' value={user.postdescription} />
           <h4>Active</h4>
-          {user.state ?
-            <input type='checkbox' checked/> 
-            : 
-            <input type='checkbox'/>
-          }
+          <input type='checkbox' checked={user.state}/> 
           <input type='submit' value='SAVE CHANGES'/>
         </form>
       </FormStyledWrapper>

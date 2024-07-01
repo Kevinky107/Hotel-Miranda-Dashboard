@@ -11,7 +11,7 @@ function NewEmployee() {
     <PageContainer>
       <FormStyledWrapper>
       <form>
-          <h4>Images</h4>
+          <h4>Image</h4>
           <input type='file' />
           <h4>Name</h4>
           <input type='text' />
