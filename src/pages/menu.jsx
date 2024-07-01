@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
+import { ThemeContext } from '../App';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LuLayoutDashboard } from "react-icons/lu";
 import { BiKey } from "react-icons/bi";
@@ -8,17 +8,17 @@ import { IoPersonOutline } from "react-icons/io5";
 import { PiPuzzlePiece } from "react-icons/pi";
 import { PiBuildingFill } from "react-icons/pi";
 import { GiStarsStack } from "react-icons/gi";
-import { GreenButton } from '../../components/button-styled';
+import { GreenButton } from '../components/buttonStyled';
 import { HiMenuAlt2 } from "react-icons/hi";
 import { BsArrowLeft } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-import { MenuContainer } from '../../components/menu/menu-styled';
-import { LeftNavBar, NavBar, RightNavBar } from '../../components/menu/navBar-styled';
-import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../../components/menu/sideMenu-styled';
-import { ActualUser, ActualUserImage } from '../../components/menu/actualUser-styled';
-import { Pages } from '../../components/pages-styled';
+import { MenuContainer } from '../components/menu/menuStyled';
+import { LeftNavBar, NavBar, RightNavBar } from '../components/menu/navBarStyled';
+import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } from '../components/menu/sideMenuStyled';
+import { ActualUser, ActualUserImage } from '../components/menu/actualUserStyled';
+import { Pages } from '../components/pagesStyled';
 
 
 function Menu() {
@@ -107,7 +107,7 @@ function Menu() {
                     <ActualUserImage src={user.picture}/>
                     <h4>{user.name}</h4>
                     <p>{user.email}</p>
-                    <GreenButton theme={themeSelector}>Edit</GreenButton>
+                    <GreenButton theme={themeSelector} onClick={() => navigate('/EditUserData')}>Edit</GreenButton>
                 </ActualUser>
                 <SideMenuFooter>
                     <h3>Travl Hotel Admin Dashboard</h3>

@@ -1,16 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
-import { PageContainer } from '../../components/page-styled';
+import { ThemeContext } from '../App';
+import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, ViewMore, Price, Number, 
   TableButton,
   TablePageButtons,
-  TablePageButton} from '../../components/table-styled';
-import rooms from '../../assets/rooms.json'
-import { GreenButton } from '../../components/button-styled';
+  TablePageButton} from '../components/tableStyled';
+import rooms from '../assets/rooms.json'
+import { GreenButton } from '../components/buttonStyled';
 import { TbEyePlus } from "react-icons/tb";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Room() {
 
@@ -25,6 +26,7 @@ function Room() {
     return aux 
   }
 
+  const navigate = useNavigate()
   const [option, setOption] = useState(0)
   const [list, setList] = useState(rooms)
   const [roomPages, setRoomPages] = useState(createPagination(list, pageSize))
@@ -61,7 +63,7 @@ function Room() {
           <TableOption type={option === 1 ? 'selected' : ""} onClick={availableRooms}>Available Rooms</TableOption>
           <TableOption type={option === 2 ? 'selected' : ""} onClick={bookedRooms}>Booked Rooms</TableOption>
         </TableSelect>
-        <GreenButton theme="dark">+ New Room</GreenButton>
+        <GreenButton theme="dark" onClick={() => navigate('/NewRoom')}>+ New Room</GreenButton>
       </TableHeader>
       <Table theme={themeSelector}>
         <TableBody>

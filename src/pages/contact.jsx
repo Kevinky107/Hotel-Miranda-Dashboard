@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
-import { PageContainer } from '../../components/page-styled';
+import { ThemeContext } from '../App';
+import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
   TableButton, TablePageButtons, TablePageButton, 
-  CommentAction} from '../../components/table-styled';
-import { SwiperContainer } from '../../components/comment-slider/comment-styled';
-import CommentsSlider from '../../components/comment-slider/comment-slider';
+  CommentAction} from '../components/tableStyled';
+import { SwiperContainer } from '../components/comment-slider/commentStyled';
+import CommentsSlider from '../components/comment-slider/commentsSlider';
 
-import comments from '../../assets/comments.json'
+import comments from '../assets/comments.json'
 
 function Contact() {
 
