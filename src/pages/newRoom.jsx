@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
 import { ThemeContext } from '../context/theme';
-import { FormStyledWrapper, RadioContainer } from '../components/formStyled'
+import { FormStyledWrapper, CheckboxContainer } from '../components/formStyled'
 
 function NewRoom() {
 
@@ -33,24 +33,24 @@ function NewRoom() {
           <h4>Cancellation</h4>
           <input type='text' />
           <h4>Amenities</h4>
-          <RadioContainer>
+          <CheckboxContainer>
             <label>AC: </label>
-            <input type='radio' value='AC' />
+            <input type='checkbox' value='AC' />
             <label>Shower: </label>
-            <input type='radio' value='Shower' />
+            <input type='checkbox' value='Shower' />
             <label>Double Bed: </label>
-            <input type='radio' value='Double Bed' />
+            <input type='checkbox' value='Double Bed' />
             <label>Towel: </label>
-            <input type='radio' value='Towel' />
+            <input type='checkbox' value='Towel' />
             <label>Bathup: </label>
-            <input type='radio' value='Bathup' />
+            <input type='checkbox' value='Bathup' />
             <label>Cofee Set: </label>
-            <input type='radio' value='Cofee Set' />
+            <input type='checkbox' value='Cofee Set' />
             <label>LED TV: </label>
-            <input type='radio' value='LED TV' />
+            <input type='checkbox' value='LED TV' />
             <label>Wifi: </label>
-            <input type='radio' value='Wifi' />
-          </RadioContainer>
+            <input type='checkbox' value='Wifi' />
+          </CheckboxContainer>
           <input type='submit' value='ADD ROOM' />
         </form>
       </FormStyledWrapper>

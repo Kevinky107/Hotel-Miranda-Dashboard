@@ -8,10 +8,6 @@ const authContextReducer = (state, action) => {
             return state = action.payload
         case 'LOGOUT':
             return state = initialState
-        case 'EDIT_USER':
-            return {
-                
-            }
         default:
             return state
     }

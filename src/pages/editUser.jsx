@@ -1,39 +1,69 @@
 import { useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
 import { ThemeContext } from '../context/theme';
-import { FormStyledWrapper } from '../components/formStyled'
+import { FormButtonsContainer, FormStyledSection, FormStyledWrapper } from '../components/formStyled'
+import { AuthContext } from '../context/auth';
+import { useNavigate } from 'react-router-dom';
 
 function EditUser() {
 
   const themeSelector = useContext(ThemeContext)
-  const user = JSON.parse(localStorage.getItem('user'))
+  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   return (
     <PageContainer>
       <FormStyledWrapper>
         <form>
           <h4>Image</h4>
-          <img width='50em' src={user.picture} />
-          <input type='file' />
+          <FormStyledSection>
+            <input type='file' />
+            <img width='50em' src={contextAuth.picture} />
+          </FormStyledSection>
           <h4>Name</h4>
-          <input type='text' value={user.name} />
-          <h4>Job</h4>
-          <select>
-            <option>Manager</option>
-            <option>Reception</option>
-            <option>Room Service</option>
-          </select>
-          <h4>Email</h4>
-          <input type='email' value={user.email} />
-          <h4>Phone Number</h4>
-          <input type='tel' value={user.phone} />
-          <h4>Start Date</h4>
-          <input type='date' value={user.startdate} />
+          <FormStyledSection>
+            <input type='text' defaultValue={contextAuth.name} />
+          </FormStyledSection>
+          <h4>Job Post</h4>
+          <FormStyledSection>
+            <select>
+              <option>Manager</option>
+              <option>Reception</option>
+              <option>Room Service</option>
+            </select>
+            <p>(actual job: {contextAuth.post})</p>
+          </FormStyledSection>
+          <FormStyledSection>
+            <div>
+              <h4>Email</h4>
+              <input type='email' defaultValue={contextAuth.email} />
+            </div>
+            <div>
+              <h4>Password</h4>
+              <input type='text' defaultValue={contextAuth.password} />
+            </div>
+          </FormStyledSection>
+          <FormStyledSection>
+          <div>
+            <h4>Phone Number</h4>
+            <input type='tel' defaultValue={contextAuth.phone} />
+          </div>
+          <div>
+            <h4>Start Date</h4>
+            <input type='date' defaultValue={contextAuth.startdate} />
+          </div>
+          </FormStyledSection>
           <h4>Job Description</h4>
-          <input type='text' value={user.postdescription} />
+          <textarea defaultValue={contextAuth.postdescription} />
+          <br></br>
           <h4>Active</h4>
-          <input type='checkbox' checked={user.state}/> 
-          <input type='submit' value='SAVE CHANGES'/>
+          <input type='checkbox' defaultChecked={contextAuth.state}/> 
+          <FormButtonsContainer>
+            <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
+            <button theme={themeSelector} onClick={(event) => {
+              event.preventDefault()
+              navigate(-1)}}>GO BACK</button>
+          </FormButtonsContainer>
         </form>
       </FormStyledWrapper>
     </PageContainer>
