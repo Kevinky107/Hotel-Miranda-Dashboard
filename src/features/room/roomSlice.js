@@ -16,7 +16,7 @@ export const roomSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(getRoomListThunk.fulfilled, (state, action) => {
-                state.dataList = [...state.dataList, ...action.payload]
+                state.dataList = [...action.payload]
                 state.status = "fulfilled"
             })
             .addCase(getRoomListThunk.rejected, (state, action) => {
@@ -40,4 +40,4 @@ export const roomSlice = createSlice({
 export const roomDataSelector = (state) => state.room.data
 export const roomDataListSelector = (state) => state.room.dataList
 export const roomStatusSelector = (state) => state.room.status
-export const imagesErrorSelector = (state) => state.room.error
+export const roomErrorSelector = (state) => state.room.error
