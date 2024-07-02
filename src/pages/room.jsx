@@ -12,6 +12,8 @@ import rooms from '../assets/rooms.json'
 import { GreenButton } from '../components/buttonStyled';
 import { TbEyePlus } from "react-icons/tb";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 function Room() {
 
@@ -87,7 +89,7 @@ function Room() {
                     </TableElementIdentificator>
                   </TableFlexContainer>
                 </Column>
-                <Column width='12%' >{room.type}</Column>
+                <Column width='8%' >{room.type}</Column>
                 <Column width='27%' >
                   <p>{room.amenities.map((element, index) => `${element} ${index < room.amenities.length-1 ? ', ' : ""}`)}</p>
                 </Column>
@@ -102,6 +104,7 @@ function Room() {
                     {room.available ? "Available" : "Booked"}
                   </RoomStatus>
                 </Column>
+                <Column><FaRegEdit /><MdDeleteOutline /></Column>
               </Row>
             )
           }

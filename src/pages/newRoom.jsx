@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
 import { ThemeContext } from '../context/theme';
-import { FormStyledWrapper, CheckboxContainer } from '../components/formStyled'
+import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../components/formStyled'
+import { useNavigate } from 'react-router-dom';
 
 function NewRoom() {
 
   const themeSelector = useContext(ThemeContext)
+  const navigate = useNavigate()
 
   return (
     <PageContainer>
@@ -20,38 +22,69 @@ function NewRoom() {
             <option>Double Superior</option>
             <option>Suite</option>
           </select>
-          <h4>ID</h4>
-          <input type='number' />
-          <h4>Description</h4>
-          <input type='text' />
+          <FormStyledSection>
+            <div>
+              <h4>ID</h4>
+              <input type='number' />
+            </div>
+            <div>
+              <h4>Description</h4>
+              <input type='text' />
+            </div>
+          </FormStyledSection>
           <h4>Offer</h4>
           <input type='checkbox' />
-          <h4>Price</h4>
-          <input type='number' />
-          <h4>Discount</h4>
-          <input type='checkbox' />
-          <h4>Cancellation</h4>
-          <input type='text' />
+          <FormStyledSection>
+            <div>
+              <h4>Price</h4>
+              <input type='number' />
+            </div>
+            <div>
+              <h4>Cancellation</h4>
+              <input type='text' />
+            </div>
+          </FormStyledSection>
           <h4>Amenities</h4>
           <CheckboxContainer>
-            <label>AC: </label>
-            <input type='checkbox' value='AC' />
-            <label>Shower: </label>
-            <input type='checkbox' value='Shower' />
-            <label>Double Bed: </label>
-            <input type='checkbox' value='Double Bed' />
-            <label>Towel: </label>
-            <input type='checkbox' value='Towel' />
-            <label>Bathup: </label>
-            <input type='checkbox' value='Bathup' />
-            <label>Cofee Set: </label>
-            <input type='checkbox' value='Cofee Set' />
-            <label>LED TV: </label>
-            <input type='checkbox' value='LED TV' />
-            <label>Wifi: </label>
-            <input type='checkbox' value='Wifi' />
+            <div>
+              <input type='checkbox' value='AC' />
+              <label>AC</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Shower' />
+              <label>Shower</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Double Bed' />
+              <label>Double Bed</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Towel' />
+              <label>Towel</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Bathup' />
+              <label>Bathup</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Cofee Set' />
+              <label>Cofee Set</label>
+            </div>
+            <div>
+              <input type='checkbox' value='LED TV' />
+              <label>LED TV</label>
+            </div>
+            <div>
+              <input type='checkbox' value='Wifi' />
+              <label>Wifi</label>
+            </div>
           </CheckboxContainer>
-          <input type='submit' value='ADD ROOM' />
+          <FormButtonsContainer>
+            <button theme={themeSelector} type='submit'>ADD ROOM</button>
+            <button theme={themeSelector} onClick={(event) => {
+                event.preventDefault()
+                navigate(-1)}}>GO BACK</button>
+          </FormButtonsContainer>
         </form>
       </FormStyledWrapper>
     </PageContainer>

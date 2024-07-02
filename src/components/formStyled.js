@@ -52,6 +52,8 @@ export const FormStyledWrapper = styled.div`
 `
 
 export const CheckboxContainer = styled.div`
+    column-count: 4;
+
     
 `
 

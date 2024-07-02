@@ -7,7 +7,6 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   CommentAction} from '../components/tableStyled';
 import { SwiperContainer } from '../components/comment-slider/commentStyled';
 import CommentsSlider from '../components/comment-slider/commentsSlider';
-
 import comments from '../assets/comments.json'
 
 function Contact() {

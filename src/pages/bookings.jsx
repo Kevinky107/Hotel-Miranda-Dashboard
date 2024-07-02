@@ -9,6 +9,10 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   TableBookingImg} from '../components/tableStyled';
 import bookings from '../assets/bookings.json'
 import { TbEyePlus } from "react-icons/tb";
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
+
+
 function Bookings() {
 
   const themeSelector = useContext(ThemeContext)
@@ -104,7 +108,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><ViewMore><TbEyePlus /></ViewMore></Column>
+                <Column><TbEyePlus /><FaRegEdit /><MdDeleteOutline /></Column>
               </Row>
             )
           }
