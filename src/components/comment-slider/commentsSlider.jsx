@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../../App';
+import { ThemeContext } from '../../context/theme';
 import comments from '../../assets/comments.json'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';

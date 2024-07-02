@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/theme';
 import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
@@ -7,7 +7,6 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   CommentAction} from '../components/tableStyled';
 import { SwiperContainer } from '../components/comment-slider/commentStyled';
 import CommentsSlider from '../components/comment-slider/commentsSlider';
-
 import comments from '../assets/comments.json'
 
 function Contact() {

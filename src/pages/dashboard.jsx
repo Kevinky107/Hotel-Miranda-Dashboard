@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/theme';
 import { IoBedOutline } from "react-icons/io5";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { IoLogOutOutline, IoLogInOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import rooms from '../assets/rooms.json'
 import { DashboardGrid } from '../components/dashboardStyled';
 import { KPI, KPIpicture, KPItext } from '../components/kpiStyled';
 import CommentsSlider from '../components/comment-slider/commentsSlider';
+
 
 function Dashboard() {
 

@@ -30,7 +30,7 @@ export const Row = styled.tr`
 `
 
 export const Column = styled.td`
-    
+
 `
 
 export const ColumnTitle = styled.th`
@@ -192,7 +192,7 @@ export const RoomStatus = styled.p`
 `
 
 export const ViewMore = styled.picture`
-    font-size: 2rem;
+    font-size: 1rem;
 
     &:hover{
         cursor: pointer;

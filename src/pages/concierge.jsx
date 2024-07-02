@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../App';
+import { ThemeContext } from '../context/theme';
 import { PageContainer } from '../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons,
@@ -9,6 +9,8 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
 import users from '../assets/users.json'
 import { GreenButton } from '../components/buttonStyled';
 import { useNavigate } from 'react-router-dom';
+import { FaRegEdit } from "react-icons/fa";
+import { MdDeleteOutline } from "react-icons/md";
 
 function Concierge() {
 
@@ -90,6 +92,7 @@ function Concierge() {
                 <Column>{user.email}</Column>
                 <Column>{user.phone}</Column>
                 <Column width='7%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
+                <Column><FaRegEdit /><MdDeleteOutline /></Column>
               </Row>
             )
           }
