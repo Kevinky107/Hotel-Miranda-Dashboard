@@ -53,7 +53,9 @@ export const FormStyledWrapper = styled.div`
 
 export const CheckboxContainer = styled.div`
     column-count: 4;
-
+    input{
+            margin-right: 0.5em;
+    }
     
 `
 

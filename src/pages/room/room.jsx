@@ -1,25 +1,29 @@
 import { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ThemeContext } from '../context/theme';
-import { PageContainer } from '../components/pageStyled';
+import { ThemeContext } from '../../context/theme';
+import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, ViewMore, Price, Number, 
   TableButton,
   TablePageButtons,
-  TablePageButton} from '../components/tableStyled';
-import { GreenButton } from '../components/buttonStyled';
+  TablePageButton,
+  TableElementActions} from '../../components/tableStyled';
+import { GreenButton } from '../../components/buttonStyled';
 import { TbEyePlus } from "react-icons/tb";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../features/room/roomSlice';
-import { getRoomListThunk } from '../features/room/roomThunk';
+import { addRoom, removeRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
+import { getRoomListThunk } from '../../features/room/roomThunk';
+
+import Swal from 'sweetalert2'
 
 function Room() {
-
+  
   const themeSelector = useContext(ThemeContext)
+  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -59,7 +63,7 @@ function Room() {
     else if (roomStatus === "rejected") {
         alert(roomError)
     }
-  },[roomStatus])
+  },[roomStatus, roomDataList])
 
   const allRooms = () => {
     setOption(0)
@@ -82,6 +86,27 @@ function Room() {
     setPage(0)
     setList(aux)
     setRoomPages(createPagination(aux, pageSize))
+  }
+
+  const popUpDelete = (room) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to get the #${room.id} room back!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: `The room #${room.id} has been removed.`,
+          icon: "success"
+        });
+        dispatch(removeRoom(room))
+      }
+    });
   }
 
   return (
@@ -133,7 +158,7 @@ function Room() {
                       {room.available ? "Available" : "Booked"}
                     </RoomStatus>
                   </Column>
-                  <Column><FaRegEdit /><MdDeleteOutline /></Column>
+                  <Column><TableElementActions><FaRegEdit className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
                 </Row>
               )
             }

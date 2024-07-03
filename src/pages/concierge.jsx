@@ -5,7 +5,8 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   TableBody, TableHeader, TableFooter, TablePages, TableButtons,
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, TableButton, TablePageButtons, TablePageButton,
-  UserStatus} from '../components/tableStyled';
+  UserStatus,
+  TableElementActions} from '../components/tableStyled';
 import users from '../assets/users.json'
 import { GreenButton } from '../components/buttonStyled';
 import { useNavigate } from 'react-router-dom';
@@ -90,9 +91,9 @@ function Concierge() {
                 <Column width='10%'>{user.post}</Column>
                 <Column width='35%'>{user.postdescription}</Column>
                 <Column>{user.email}</Column>
-                <Column>{user.phone}</Column>
-                <Column width='7%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
-                <Column><FaRegEdit /><MdDeleteOutline /></Column>
+                <Column >{user.phone}</Column>
+                <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
+                <Column><TableElementActions><FaRegEdit className='edit' /><MdDeleteOutline className='delete' /></TableElementActions></Column>
               </Row>
             )
           }

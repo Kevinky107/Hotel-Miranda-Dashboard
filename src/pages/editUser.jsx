@@ -15,49 +15,18 @@ function EditUser() {
     <PageContainer>
       <FormStyledWrapper theme={themeSelector}>
         <form>
-          <h4>Image</h4>
-          <FormStyledSection>
-            <input type='file' />
-            <img width='50em' src={contextAuth.picture} />
-          </FormStyledSection>
-          <h4>Name</h4>
-          <FormStyledSection>
-            <input type='text' defaultValue={contextAuth.name} />
-          </FormStyledSection>
-          <h4>Job Post</h4>
-          <FormStyledSection>
-            <select>
-              <option>Manager</option>
-              <option>Reception</option>
-              <option>Room Service</option>
-            </select>
-            <p>(actual job: {contextAuth.post})</p>
-          </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Email</h4>
               <input type='email' defaultValue={contextAuth.email} />
             </div>
+          </FormStyledSection>
+          <FormStyledSection>
             <div>
               <h4>Password</h4>
               <input type='text' defaultValue={contextAuth.password} />
             </div>
           </FormStyledSection>
-          <FormStyledSection>
-          <div>
-            <h4>Phone Number</h4>
-            <input type='tel' defaultValue={contextAuth.phone} />
-          </div>
-          <div>
-            <h4>Start Date</h4>
-            <input type='date' defaultValue={contextAuth.startdate} />
-          </div>
-          </FormStyledSection>
-          <h4>Job Description</h4>
-          <textarea defaultValue={contextAuth.postdescription} />
-          <br></br>
-          <h4>Active</h4>
-          <input type='checkbox' defaultChecked={contextAuth.state}/> 
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
             <button theme={themeSelector} onClick={(event) => {

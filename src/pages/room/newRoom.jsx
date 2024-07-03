@@ -1,47 +1,61 @@
 import { useContext, useEffect, useState } from 'react'
-import { PageContainer } from '../components/pageStyled'
-import { ThemeContext } from '../context/theme';
-import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../components/formStyled'
+import { PageContainer } from '../../components/pageStyled'
+import { ThemeContext } from '../../context/theme';
+import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
 import { useNavigate } from 'react-router-dom';
 
 function NewRoom() {
 
   const themeSelector = useContext(ThemeContext)
   const navigate = useNavigate()
+ 
+  const [id, setId] = useState(null);
+  const [name, setName] = useState(null);
+  const [images, setImages] = useState(["./room.jpg"]);
+  const [type, setType] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [offer, setOffer] = useState(null);
+  const [amenities, setAmenities] = useState([]);
+  const [available, setAvailable] = useState(true);
+
+  const submitHandler = () => {
+
+
+  }
 
   return (
     <PageContainer>
       <FormStyledWrapper theme={themeSelector}>
-        <form>
+        <form onSubmit={submitHandler}>
           <h4>Images</h4>
-          <input type='file'  />
+          <input type='file' />
+          <br></br>
           <h4>Room Type</h4>
           <select>
-            <option>Single Bed</option>
-            <option>Double Bed</option>
-            <option>Double Superior</option>
-            <option>Suite</option>
+            <option value='Single Bed'>Single Bed</option>
+            <option value='Double Bed'>Double Bed</option>
+            <option value='Double Superior'>Double Superior</option>
+            <option value='Suite'>Suite</option>
           </select>
+          <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' />
+              <input type='number' onChange={(event) => setId(event.target.value)}/>
             </div>
             <div>
-              <h4>Description</h4>
-              <input type='text' />
+              <h4>Name</h4>
+              <input type='text' onChange={(event) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
-          <h4>Offer</h4>
-          <input type='checkbox' />
           <FormStyledSection>
             <div>
               <h4>Price</h4>
-              <input type='number' />
+              <input type='number' onChange={(event) => setPrice(event.target.value)}/>
             </div>
             <div>
-              <h4>Cancellation</h4>
-              <input type='text' />
+              <h4>Offer</h4>
+              <input type='number' onChange={(event) => setOffer(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>Amenities</h4>

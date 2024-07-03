@@ -6,7 +6,8 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   ViewMore, TableButton, TablePageButtons, TablePageButton, Notes,
   BookingStatus,
-  TableBookingImg} from '../components/tableStyled';
+  TableBookingImg,
+  TableElementActions} from '../components/tableStyled';
 import bookings from '../assets/bookings.json'
 import { TbEyePlus } from "react-icons/tb";
 import { FaRegEdit } from "react-icons/fa";
@@ -108,7 +109,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TbEyePlus /><FaRegEdit /><MdDeleteOutline /></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit className='edit' /><MdDeleteOutline className='delete'/></TableElementActions></Column>
               </Row>
             )
           }

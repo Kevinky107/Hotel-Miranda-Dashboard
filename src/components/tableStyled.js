@@ -166,6 +166,36 @@ export const TablePageButton = styled.button`
     }
 `
 
+export const TableElementActions = styled.div`
+    display: inline-flex;
+
+    svg{
+        padding-right: 0.7em;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .edit{
+        &:hover{
+            color: #3085d6;
+        }
+    }
+
+    .delete{
+        &:hover{
+            color: #d33;
+        }
+    }
+
+    .more{
+        &:hover{
+            color: green;
+        }
+    }
+`
+
 //ROOM
 
 export const TableRoomImg = styled.img`
