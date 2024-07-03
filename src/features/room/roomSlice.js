@@ -15,8 +15,8 @@ export const roomSlice = createSlice({
             
         },
         addRoom: (state, action) => {
-            state.dataList = [...state.dataList, ...action.payload]
-            
+            state.dataList = [...state.dataList, action.payload]
+            console.log(state.dataList)
         },
     },
     extraReducers: (builder) => {
