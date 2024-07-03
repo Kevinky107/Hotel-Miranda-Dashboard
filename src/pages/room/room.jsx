@@ -158,7 +158,7 @@ function Room() {
                       {room.available ? "Available" : "Booked"}
                     </RoomStatus>
                   </Column>
-                  <Column><TableElementActions><FaRegEdit className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
+                  <Column><TableElementActions><FaRegEdit onClick={() => navigate(`/EditRoom/${room.id}`)} className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
                 </Row>
               )
             }

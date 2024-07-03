@@ -12,11 +12,9 @@ export const roomSlice = createSlice({
     reducers: {
         removeRoom: (state, action) => {
             state.dataList = [...state.dataList.filter(room => room.id !== action.payload.id)]
-            
         },
         addRoom: (state, action) => {
             state.dataList = [...state.dataList, action.payload]
-            console.log(state.dataList)
         },
     },
     extraReducers: (builder) => {

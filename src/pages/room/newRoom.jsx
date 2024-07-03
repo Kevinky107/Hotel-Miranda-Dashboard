@@ -4,7 +4,6 @@ import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
-import makeAnimated from 'react-select/animated'; 
 import { useDispatch } from 'react-redux';
 import { addRoom } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
@@ -58,6 +57,7 @@ function NewRoom() {
         available: available
       }
       dispatch(addRoom(newRoom))
+      navigate('/Room')
       Swal.fire({
         position: "top-end",
         icon: "success",

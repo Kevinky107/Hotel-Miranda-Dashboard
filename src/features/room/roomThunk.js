@@ -17,18 +17,14 @@ export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => 
         .catch((error) => {throw new Error(error)})
 })
 
-export const getRoomThunk = createAsyncThunk("room/getRoom", async(id) => {
+export const getRoomThunk = createAsyncThunk("room/getRoom", async({id, list}) => {
     const myRoomListPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
-            let roomObject = {}
-            rooms.map((room, index) => {
-                if(room.id === id)
-                    roomObject = room
-            })
-            if (Object.keys(roomObject).length !== 0) {
-                resolve(roomObject);
+            const roomObject = list.filter(room => `${room.id}` === id)
+            if (roomObject.length > 0) {     
+                resolve(roomObject[0])
             } else {
-                reject(`Room Not Found `);
+                reject(`Room Not Found `)
             }
         }, 200);
     });

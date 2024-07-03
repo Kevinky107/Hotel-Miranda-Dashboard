@@ -213,10 +213,9 @@ export const RoomStatus = styled.p`
     border-radius: 0.5em;
 
     ${props => props.status === 'available' ? `
-        background-color: #E23428;
-        
-    `:`
         background-color: #5AD07A;
+    `:`
+        background-color: #E23428;
     `
     }
 `
