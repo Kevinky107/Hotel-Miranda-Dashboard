@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
-  TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
+  TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
-  ViewMore, TableButton, TablePageButtons, TablePageButton, Notes,
+  TableButton, TablePageButtons, TablePageButton, Notes,
   BookingStatus,
   TableBookingImg,
   TableElementActions} from '../../components/tableStyled';
@@ -114,6 +114,14 @@ function Bookings() {
     });
   }
 
+  const showNote = (booking) => {
+    Swal.fire({
+      title: `${booking.guest} requested:`,
+      text: booking.note,
+      icon: "info"
+    });
+  }
+
   return (
     <PageContainer>
       { !isLoading &&
@@ -153,7 +161,7 @@ function Bookings() {
                 <Column >{booking.checkin}</Column>
                 <Column >{booking.checkout}</Column>
                 {booking.note !== null ? 
-                  <Column><Notes theme={themeSelector} >View Notes</Notes></Column> : 
+                  <Column><Notes theme={themeSelector} onClick={() => showNote(booking)}>View Notes</Notes></Column> : 
                   <Column><Notes theme={themeSelector} disabled>View Notes</Notes></Column>
                 }
                 <Column>{booking.roomtype}</Column>
