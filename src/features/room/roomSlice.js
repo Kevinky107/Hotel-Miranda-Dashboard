@@ -16,6 +16,17 @@ export const roomSlice = createSlice({
         addRoom: (state, action) => {
             state.dataList = [...state.dataList, action.payload]
         },
+        editRoom: (state, action) => {
+            console.log(action.payload)
+            const aux = state.dataList.map((room) => {
+                if(room.id === action.payload.id)
+                {
+                    return action.payload
+                }
+                return room
+            })
+            state.dataList = JSON.parse(JSON.stringify(aux))
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -43,7 +54,7 @@ export const roomSlice = createSlice({
             })
     }
 })
-export const { removeRoom, addRoom } = roomSlice.actions
+export const { removeRoom, addRoom, editRoom } = roomSlice.actions
 export const roomDataSelector = (state) => state.room.data
 export const roomDataListSelector = (state) => state.room.dataList
 export const roomStatusSelector = (state) => state.room.status

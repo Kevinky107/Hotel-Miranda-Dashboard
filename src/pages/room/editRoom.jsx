@@ -5,7 +5,7 @@ import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledS
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
-import { addRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
+import { editRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
 import { getRoomThunk } from '../../features/room/roomThunk';
 
@@ -42,14 +42,16 @@ function EditRoom() {
         setIsLoading(true)
     }
     else if (roomStatus === "fulfilled") {
+      if(roomData !== null) {
         setIsLoading(false)
         setRoom(roomData)
+        setAmenities(roomData.amenities)
         setType(roomData.type)
         setId(roomData.id)
         setName(roomData.name)
         setPrice(roomData.price)
         setOffer(roomData.offer)
-        
+      }
     }
     else if (roomStatus === "rejected") {
         alert(roomError)
@@ -84,7 +86,7 @@ function EditRoom() {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null && amenities !== null)
+    if(id !== null)
     { 
       const newRoom = {
         id: id,
@@ -96,7 +98,7 @@ function EditRoom() {
         amenities: amenities,
         available: available
       }
-      dispatch(addRoom(newRoom))
+      dispatch(editRoom(newRoom))
       navigate('/Room')
       Swal.fire({
         position: "top-end",
