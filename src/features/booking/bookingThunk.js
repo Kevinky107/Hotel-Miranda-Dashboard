@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import bookings from '../../assets/bookings.json'
 
-export const getBookingListThunk = createAsyncThunk("room/getBookingList", async() => {
-    const myRoomListPromise = new Promise((resolve, reject) => {
+export const getBookingListThunk = createAsyncThunk("booking/getBookingList", async() => {
+    const myBookingListPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             if (bookings.length > 0) {
                 resolve(bookings);
@@ -12,13 +12,13 @@ export const getBookingListThunk = createAsyncThunk("room/getBookingList", async
         }, 200);
     });
 
-    return myRoomListPromise
+    return myBookingListPromise
         .then((list) => {return list})
         .catch((error) => {throw new Error(error)})
 })
 
-export const getBookingThunk = createAsyncThunk("room/getBooking", async({id, list}) => {
-    const myRoomListPromise = new Promise((resolve, reject) => {
+export const getBookingThunk = createAsyncThunk("booking/getBooking", async({id, list}) => {
+    const myBookingListPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             const bookingObject = list.filter(booking => `${booking.id}` === id)
             if (bookingObject.length > 0) {     
@@ -29,7 +29,7 @@ export const getBookingThunk = createAsyncThunk("room/getBooking", async({id, li
         }, 200);
     });
 
-    return myRoomListPromise
+    return myBookingListPromise
         .then((object) => {return object})
         .catch((error) => {throw new Error(error)})
 })
