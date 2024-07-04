@@ -193,7 +193,12 @@ function EditBooking() {
            />
            <br></br>
             <h4>NOTE</h4>
-            <textarea defaultValue={booking.note} onChange={(event) => setNote(event.target.value)}/>
+            <textarea defaultValue={booking.note} onChange={(event) => {
+                if(event.target.value.length > 0)
+                    setNote(event.target.value)
+                else
+                    setNote(null)
+            }}/>
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
             <button theme={themeSelector} onClick={(event) => {
