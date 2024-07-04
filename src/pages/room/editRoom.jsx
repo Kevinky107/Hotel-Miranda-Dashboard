@@ -31,7 +31,7 @@ function EditRoom() {
   const [price, setPrice] = useState(null);
   const [offer, setOffer] = useState(null);
   const [amenities, setAmenities] = useState([]);
-  const [available, setAvailable] = useState(true);
+  const [available, setAvailable] = useState(null);
 
   useEffect(() => {
     dispatch(getRoomThunk({id :roomID, list: roomDataList}))
@@ -51,6 +51,7 @@ function EditRoom() {
         setName(roomData.name)
         setPrice(roomData.price)
         setOffer(roomData.offer)
+        setAvailable(roomData.available)
       }
     }
     else if (roomStatus === "rejected") {
@@ -185,7 +186,7 @@ function EditRoom() {
           <br></br>
           <CheckboxContainer>
             <h4>Available</h4>
-            <input type='checkbox' defaultChecked={room.available} onChange={(event) => setAvailable(event.target.checked)}/>
+            <input type='checkbox' defaultValue={room.available} onChange={(event) => setAvailable(event.target.checked)}/>
           </CheckboxContainer>
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>

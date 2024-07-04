@@ -17,7 +17,6 @@ export const roomSlice = createSlice({
             state.dataList = [...state.dataList, action.payload]
         },
         editRoom: (state, action) => {
-            console.log(action.payload)
             const aux = state.dataList.map((room) => {
                 if(room.id === action.payload.id)
                 {
