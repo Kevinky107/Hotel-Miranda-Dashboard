@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../context/theme';
-import { PageContainer } from '../components/pageStyled';
+import { ThemeContext } from '../../context/theme';
+import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   ViewMore, TableButton, TablePageButtons, TablePageButton, Notes,
   BookingStatus,
   TableBookingImg,
-  TableElementActions} from '../components/tableStyled';
-import bookings from '../assets/bookings.json'
+  TableElementActions} from '../../components/tableStyled';
+import bookings from '../../assets/bookings.json'
 import { TbEyePlus } from "react-icons/tb";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";

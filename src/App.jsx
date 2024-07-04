@@ -2,7 +2,7 @@ import Login from './pages/login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './pages/menu';
 import Dashboard from './pages/dashboard';
-import Bookings from './pages/bookings';
+import Bookings from './pages/booking/bookings';
 import Room from './pages/room/room';
 import Contact from './pages/contact';
 import Concierge from './pages/concierge';

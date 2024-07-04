@@ -44,12 +44,12 @@ function EditRoom() {
     else if (roomStatus === "fulfilled") {
         setIsLoading(false)
         setRoom(roomData)
-        setAmenities(roomData.amenities)
         setType(roomData.type)
         setId(roomData.id)
         setName(roomData.name)
         setPrice(roomData.price)
         setOffer(roomData.offer)
+        
     }
     else if (roomStatus === "rejected") {
         alert(roomError)

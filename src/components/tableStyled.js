@@ -170,7 +170,7 @@ export const TableElementActions = styled.div`
     display: inline-flex;
 
     svg{
-        padding-right: 0.7em;
+        padding-left: 0.7em;
 
         &:hover{
             cursor: pointer;
