@@ -16,6 +16,16 @@ export const bookingSlice = createSlice({
         addBooking: (state, action) => {
             state.dataList = [...state.dataList, action.payload]
         },
+        editBooking: (state, action) => {
+            const aux = state.dataList.map((booking) => {
+                if(booking.id === action.payload.id)
+                {
+                    return action.payload
+                }
+                return booking
+            })
+            state.dataList = JSON.parse(JSON.stringify(aux))
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -43,7 +53,7 @@ export const bookingSlice = createSlice({
             })
     }
 })
-export const { removeBooking, addBooking } = bookingSlice.actions
+export const { removeBooking, addBooking, editBooking } = bookingSlice.actions
 export const bookingDataSelector = (state) => state.booking.data
 export const bookingDataListSelector = (state) => state.booking.dataList
 export const bookingStatusSelector = (state) => state.booking.status

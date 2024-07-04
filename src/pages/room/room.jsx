@@ -56,7 +56,6 @@ function Room() {
     }
     else if (roomStatus === "fulfilled") {
         setList(roomDataList)
-        setList(roomDataList)
         setRoomPages(createPagination(roomDataList, pageSize))
         setIsLoading(false)
     }

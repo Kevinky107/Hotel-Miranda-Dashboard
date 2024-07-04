@@ -8,16 +8,26 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   BookingStatus,
   TableBookingImg,
   TableElementActions} from '../../components/tableStyled';
-import bookings from '../../assets/bookings.json'
 import { TbEyePlus } from "react-icons/tb";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
+import { getBookingListThunk } from '../../features/booking/bookingThunk';
 
 
 function Bookings() {
 
   const themeSelector = useContext(ThemeContext)
   const pageSize = 10
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const bookingStatus = useSelector(bookingStatusSelector)
+  const bookingDataList = useSelector(bookingDataListSelector)
+  const bookingData = useSelector(bookingDataSelector)
+  const bookingError = useSelector(bookingErrorSelector)
 
   const createPagination = (array, size) => {
     const aux = []
@@ -28,19 +38,37 @@ function Bookings() {
   }
 
   const [option, setOption] = useState(0)
-  const [list, setList] = useState(bookings)
+  const [list, setList] = useState([])
   const [bookingPages, setBookingPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (bookingStatus === "idle") {
+        dispatch(getBookingListThunk())
+    }
+    else if (bookingStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (bookingStatus === "fulfilled") {
+        setList(bookingDataList)
+        setBookingPages(createPagination(bookingDataList, pageSize))
+        setIsLoading(false)
+    }
+    else if (bookingStatus === "rejected") {
+        alert(bookingError)
+    }
+  },[bookingStatus, bookingDataList])
 
   const allbookings = () => {
     setOption(0)
     setPage(0)
-    setList(bookings)
-    setBookingPages(createPagination(bookings, pageSize))
+    setList(bookingDataList)
+    setBookingPages(createPagination(bookingDataList, pageSize))
   }
 
   const inbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "check in")
+    const aux = bookingDataList.filter((booking) => booking.status === "check in")
     setOption(1)
     setPage(0)
     setList(aux)
@@ -48,7 +76,7 @@ function Bookings() {
   }
 
   const outbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "check out")
+    const aux = bookingDataList.filter((booking) => booking.status === "check out")
     setOption(2)
     setPage(0)
     setList(aux)
@@ -56,7 +84,7 @@ function Bookings() {
   }
 
   const progressbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "in progress")
+    const aux = bookingDataList.filter((booking) => booking.status === "in progress")
     setOption(3)
     setPage(0)
     setList(aux)
@@ -65,6 +93,8 @@ function Bookings() {
 
   return (
     <PageContainer>
+      { !isLoading &&
+      <>
       <TableHeader>
         <TableSelect>
           <TableOption type={option === 0 ? 'selected' : ""} onClick={allbookings}>All bookings</TableOption>
@@ -109,7 +139,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit className='edit' /><MdDeleteOutline className='delete'/></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline className='delete'/></TableElementActions></Column>
               </Row>
             )
           }
@@ -131,6 +161,7 @@ function Bookings() {
           <TableButton theme={themeSelector} onClick={() => page+1 < bookingPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
+      </>}
     </PageContainer>
   )
 }
