@@ -13,13 +13,15 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
+import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector, removeBooking } from '../../features/booking/bookingSlice';
 import { getBookingListThunk } from '../../features/booking/bookingThunk';
+import Swal from 'sweetalert2'
 
 
 function Bookings() {
 
   const themeSelector = useContext(ThemeContext)
+  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -91,6 +93,27 @@ function Bookings() {
     setBookingPages(createPagination(aux, pageSize))
   }
 
+  const popUpDelete = (booking) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to get the #${booking.id} booking back!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: `The booking #${booking.id} has been removed.`,
+          icon: "success"
+        });
+        dispatch(removeBooking(booking))
+      }
+    });
+  }
+
   return (
     <PageContainer>
       { !isLoading &&
@@ -139,7 +162,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline className='delete'/></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
               </Row>
             )
           }
