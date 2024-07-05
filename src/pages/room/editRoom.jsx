@@ -186,7 +186,7 @@ function EditRoom() {
           <br></br>
           <CheckboxContainer>
             <h4>Available</h4>
-            <input type='checkbox' defaultValue={room.available} onChange={(event) => setAvailable(event.target.checked)}/>
+            <input type='checkbox' defaultChecked={room.available} onChange={(event) => setAvailable(event.target.checked)}/>
           </CheckboxContainer>
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>

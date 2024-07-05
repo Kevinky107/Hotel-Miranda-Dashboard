@@ -13,6 +13,7 @@ import { ThemeContext } from './context/theme';
 import { AuthContextProvider } from './context/auth';
 import EditRoom from './pages/room/editRoom';
 import EditBooking from './pages/booking/editBooking';
+import EditEmployee from './pages/concierge/editEmployee';
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/EditRoom/:roomID" element={ <EditRoom /> } />
                 <Route path="/Contact" element={ <Contact /> } />
                 <Route path="/Concierge" element={ <Concierge /> } />
+                <Route path="/EditEmployee/:userID" element={ <EditEmployee /> } />
                 <Route path="/NewEmployee" element={ <NewEmployee/> } />
               </Route>
           </Routes>

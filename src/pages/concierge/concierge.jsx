@@ -15,6 +15,7 @@ import { getUserListThunk } from '../../features/user/userThunk';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { TbEyePlus } from 'react-icons/tb';
 
 function Concierge() {
 
@@ -143,7 +144,7 @@ function Concierge() {
                 <Column>{user.email}</Column>
                 <Column >{user.phone}</Column>
                 <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
-                <Column><TableElementActions><FaRegEdit className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user.id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
               </Row>
             )
           }

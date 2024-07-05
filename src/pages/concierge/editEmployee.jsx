@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select'
-import { useDispatch } from 'react-redux';
-import { addUser, userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector } from '../../features/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, editUser, userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
 import { getUserThunk } from '../../features/user/userThunk';
 
@@ -63,13 +63,13 @@ function EditEmployee() {
   },[userStatus])
 
   const postOptions = [
-    {value: 'Managet', label: 'Manager'},
+    {value: 'Manager', label: 'Manager'},
     {value: 'Room Service', label: 'Room Service'},
     {value: 'Reception', label: 'Reception'},
   ]
 
   const postOptionSelected = () => {
-    return postOptions.filter((option) => option.value === user.state)
+    return postOptions.filter((option) => option.value === userData.post)
   }
 
   const submitHandler = (event) => {
@@ -88,7 +88,7 @@ function EditEmployee() {
         startdate: startdate,
         state: state
       }
-      dispatch(addUser(newEmployee))
+      dispatch(editUser(newEmployee))
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -108,6 +108,7 @@ function EditEmployee() {
 
   return (
     <PageContainer>
+    {!isLoading && <>
       <FormStyledWrapper theme={themeSelector}>
         <form onSubmit={(event) => submitHandler(event)}>
           <h4>PICTURE</h4>
@@ -168,7 +169,7 @@ function EditEmployee() {
           <br></br>
           <CheckboxContainer>
             <h4>ACTIVE</h4>
-            <input type='checkbox' defaultValue={userData.state} onChange={(event) => setState(event.target.checked)}/>
+            <input type='checkbox' defaultChecked={userData.state} onChange={(event) => setState(event.target.checked)} />
           </CheckboxContainer>
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
@@ -178,6 +179,7 @@ function EditEmployee() {
           </FormButtonsContainer>
         </form>
       </FormStyledWrapper>
+      </>}
     </PageContainer>
   )
 }
