@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addUser, editUser, userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
 import { getUserThunk } from '../../features/user/userThunk';
+import { AuthContext } from '../../context/auth';
 
 
 function EditEmployee() {
@@ -21,7 +22,9 @@ function EditEmployee() {
   const userError = useSelector(userErrorSelector)
   const userDataList = useSelector(userDataListSelector)
   const { userID } = useParams()
+  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
   const [isLoading, setIsLoading] = useState(true)
+  
  
   const [id, setId] = useState(null);
   const [name, setName] = useState(null);
@@ -89,6 +92,8 @@ function EditEmployee() {
         state: state
       }
       dispatch(editUser(newEmployee))
+      if(id === contextAuth.id)
+        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",

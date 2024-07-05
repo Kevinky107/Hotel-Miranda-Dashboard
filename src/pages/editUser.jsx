@@ -34,7 +34,6 @@ function EditUser() {
     console.log(user)
     contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
     dispatch(editUser(user))
-    navigate(-1)
   }
 
   return (
