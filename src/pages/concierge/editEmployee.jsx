@@ -32,7 +32,7 @@ function EditEmployee() {
   const [postdescription, setPostdescription] = useState(null);
   const [startdate, setStartdate] = useState(null)
   const [state, setState] = useState(true);
-  const [password, setPassword] = useState(true);
+  const [password, setPassword] = useState(null);
 
   useEffect(() => {
     dispatch(getUserThunk({id :userID, list: userDataList}))
