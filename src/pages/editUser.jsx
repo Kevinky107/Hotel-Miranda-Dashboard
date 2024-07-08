@@ -4,60 +4,54 @@ import { ThemeContext } from '../context/theme';
 import { FormButtonsContainer, FormStyledSection, FormStyledWrapper } from '../components/formStyled'
 import { AuthContext } from '../context/auth';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { editUser } from '../features/user/userSlice';
 
 function EditUser() {
 
   const themeSelector = useContext(ThemeContext)
   const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [password, setPassword] = useState(contextAuth.password);
+  const [email, setEmail] = useState(contextAuth.email);
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+    const user = {
+      id: contextAuth.id,
+      password: password,
+      email: email,
+      name: contextAuth.name,
+      picture: contextAuth.picture,
+      post: contextAuth.post,
+      phone: contextAuth.phone,
+      postdescription: contextAuth.postdescription,
+      startdate: contextAuth.stardate,
+      state: contextAuth.state
+    }
+    console.log(user)
+    contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
+    dispatch(editUser(user))
+  }
 
   return (
     <PageContainer>
       <FormStyledWrapper theme={themeSelector}>
-        <form>
-          <h4>Image</h4>
-          <FormStyledSection>
-            <input type='file' />
-            <img width='50em' src={contextAuth.picture} />
-          </FormStyledSection>
-          <h4>Name</h4>
-          <FormStyledSection>
-            <input type='text' defaultValue={contextAuth.name} />
-          </FormStyledSection>
-          <h4>Job Post</h4>
-          <FormStyledSection>
-            <select>
-              <option>Manager</option>
-              <option>Reception</option>
-              <option>Room Service</option>
-            </select>
-            <p>(actual job: {contextAuth.post})</p>
-          </FormStyledSection>
+        <form onSubmit={(event) => submitHandler(event)}>
           <FormStyledSection>
             <div>
               <h4>Email</h4>
-              <input type='email' defaultValue={contextAuth.email} />
-            </div>
-            <div>
-              <h4>Password</h4>
-              <input type='text' defaultValue={contextAuth.password} />
+              <input type='email' defaultValue={contextAuth.email} onChange={(event) => setEmail(event.target.value)} />
             </div>
           </FormStyledSection>
           <FormStyledSection>
-          <div>
-            <h4>Phone Number</h4>
-            <input type='tel' defaultValue={contextAuth.phone} />
-          </div>
-          <div>
-            <h4>Start Date</h4>
-            <input type='date' defaultValue={contextAuth.startdate} />
-          </div>
+            <div>
+              <h4>Password</h4>
+              <input type='text' defaultValue={contextAuth.password} onChange={(event) => setPassword(event.target.value)} />
+            </div>
           </FormStyledSection>
-          <h4>Job Description</h4>
-          <textarea defaultValue={contextAuth.postdescription} />
-          <br></br>
-          <h4>Active</h4>
-          <input type='checkbox' defaultChecked={contextAuth.state}/> 
           <FormButtonsContainer>
             <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
             <button theme={themeSelector} onClick={(event) => {

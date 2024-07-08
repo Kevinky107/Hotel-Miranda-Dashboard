@@ -1,18 +1,30 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../context/theme';
-import { PageContainer } from '../components/pageStyled';
+import { ThemeContext } from '../../context/theme';
+import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
   TableButton, TablePageButtons, TablePageButton, 
-  CommentAction} from '../components/tableStyled';
-import { SwiperContainer } from '../components/comment-slider/commentStyled';
-import CommentsSlider from '../components/comment-slider/commentsSlider';
-import comments from '../assets/comments.json'
+  CommentAction} from '../../components/tableStyled';
+import { SwiperContainer } from '../../components/comment-slider/commentStyled';
+import CommentsSlider from '../../components/comment-slider/commentsSlider';
+import { contactDataListSelector, contactDataSelector, contactErrorSelector, contactStatusSelector, removeContact } from '../../features/contact/contactSlice';
+import { getContactListThunk } from '../../features/contact/contactThunk';
+import Swal from 'sweetalert2'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Contact() {
 
   const themeSelector = useContext(ThemeContext)
+  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const contactStatus = useSelector(contactStatusSelector)
+  const contactDataList = useSelector(contactDataListSelector)
+  const contactData = useSelector(contactDataSelector)
+  const contactError = useSelector(contactErrorSelector)
 
   const createPagination = (array, size) => {
     const aux = []
@@ -23,19 +35,37 @@ function Contact() {
   }
 
   const [option, setOption] = useState(0)
-  const [list, setList] = useState(comments)
+  const [list, setList] = useState([])
   const [commentPages, setCommentPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (contactStatus === "idle") {
+        dispatch(getContactListThunk())
+    }
+    else if (contactStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (contactStatus === "fulfilled") {
+        setList(contactDataList)
+        setCommentPages(createPagination(contactDataList, pageSize))
+        setIsLoading(false)
+    }
+    else if (contactStatus === "rejected") {
+        alert(contactError)
+    }
+  },[contactStatus, contactDataList])
 
   const allComments = () => {
     setOption(0)
     setPage(0)
-    setList(comments)
-    setCommentPages(createPagination(comments, pageSize))
+    setList(contactDataList)
+    setCommentPages(createPagination(contactDataList, pageSize))
   }
 
   const publishedComments = () => {
-    const aux = comments.filter((comment) => comment.archived === false)
+    const aux = contactDataList.filter((comment) => comment.archived === false)
     setOption(1)
     setPage(0)
     setList(aux)
@@ -43,7 +73,7 @@ function Contact() {
   }
 
   const archivedComments = () => {
-    const aux = comments.filter((comment) => comment.archived === true)
+    const aux = contactDataList.filter((comment) => comment.archived === true)
     setOption(2)
     setPage(0)
     setList(aux)
@@ -56,6 +86,7 @@ function Contact() {
         <CommentsSlider/>
       </SwiperContainer>
       <br></br><br></br>
+      {!isLoading && <>
       <TableHeader>
         <TableSelect>
           <TableOption type={option === 0 ? 'selected' : ""} onClick={allComments}>All Comments</TableOption>
@@ -105,6 +136,7 @@ function Contact() {
           <TableButton theme={themeSelector} onClick={() => page+1 < commentPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
+      </>}
     </PageContainer>
   )
 }

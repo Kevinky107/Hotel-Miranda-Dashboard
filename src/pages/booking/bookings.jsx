@@ -1,22 +1,35 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../context/theme';
-import { PageContainer } from '../components/pageStyled';
+import { ThemeContext } from '../../context/theme';
+import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
-  TableBody, TableHeader, TableFooter, TablePages, TableButtons, TableRoomImg, 
+  TableBody, TableHeader, TableFooter, TablePages, TableButtons, 
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
-  ViewMore, TableButton, TablePageButtons, TablePageButton, Notes,
+  TableButton, TablePageButtons, TablePageButton, Notes,
   BookingStatus,
-  TableBookingImg} from '../components/tableStyled';
-import bookings from '../assets/bookings.json'
+  TableBookingImg,
+  TableElementActions} from '../../components/tableStyled';
 import { TbEyePlus } from "react-icons/tb";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector, removeBooking } from '../../features/booking/bookingSlice';
+import { getBookingListThunk } from '../../features/booking/bookingThunk';
+import Swal from 'sweetalert2'
 
 
 function Bookings() {
 
   const themeSelector = useContext(ThemeContext)
+  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const bookingStatus = useSelector(bookingStatusSelector)
+  const bookingDataList = useSelector(bookingDataListSelector)
+  const bookingData = useSelector(bookingDataSelector)
+  const bookingError = useSelector(bookingErrorSelector)
 
   const createPagination = (array, size) => {
     const aux = []
@@ -27,19 +40,37 @@ function Bookings() {
   }
 
   const [option, setOption] = useState(0)
-  const [list, setList] = useState(bookings)
+  const [list, setList] = useState([])
   const [bookingPages, setBookingPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (bookingStatus === "idle") {
+        dispatch(getBookingListThunk())
+    }
+    else if (bookingStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (bookingStatus === "fulfilled") {
+        setList(bookingDataList)
+        setBookingPages(createPagination(bookingDataList, pageSize))
+        setIsLoading(false)
+    }
+    else if (bookingStatus === "rejected") {
+        alert(bookingError)
+    }
+  },[bookingStatus, bookingDataList])
 
   const allbookings = () => {
     setOption(0)
     setPage(0)
-    setList(bookings)
-    setBookingPages(createPagination(bookings, pageSize))
+    setList(bookingDataList)
+    setBookingPages(createPagination(bookingDataList, pageSize))
   }
 
   const inbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "check in")
+    const aux = bookingDataList.filter((booking) => booking.status === "check in")
     setOption(1)
     setPage(0)
     setList(aux)
@@ -47,7 +78,7 @@ function Bookings() {
   }
 
   const outbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "check out")
+    const aux = bookingDataList.filter((booking) => booking.status === "check out")
     setOption(2)
     setPage(0)
     setList(aux)
@@ -55,15 +86,46 @@ function Bookings() {
   }
 
   const progressbookings = () => {
-    const aux = bookings.filter((booking) => booking.status === "in progress")
+    const aux = bookingDataList.filter((booking) => booking.status === "in progress")
     setOption(3)
     setPage(0)
     setList(aux)
     setBookingPages(createPagination(aux, pageSize))
   }
 
+  const popUpDelete = (booking) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to get the #${booking.id} booking back!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: `The booking #${booking.id} has been removed.`,
+          icon: "success"
+        });
+        dispatch(removeBooking(booking))
+      }
+    });
+  }
+
+  const showNote = (booking) => {
+    Swal.fire({
+      title: `${booking.guest} requested:`,
+      text: booking.note,
+      icon: "info"
+    });
+  }
+
   return (
     <PageContainer>
+      { !isLoading &&
+      <>
       <TableHeader>
         <TableSelect>
           <TableOption type={option === 0 ? 'selected' : ""} onClick={allbookings}>All bookings</TableOption>
@@ -99,7 +161,7 @@ function Bookings() {
                 <Column >{booking.checkin}</Column>
                 <Column >{booking.checkout}</Column>
                 {booking.note !== null ? 
-                  <Column><Notes theme={themeSelector} >View Notes</Notes></Column> : 
+                  <Column><Notes theme={themeSelector} onClick={() => showNote(booking)}>View Notes</Notes></Column> : 
                   <Column><Notes theme={themeSelector} disabled>View Notes</Notes></Column>
                 }
                 <Column>{booking.roomtype}</Column>
@@ -108,7 +170,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TbEyePlus /><FaRegEdit /><MdDeleteOutline /></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
               </Row>
             )
           }
@@ -130,6 +192,7 @@ function Bookings() {
           <TableButton theme={themeSelector} onClick={() => page+1 < bookingPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
+      </>}
     </PageContainer>
   )
 }

@@ -1,21 +1,34 @@
 import { useContext, useEffect, useState } from 'react'
-import { ThemeContext } from '../context/theme';
-import { PageContainer } from '../components/pageStyled';
+import { ThemeContext } from '../../context/theme';
+import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
   TableBody, TableHeader, TableFooter, TablePages, TableButtons,
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, TableButton, TablePageButtons, TablePageButton,
-  UserStatus} from '../components/tableStyled';
-import users from '../assets/users.json'
-import { GreenButton } from '../components/buttonStyled';
-import { useNavigate } from 'react-router-dom';
+  UserStatus,
+  TableElementActions} from '../../components/tableStyled';
+import { GreenButton } from '../../components/buttonStyled';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
+import { userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector, removeUser } from '../../features/user/userSlice';
+import { getUserListThunk } from '../../features/user/userThunk';
+import Swal from 'sweetalert2'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { TbEyePlus } from 'react-icons/tb';
 
 function Concierge() {
 
   const themeSelector = useContext(ThemeContext)
   const pageSize = 10
+  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const userStatus = useSelector(userStatusSelector)
+  const userDataList = useSelector(userDataListSelector)
+  const userData = useSelector(userDataSelector)
+  const userError = useSelector(userErrorSelector)
 
   const createPagination = (array, size) => {
     const aux = []
@@ -25,21 +38,38 @@ function Concierge() {
     return aux 
   }
 
-  const navigate = useNavigate()
   const [option, setOption] = useState(0)
-  const [list, setList] = useState(users)
+  const [list, setList] = useState([])
   const [userPages, setUserPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    if (userStatus === "idle") {
+        dispatch(getUserListThunk())
+    }
+    else if (userStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (userStatus === "fulfilled") {
+        setList(userDataList)
+        setUserPages(createPagination(userDataList, pageSize))
+        setIsLoading(false)
+    }
+    else if (userStatus === "rejected") {
+        alert(userError)
+    }
+  },[userStatus, userDataList])
 
   const allUsers = () => {
     setOption(0)
     setPage(0)
-    setList(users)
-    setUserPages(createPagination(users, pageSize))
+    setList(userDataList)
+    setUserPages(createPagination(userDataList, pageSize))
   }
 
   const activeUsers = () => {
-    const aux = users.filter((user) => user.state)
+    const aux = userDataList.filter((user) => user.state)
     setOption(1)
     setPage(0)
     setList(aux)
@@ -47,15 +77,37 @@ function Concierge() {
   }
 
   const inactiveUsers = () => {
-    const aux = users.filter((user) => !user.state)
+    const aux = userDataList.filter((user) => !user.state)
     setOption(2)
     setPage(0)
     setList(aux)
     setUserPages(createPagination(aux, pageSize))
   }
 
+  const popUpDelete = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You won't be able to get the ${user.name} data back!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, remove it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: `The user ${user.name} has been removed.`,
+          icon: "success"
+        });
+        dispatch(removeUser(user))
+      }
+    });
+  }
+
   return (
     <PageContainer>
+      {!isLoading && <>
       <TableHeader>
         <TableSelect>
           <TableOption type={option === 0 ? 'selected' : ""} onClick={allUsers}>All Employee</TableOption>
@@ -90,9 +142,9 @@ function Concierge() {
                 <Column width='10%'>{user.post}</Column>
                 <Column width='35%'>{user.postdescription}</Column>
                 <Column>{user.email}</Column>
-                <Column>{user.phone}</Column>
-                <Column width='7%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
-                <Column><FaRegEdit /><MdDeleteOutline /></Column>
+                <Column >{user.phone}</Column>
+                <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
+                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user.id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
               </Row>
             )
           }
@@ -114,6 +166,7 @@ function Concierge() {
           <TableButton theme={themeSelector} onClick={() => page+1 < userPages.length && setPage(page+1)}>Next</TableButton>
         </TableButtons>
       </TableFooter>
+      </>} 
     </PageContainer>
   )
 }

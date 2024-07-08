@@ -166,6 +166,36 @@ export const TablePageButton = styled.button`
     }
 `
 
+export const TableElementActions = styled.div`
+    display: inline-flex;
+
+    svg{
+        padding-left: 0.7em;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .edit{
+        &:hover{
+            color: #3085d6;
+        }
+    }
+
+    .delete{
+        &:hover{
+            color: #d33;
+        }
+    }
+
+    .more{
+        &:hover{
+            color: green;
+        }
+    }
+`
+
 //ROOM
 
 export const TableRoomImg = styled.img`
@@ -183,10 +213,9 @@ export const RoomStatus = styled.p`
     border-radius: 0.5em;
 
     ${props => props.status === 'available' ? `
-        background-color: #E23428;
-        
-    `:`
         background-color: #5AD07A;
+    `:`
+        background-color: #E23428;
     `
     }
 `

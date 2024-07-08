@@ -8,6 +8,19 @@ const authContextReducer = (state, action) => {
             return state = action.payload
         case 'LOGOUT':
             return state = initialState
+        case 'UPDATE':
+            return {
+                "id": state.id,
+                "password": action.payload.password,
+                "email": action.payload.email,
+                "name": state.name,
+                "picture": state.picture,
+                "post": state.post,
+                "phone": state.phone,
+                "postdescription" : state.postdescription,
+                "startdate" : state.stardate,
+                "state": state.state
+            }
         default:
             return state
     }

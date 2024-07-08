@@ -42,7 +42,6 @@ function Login() {
     }
   }
 
-  //SI SE USA UN STYLED COMPONENT EL FORM DEJA DE PODER UTILIZAR EL EVENTO SUBMIT AL IGUAL QUE EL BOTTON
   return (
     <LoginBackground theme={themeSelector}>
       <div className='decoration'></div>
