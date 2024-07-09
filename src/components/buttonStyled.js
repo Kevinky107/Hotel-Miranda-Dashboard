@@ -7,7 +7,7 @@ export const GreenButton = styled.button`
   padding-inline: 4em;
 
   ${props => props.theme === 'light' ? `
-    background: ##EBF1EF;
+    background: #EBF1EF;
     color: #135846;
     `:`
     background: #135846;
