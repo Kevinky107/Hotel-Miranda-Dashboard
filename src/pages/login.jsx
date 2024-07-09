@@ -49,9 +49,9 @@ function Login() {
       <form onSubmit={submitHandler}> 
         <h2>LOGIN HERE</h2>
         <p>EMAIL</p>
-        <LoginInputText />
+        <LoginInputText id='email'/>
         <p>PASSWORD</p>
-        <LoginInputPassword />
+        <LoginInputPassword id='password' />
         <br></br>
         <button>LOGIN</button>
       </form>
