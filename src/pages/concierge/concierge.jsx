@@ -16,6 +16,8 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { TbEyePlus } from 'react-icons/tb';
+import { Details } from '../../components/detailsStyled';
+import ConciergeDetails from '../../components/conciergeDetails';
 
 function Concierge() {
 
@@ -43,6 +45,8 @@ function Concierge() {
   const [userPages, setUserPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [showDetails, setShowDetails] = useState(false)
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     if (userStatus === "idle") {
@@ -105,6 +109,11 @@ function Concierge() {
     });
   }
 
+  const openDetails = (user) => {
+    setUser(user)
+    setShowDetails(true)
+  }
+
   return (
     <PageContainer>
       {!isLoading && <>
@@ -144,7 +153,7 @@ function Concierge() {
                 <Column>{user.email}</Column>
                 <Column >{user.phone}</Column>
                 <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
-                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user.id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(user)} className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user.id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
               </Row>
             )
           }
@@ -167,6 +176,7 @@ function Concierge() {
         </TableButtons>
       </TableFooter>
       </>} 
+      {showDetails && <ConciergeDetails close={() => setShowDetails(false)} user={user}></ConciergeDetails>}
     </PageContainer>
   )
 }
