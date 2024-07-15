@@ -12,7 +12,7 @@ import CommentsSlider from '../components/comment-slider/commentsSlider';
 
 function Dashboard() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
 
   const bookings = booking.length
   const numroom = rooms.length

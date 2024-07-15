@@ -9,7 +9,7 @@ import Concierge from './pages/concierge/concierge';
 import NewRoom from './pages/room/newRoom';
 import NewEmployee from './pages/concierge/newEmployee';
 import EditUser from './pages/editUser';
-import { ThemeContext } from './context/theme';
+import { ThemeContext, ThemeContextProvider } from './context/theme';
 import { AuthContextProvider } from './context/auth';
 import EditRoom from './pages/room/editRoom';
 import EditBooking from './pages/booking/editBooking';
@@ -17,12 +17,10 @@ import EditEmployee from './pages/concierge/editEmployee';
 
 function App() {
 
-  const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light"
-
   return (
 
     <BrowserRouter>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContextProvider>
         <AuthContextProvider>
           <Routes>
               <Route path="/" element={ <Login /> } />
@@ -41,7 +39,7 @@ function App() {
               </Route>
           </Routes>
         </AuthContextProvider>
-      </ThemeContext.Provider>
+      </ThemeContextProvider>
     </BrowserRouter>
   )
 }

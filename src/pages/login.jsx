@@ -7,7 +7,7 @@ import { AuthContext } from '../context/auth';
 
 function Login() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
   const navigate = useNavigate()
   

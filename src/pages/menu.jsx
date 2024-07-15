@@ -12,7 +12,7 @@ import { GreenButton } from '../components/buttonStyled';
 import { HiMenuAlt2 } from "react-icons/hi";
 import { BsArrowLeft } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
-import { FaRegBell } from "react-icons/fa";
+import { GoBell } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
 import { MenuContainer } from '../components/menu/menuStyled';
 import { LeftNavBar, NavBar, RightNavBar } from '../components/menu/navBarStyled';
@@ -20,11 +20,13 @@ import { Logo, NavList, NavListElement, SideMenu, SideMenuFooter, TextLogo } fro
 import { ActualUser, ActualUserImage } from '../components/menu/actualUserStyled';
 import { Pages } from '../components/pagesStyled';
 import { AuthContext } from '../context/auth';
+import { LiaToggleOffSolid } from "react-icons/lia";
+import { LiaToggleOnSolid } from "react-icons/lia";
 
 
 function Menu() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector, themeSelectorDispatch}= useContext(ThemeContext)
   const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
 
   const [menu, setMenu] = useState(true)
@@ -54,7 +56,8 @@ function Menu() {
             </LeftNavBar>
             <RightNavBar>
                 <MdOutlineEmail />
-                <FaRegBell />
+                <GoBell />
+                {themeSelector === 'light' ? <LiaToggleOffSolid onClick={() => themeSelectorDispatch({type: 'DARK'})} /> : <LiaToggleOnSolid onClick={() => themeSelectorDispatch({type: 'LIGHT'})} />}
                 <IoLogOutOutline onClick={logout}/>
             </RightNavBar>
         </NavBar>

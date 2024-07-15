@@ -9,7 +9,7 @@ import { editUser } from '../features/user/userSlice';
 
 function EditUser() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
   const navigate = useNavigate()
   const dispatch = useDispatch()

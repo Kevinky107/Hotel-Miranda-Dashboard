@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 
 function NewRoom() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()

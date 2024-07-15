@@ -5,7 +5,7 @@ import { RxCrossCircled, RxCheckCircled } from "react-icons/rx";
 
 function Comment({message, date, id, image, customer}) {
 
-    const themeSelector = useContext(ThemeContext)
+    const {themeSelector} = useContext(ThemeContext)
 
   return (
     <CommentCard theme={themeSelector}>

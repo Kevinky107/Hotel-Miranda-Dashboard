@@ -21,7 +21,7 @@ import ConciergeDetails from '../../components/conciergeDetails';
 
 function Concierge() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   const pageSize = 10
   {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()

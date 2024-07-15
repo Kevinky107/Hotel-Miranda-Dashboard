@@ -10,7 +10,7 @@ import Comment from './comment';
 
 function CommentsSlider() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   const recentComments = comments.slice(0,10)
 
   return (

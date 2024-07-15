@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Contact() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
   const dispatch = useDispatch()

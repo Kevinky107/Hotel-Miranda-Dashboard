@@ -11,7 +11,7 @@ import { getRoomThunk } from '../../features/room/roomThunk';
 
 function EditRoom() {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext(ThemeContext)
   {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()
