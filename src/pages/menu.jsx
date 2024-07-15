@@ -21,7 +21,7 @@ import { Pages } from '../components/pagesStyled';
 import { AuthContext } from '../context/auth';
 import { LiaToggleOffSolid } from "react-icons/lia";
 import { LiaToggleOnSolid } from "react-icons/lia";
-import { CiMail } from "react-icons/ci";
+import { VscMail } from "react-icons/vsc";
 
 
 function Menu() {
@@ -55,7 +55,7 @@ function Menu() {
                 <h1>{location.pathname.slice(1)}</h1>
             </LeftNavBar>
             <RightNavBar>
-                <CiMail />
+                <VscMail />
                 <GoBell />
                 {themeSelector === 'light' ? <LiaToggleOffSolid onClick={() => themeSelectorDispatch({type: 'DARK'})} /> : <LiaToggleOnSolid onClick={() => themeSelectorDispatch({type: 'LIGHT'})} />}
                 <IoLogOutOutline onClick={logout}/>
