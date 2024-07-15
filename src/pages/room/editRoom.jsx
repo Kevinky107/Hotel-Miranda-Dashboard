@@ -86,7 +86,6 @@ function EditRoom() {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     if(id !== null)
     { 
       const newRoom = {

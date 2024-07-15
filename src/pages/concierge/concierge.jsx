@@ -88,7 +88,6 @@ function Concierge() {
   }
 
   const popUpDelete = (user) => {
-    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the ${user.name} data back!`,
