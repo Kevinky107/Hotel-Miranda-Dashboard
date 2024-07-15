@@ -8,12 +8,13 @@ import { useDispatch } from 'react-redux';
 import { addRoom } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
 import { ThemeInterface } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 function NewRoom() {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
  
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);

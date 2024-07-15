@@ -8,33 +8,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
 import { getRoomThunk } from '../../features/room/roomThunk';
-import { ThemeInterface } from '../../types';
+import { Room, ThemeInterface } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 function EditRoom() {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const roomData = useSelector(roomDataSelector)
   const roomStatus = useSelector(roomStatusSelector)
   const roomError = useSelector(roomErrorSelector)
   const roomDataList = useSelector(roomDataListSelector)
   const { roomID } = useParams()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
  
-  const [room, setRoom] = useState(null)
+  const [room, setRoom] = useState<Room>({} as Room)
 
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [images, setImages] = useState(["./room.jpg"]);
-  const [type, setType] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [offer, setOffer] = useState(null);
-  const [amenities, setAmenities] = useState([]);
-  const [available, setAvailable] = useState(null);
+  const [id, setId] = useState<null | number>(null);
+  const [name, setName] = useState<null | string>(null);
+  const [images, setImages] = useState<string[]>(["./room.jpg"]);
+  const [type, setType] = useState<null | string>(null);
+  const [price, setPrice] = useState<null | number>(null);
+  const [offer, setOffer] = useState<null | number>(null);
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [available, setAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    dispatch(getRoomThunk({id :roomID, list: roomDataList}))
+    dispatch(getRoomThunk({id :roomID as string, list: roomDataList}))
   },[])
 
   useEffect(() => {   
@@ -85,7 +86,7 @@ function EditRoom() {
     return roomOptions.filter((option) => option.value === room.type)
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault()
     if(id !== null)
     { 
@@ -139,28 +140,28 @@ function EditRoom() {
             }}
             closeMenuOnSelect={true}
             options={roomOptions}
-            onChange={(event) => setType(event.value)}
+            onChange={(event: any) => setType(event.value)}
             defaultValue={roomOptionSelected}
           />
           <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={room.id} onChange={(event) => setId(event.target.value)}/>
+              <input type='number' defaultValue={room.id} onChange={(event: any) => setId(event.target.value)}/>
             </div>
             <div>
               <h4>Name</h4>
-              <input type='text' defaultValue={room.name} onChange={(event) => setName(event.target.value)}/>
+              <input type='text' defaultValue={room.name} onChange={(event: any) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Price</h4>
-              <input type='number' defaultValue={room.price} onChange={(event) => setPrice(event.target.value)}/>
+              <input type='number' defaultValue={room.price} onChange={(event: any) => setPrice(event.target.value)}/>
             </div>
             <div>
               <h4>Offer</h4>
-              <input type='number' defaultValue={room.offer} onChange={(event) => setOffer(event.target.value)}/>
+              <input type='number' defaultValue={room.offer} onChange={(event: any) => setOffer(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>Amenities</h4>
@@ -178,8 +179,8 @@ function EditRoom() {
             closeMenuOnSelect={false}
             isMulti
             options={amenitieOptions}
-            onChange={(event) => 
-              setAmenities(event.map(option => option.value))
+            onChange={(event: any) => 
+              setAmenities(event.map((option: { value: string; }) => option.value))
             }
             defaultValue={amenitieOptionsSelected}
           />
@@ -189,8 +190,8 @@ function EditRoom() {
             <input type='checkbox' defaultChecked={room.available} onChange={(event) => setAvailable(event.target.checked)}/>
           </CheckboxContainer>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>SAVE CHANGES</button>
+            <button onClick={(event) => {
                 event.preventDefault()
                 navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

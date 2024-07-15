@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
@@ -12,12 +12,14 @@ import { getContactListThunk } from '../../features/contact/contactThunk';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Comment, ThemeInterface } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 function Contact() {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const pageSize = 10
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
   const contactStatus = useSelector(contactStatusSelector)
@@ -25,7 +27,7 @@ function Contact() {
   const contactData = useSelector(contactDataSelector)
   const contactError = useSelector(contactErrorSelector)
 
-  const createPagination = (array, size) => {
+  const createPagination = (array: Comment[], size: number) => {
     const aux = []
     for (let i = 0; i < array.length; i+= size)
       aux.push(array.slice(i, i + size));
@@ -33,11 +35,11 @@ function Contact() {
     return aux 
   }
 
-  const [option, setOption] = useState(0)
-  const [list, setList] = useState([])
-  const [commentPages, setCommentPages] = useState(createPagination(list, pageSize))
-  const [page, setPage] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [option, setOption] = useState<number>(0)
+  const [list, setList] = useState<Comment[]>([])
+  const [commentPages, setCommentPages] = useState<Comment[][]>(createPagination(list, pageSize))
+  const [page, setPage] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     if (contactStatus === "idle") {

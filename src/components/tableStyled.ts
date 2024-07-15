@@ -317,7 +317,7 @@ export const TableBookingImg = styled.img`
 `
 
 //Contact
-export const CommentAction= styled.p`
+export const CommentAction= styled.p<{type: 'publish' | 'archive'}>`
     display: inline-flex;
     padding-right: 1em;
 
