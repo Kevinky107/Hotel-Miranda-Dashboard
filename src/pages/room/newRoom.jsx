@@ -11,7 +11,6 @@ import Swal from 'sweetalert2'
 function NewRoom() {
 
   const {themeSelector} = useContext(ThemeContext)
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()
  
@@ -44,6 +43,7 @@ function NewRoom() {
 
   const submitHandler = (event) => {
     event.preventDefault()
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null && amenities !== null)
     { 
       const newRoom = {

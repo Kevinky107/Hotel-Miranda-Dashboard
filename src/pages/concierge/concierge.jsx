@@ -23,7 +23,6 @@ function Concierge() {
 
   const {themeSelector} = useContext(ThemeContext)
   const pageSize = 10
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -89,6 +88,7 @@ function Concierge() {
   }
 
   const popUpDelete = (user) => {
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the ${user.name} data back!`,

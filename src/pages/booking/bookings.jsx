@@ -22,7 +22,6 @@ import BookingDetails from '../../components/bookingDetails';
 function Bookings() {
 
   const {themeSelector} = useContext(ThemeContext)
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -97,6 +96,7 @@ function Bookings() {
   }
 
   const popUpDelete = (booking) => {
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the #${booking.id} booking back!`,
@@ -118,6 +118,7 @@ function Bookings() {
   }
 
   const showNote = (booking) => {
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     Swal.fire({
       title: `${booking.guest} requested:`,
       text: booking.note,

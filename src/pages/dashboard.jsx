@@ -8,21 +8,67 @@ import rooms from '../assets/rooms.json'
 import { DashboardGrid } from '../components/dashboardStyled';
 import { KPI, KPIpicture, KPItext } from '../components/kpiStyled';
 import CommentsSlider from '../components/comment-slider/commentsSlider';
+import { useDispatch, useSelector } from 'react-redux';
+import { bookingDataListSelector, bookingErrorSelector, bookingStatusSelector } from '../features/booking/bookingSlice';
+import { getBookingListThunk } from '../features/booking/bookingThunk';
+import { roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../features/room/roomSlice';
+import { getRoomListThunk } from '../features/room/roomThunk';
 
 
 function Dashboard() {
 
   const {themeSelector} = useContext(ThemeContext)
+  const dispatch = useDispatch()
+  const bookingStatus = useSelector(bookingStatusSelector)
+  const bookingDataList = useSelector(bookingDataListSelector)
+  const bookingError = useSelector(bookingErrorSelector)
+  const roomStatus = useSelector(roomStatusSelector)
+  const roomDataList = useSelector(roomDataListSelector)
+  const roomData = useSelector(roomDataSelector)
+  const roomError = useSelector(roomErrorSelector)
+  const [isLoading, setIsLoading] = useState(true)
 
-  const bookings = booking.length
-  const numroom = rooms.length
-  const occupied = rooms.filter((room) => room.available === false).length
+  useEffect(() => {
+    if (bookingStatus === "idle") {
+        dispatch(getBookingListThunk())
+    }
+    else if (bookingStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (bookingStatus === "fulfilled") {
+        setIsLoading(false)
+    }
+    else if (bookingStatus === "rejected") {
+        alert(bookingError)
+    }
+  },[bookingStatus, bookingDataList])
+
+  useEffect(() => {
+    if (roomStatus === "idle") {
+        dispatch(getRoomListThunk())
+    }
+    else if (roomStatus === "pending") {
+        setIsLoading(true)
+    }
+    else if (roomStatus === "fulfilled") {
+        setIsLoading(false)
+    }
+    else if (roomStatus === "rejected") {
+        alert(roomError)
+    }
+  },[roomStatus, roomDataList])
+
+  const bookings = bookingDataList.length
+  const numroom = roomDataList.length
+  const occupied = roomDataList.filter((room) => room.available === false).length
   const occupation = ((occupied/numroom)*100).toFixed(2) + "%"
-  const checkin = booking.filter((element) => element.status === "check in" || element.status === "check out").length
-  const checkout = booking.filter((element) => element.status === "check out").length
+  const checkin = bookingDataList.filter((element) => element.status === "check in" || element.status === "check out").length
+  const checkout = bookingDataList.filter((element) => element.status === "check out").length
 
   return (
     <DashboardGrid>
+      {!isLoading &&
+      <>
         <KPI theme={themeSelector}>
           <KPIpicture type="regular">
             <IoBedOutline />
@@ -60,6 +106,8 @@ function Dashboard() {
           </KPItext>
         </KPI>
         <CommentsSlider />
+      </>
+      }
     </DashboardGrid>
   )
 }

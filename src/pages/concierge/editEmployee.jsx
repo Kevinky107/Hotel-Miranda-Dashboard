@@ -14,7 +14,6 @@ import { AuthContext } from '../../context/auth';
 function EditEmployee() {
 
   const {themeSelector} = useContext(ThemeContext)
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userData = useSelector(userDataSelector)
@@ -77,6 +76,7 @@ function EditEmployee() {
 
   const submitHandler = (event) => {
     event.preventDefault()
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null)
     { 
       const newEmployee = {

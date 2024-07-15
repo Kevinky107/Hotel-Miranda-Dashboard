@@ -23,7 +23,6 @@ import Swal from 'sweetalert2'
 function Room() {
   
   const {themeSelector} = useContext(ThemeContext)
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const pageSize = 10
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -88,6 +87,7 @@ function Room() {
   }
 
   const popUpDelete = (room) => {
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the #${room.id} room back!`,

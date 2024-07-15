@@ -12,7 +12,6 @@ import { getBookingThunk } from '../../features/booking/bookingThunk';
 function EditBooking() {
 
   const {themeSelector} = useContext(ThemeContext)
-  {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const bookingData = useSelector(bookingDataSelector)
@@ -86,6 +85,7 @@ function EditBooking() {
 
   const submitHandler = (event) => {
     event.preventDefault()
+    {themeSelector === "dark" && import('@sweetalert2/themes/dark/dark.css')}
     if(id !== null)
     { 
       const newBooking = {
