@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector, removeBooking } from '../../features/booking/bookingSlice';
 import { getBookingListThunk } from '../../features/booking/bookingThunk';
 import Swal from 'sweetalert2'
+import BookingDetails from '../../components/bookingDetails';
 
 
 function Bookings() {
@@ -44,6 +45,8 @@ function Bookings() {
   const [bookingPages, setBookingPages] = useState(createPagination(list, pageSize))
   const [page, setPage] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
+  const [showDetails, setShowDetails] = useState(false)
+  const [booking, setBooking] = useState(null)
 
   useEffect(() => {
     if (bookingStatus === "idle") {
@@ -122,6 +125,11 @@ function Bookings() {
     });
   }
 
+  const openDetails = (booking) => {
+    setBooking(booking)
+    setShowDetails(true)
+  }
+
   return (
     <PageContainer>
       { !isLoading &&
@@ -170,7 +178,7 @@ function Bookings() {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(booking)} className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
               </Row>
             )
           }
@@ -193,6 +201,7 @@ function Bookings() {
         </TableButtons>
       </TableFooter>
       </>}
+      {showDetails && <BookingDetails close={() => setShowDetails(false)} booking={booking}></BookingDetails>}
     </PageContainer>
   )
 }
