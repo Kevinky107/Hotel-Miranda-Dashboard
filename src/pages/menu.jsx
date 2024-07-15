@@ -11,7 +11,6 @@ import { GiStarsStack } from "react-icons/gi";
 import { GreenButton } from '../components/buttonStyled';
 import { HiMenuAlt2 } from "react-icons/hi";
 import { BsArrowLeft } from "react-icons/bs";
-import { MdOutlineEmail } from "react-icons/md";
 import { GoBell } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
 import { MenuContainer } from '../components/menu/menuStyled';
@@ -22,6 +21,7 @@ import { Pages } from '../components/pagesStyled';
 import { AuthContext } from '../context/auth';
 import { LiaToggleOffSolid } from "react-icons/lia";
 import { LiaToggleOnSolid } from "react-icons/lia";
+import { CiMail } from "react-icons/ci";
 
 
 function Menu() {
@@ -55,7 +55,7 @@ function Menu() {
                 <h1>{location.pathname.slice(1)}</h1>
             </LeftNavBar>
             <RightNavBar>
-                <MdOutlineEmail />
+                <CiMail />
                 <GoBell />
                 {themeSelector === 'light' ? <LiaToggleOffSolid onClick={() => themeSelectorDispatch({type: 'DARK'})} /> : <LiaToggleOnSolid onClick={() => themeSelectorDispatch({type: 'LIGHT'})} />}
                 <IoLogOutOutline onClick={logout}/>
