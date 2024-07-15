@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../context/theme';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LuLayoutDashboard } from "react-icons/lu";
@@ -22,14 +22,15 @@ import { AuthContext } from '../context/auth';
 import { LiaToggleOffSolid } from "react-icons/lia";
 import { LiaToggleOnSolid } from "react-icons/lia";
 import { VscMail } from "react-icons/vsc";
+import { AuthInterface, ThemeInterface } from '../types';
 
 
-function Menu() {
+function Menu(): React.JSX.Element {
 
-  const {themeSelector, themeSelectorDispatch}= useContext(ThemeContext)
-  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
+  const {themeSelector, themeSelectorDispatch} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const {contextAuth, contextAuthDispatch} = useContext<AuthInterface>(AuthContext as Context<AuthInterface>)
 
-  const [menu, setMenu] = useState(true)
+  const [menu, setMenu] = useState<boolean>(true)
   const location = useLocation()
   const navigate = useNavigate()
 

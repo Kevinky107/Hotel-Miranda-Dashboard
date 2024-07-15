@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.div<{theme: 'light' | 'dark'}>`
     width: 100%;
     height: 100%;
     overflow: hidden;

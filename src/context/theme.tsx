@@ -1,8 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
+import { ThemeAction, ThemeInterface } from "../types";
 
-export const ThemeContext = createContext(null);
+export const ThemeContext = createContext<null | ThemeInterface>(null);
 
-const themeContextReducer = (state, action) => {
+const themeContextReducer = (state: 'dark' | 'light', action: ThemeAction) => {
     switch (action.type) {
         case 'DARK':
             return state = "dark"
@@ -15,11 +16,11 @@ const themeContextReducer = (state, action) => {
 
 const initialState = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light"
 
-export const ThemeContextProvider = ({ children }) => {
+export const ThemeContextProvider = ({ children }: any) => {
     const [ themeSelector, themeSelectorDispatch ] = useReducer(themeContextReducer, initialState)
 
     useEffect(() => {
-        let darkThemeLink;
+        let darkThemeLink: any;
         
         if (themeSelector === 'dark') {
           darkThemeLink = document.createElement('link');

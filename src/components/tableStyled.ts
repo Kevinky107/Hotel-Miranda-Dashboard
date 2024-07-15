@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Table = styled.table`
+export const Table = styled.table<{theme: 'light' | 'dark'}>`
     width: 100%;
     text-align: left;
     border-radius: 1em;
@@ -19,7 +19,7 @@ export const TableBody = styled.tbody`
 
 `
 
-export const Row = styled.tr`
+export const Row = styled.tr<{type?: 'big'}>`
     ${props => props.type === "big" && `
         
         height: 7em;
@@ -42,7 +42,7 @@ export const TableSelect = styled.div`
     border-bottom: 1px solid ;
 `
 
-export const TableOption = styled.h2`
+export const TableOption = styled.h2<{type: 'selected' | ''}>`
     display: inline-flex;
     font-size: 1rem;
     padding-bottom: 1em;
@@ -104,7 +104,7 @@ export const TableElementId = styled.p`
 export const TableElementName = styled.p`
 `
 
-export const TableButton = styled.button`
+export const TableButton = styled.button<{theme: 'light' | 'dark'}>`
     border: solid 1px #135846;
     width: 5em;
     padding: 0.5em;
@@ -125,7 +125,7 @@ export const TableButton = styled.button`
     }
 `
 
-export const TablePageButtons = styled.div`
+export const TablePageButtons = styled.div<{theme: 'light' | 'dark'}>`
     border: none;
     border-radius: 0.5em;
 
@@ -140,7 +140,7 @@ export const TablePageButtons = styled.div`
     
 `
 
-export const TablePageButton = styled.button`
+export const TablePageButton = styled.button<{theme: 'light' | 'dark', type: 'selected' | 'none'}>`
     background: none;
     border: none;
     width: 3em;
@@ -204,7 +204,7 @@ export const TableRoomImg = styled.img`
     border-radius: 0.6em;
 `
 
-export const RoomStatus = styled.p`
+export const RoomStatus = styled.p<{status: 'available' | 'booked'}>`
     width: 6em;
     color: white;
     text-align: center;
@@ -233,7 +233,7 @@ export const Price = styled.p`
     color: #799283;
 `
 
-export const Number = styled.b`
+export const Number = styled.b<{theme: 'light' | 'dark'}>`
     font-size: 1rem;
     
     ${props => props.theme === 'light' ? `
@@ -246,7 +246,7 @@ export const Number = styled.b`
 
 //Booking
 
-export const Notes = styled.button`
+export const Notes = styled.button<{theme: 'light' | 'dark'}>`
     padding-block: 0.7em;
     tex-align: center;
     width: 9em;

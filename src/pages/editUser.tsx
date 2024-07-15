@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
 import { ThemeContext } from '../context/theme';
 import { FormButtonsContainer, FormStyledSection, FormStyledWrapper } from '../components/formStyled'
@@ -6,18 +6,19 @@ import { AuthContext } from '../context/auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { editUser } from '../features/user/userSlice';
+import { AuthInterface, ThemeInterface } from '../types';
 
-function EditUser() {
+function EditUser(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const {contextAuth, contextAuthDispatch} = useContext<AuthInterface>(AuthContext as Context<AuthInterface>)
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [password, setPassword] = useState(contextAuth.password);
   const [email, setEmail] = useState(contextAuth.email);
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault()
     const user = {
       id: contextAuth.id,
@@ -28,11 +29,10 @@ function EditUser() {
       post: contextAuth.post,
       phone: contextAuth.phone,
       postdescription: contextAuth.postdescription,
-      startdate: contextAuth.stardate,
+      startdate: contextAuth.startdate,
       state: contextAuth.state
     }
-    console.log(user)
-    contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
+    contextAuthDispatch({type: 'UPDATE', payload: user})
     dispatch(editUser(user))
   }
 
@@ -53,8 +53,8 @@ function EditUser() {
             </div>
           </FormStyledSection>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>SAVE CHANGES</button>
+            <button onClick={(event) => {
               event.preventDefault()
               navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

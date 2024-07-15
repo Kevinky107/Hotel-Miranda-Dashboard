@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../context/theme';
 import users from '../assets/users.json'
 import { useNavigate } from 'react-router-dom';
 import { LoginBackground, LoginInputPassword, LoginInputText } from '../components/loginStyled';
 import { AuthContext } from '../context/auth';
+import { AuthInterface, ThemeInterface, User } from '../types';
 
-function Login() {
+function Login(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const {contextAuth, contextAuthDispatch} = useContext<AuthInterface>(AuthContext as Context<AuthInterface>)
   const navigate = useNavigate()
   
   useEffect(() => {
@@ -21,9 +22,9 @@ function Login() {
     }
   })
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault()
-    let ok = false
+    let ok: boolean = false
     users.forEach( element => {
       if(element.email === event.target[0].value && element.password === event.target[1].value)
       {
@@ -35,7 +36,7 @@ function Login() {
 
     if(ok)
     {
-      contextAuthDispatch({type: 'LOGIN', payload: JSON.parse(localStorage.getItem('user'))})
+      contextAuthDispatch({type: 'LOGIN', payload: JSON.parse(localStorage.getItem('user') as string)})
       navigate('/Dashboard')
     } else {
       window.alert("Wrong email or password, try again")

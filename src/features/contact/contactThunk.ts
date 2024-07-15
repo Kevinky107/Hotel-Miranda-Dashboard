@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import comments from '../../assets/comments.json'
+import { Comment } from "../../types";
 
 export const getContactListThunk = createAsyncThunk("contact/getContactList", async() => {
     const myContactListPromise = new Promise((resolve, reject) => {
@@ -17,7 +18,7 @@ export const getContactListThunk = createAsyncThunk("contact/getContactList", as
         .catch((error) => {throw new Error(error)})
 })
 
-export const getContactThunk = createAsyncThunk("contact/getContact", async({id, list}) => {
+export const getContactThunk = createAsyncThunk("contact/getContact", async({id, list}: {id: string, list: Comment[]}) => {
     const myContactListPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             const contactObject = list.filter(contact => `${contact.id}` === id)

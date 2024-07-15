@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ThemeContext } from '../../context/theme';
 import { PageContainer } from '../../components/pageStyled';
@@ -12,19 +12,22 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   TableElementActions} from '../../components/tableStyled';
 import { GreenButton } from '../../components/buttonStyled';
 import { TbEyePlus } from "react-icons/tb";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { addRoom, removeRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
+import { removeRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import { getRoomListThunk } from '../../features/room/roomThunk';
 
 import Swal from 'sweetalert2'
+import { ThemeInterface } from '../../types';
+import { Room as RoomClass } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 function Room() {
   
-  const {themeSelector} = useContext(ThemeContext)
-  const pageSize = 10
-  const dispatch = useDispatch()
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const pageSize: number = 10
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
   const roomStatus = useSelector(roomStatusSelector)
@@ -32,7 +35,7 @@ function Room() {
   const roomData = useSelector(roomDataSelector)
   const roomError = useSelector(roomErrorSelector)
 
-  const createPagination = (array, size) => {
+  const createPagination = (array: Array<RoomClass>, size: number) => {
     const aux = []
     for (let i = 0; i < array.length; i+= size)
       aux.push(array.slice(i, i + size));
@@ -40,11 +43,11 @@ function Room() {
     return aux 
   }
 
-  const [option, setOption] = useState(0)
-  const [list, setList] = useState([])
-  const [roomPages, setRoomPages] = useState(createPagination(list, pageSize))
-  const [page, setPage] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [option, setOption] = useState<number>(0)
+  const [list, setList] = useState<RoomClass[]>([])
+  const [roomPages, setRoomPages] = useState<RoomClass[][]>(createPagination(list, pageSize))
+  const [page, setPage] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     if (roomStatus === "idle") {
@@ -86,7 +89,7 @@ function Room() {
     setRoomPages(createPagination(aux, pageSize))
   }
 
-  const popUpDelete = (room) => {
+  const popUpDelete = (room: RoomClass) => {
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the #${room.id} room back!`,

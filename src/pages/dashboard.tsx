@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../context/theme';
 import { IoBedOutline } from "react-icons/io5";
 import { LuCalendarCheck2 } from "react-icons/lu";
@@ -13,12 +13,14 @@ import { bookingDataListSelector, bookingErrorSelector, bookingStatusSelector } 
 import { getBookingListThunk } from '../features/booking/bookingThunk';
 import { roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../features/room/roomSlice';
 import { getRoomListThunk } from '../features/room/roomThunk';
+import { Room, ThemeInterface } from '../types';
+import { AppDispatch, RootState } from '../app/store';
 
 
-function Dashboard() {
+function Dashboard(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const dispatch = useDispatch()
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const dispatch = useDispatch<AppDispatch>()
   const bookingStatus = useSelector(bookingStatusSelector)
   const bookingDataList = useSelector(bookingDataListSelector)
   const bookingError = useSelector(bookingErrorSelector)

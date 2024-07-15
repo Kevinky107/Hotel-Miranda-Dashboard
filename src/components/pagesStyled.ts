@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Pages = styled.main`
+export const Pages = styled.main<{size: 'small' | 'big'}>`
     height: 100%;
     padding-top: 6em;
     overflow: auto;

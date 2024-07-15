@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const SideMenu = styled.aside`
+export const SideMenu = styled.aside<{theme: 'light' | 'dark'}>`
     position: fixed;
     width: 22em;
     height: 100%;
@@ -58,7 +58,7 @@ export const NavList = styled.ul`
     list-style: none;
     padding-bottom: 3em;
 `
-export const NavListElement = styled.li`
+export const NavListElement = styled.li<{selected: 'selected' | ""}>`
     display: flex;
     align-items: center;
     padding-block: 1em;

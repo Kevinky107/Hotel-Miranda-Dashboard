@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const LoginBackground = styled.div`
+export const LoginBackground = styled.div<{theme: 'light' | 'dark'}>`
     width: 100%;
     height: 100%;
     display: flex;
@@ -96,7 +96,7 @@ export const LoginBackground = styled.div`
     }
 `
 
-export const LoginInputText = styled.input.attrs({ type: "text" })`
+export const LoginInputText = styled.input.attrs({ type: "text" })<{theme: 'light' | 'dark'}>`
     margin-bottom: 0.9em;
     padding: 0.4em;
     border: none;
@@ -110,7 +110,7 @@ export const LoginInputText = styled.input.attrs({ type: "text" })`
     }
 `
 
-export const LoginInputPassword = styled.input.attrs({ type: "password" })`
+export const LoginInputPassword = styled.input.attrs({ type: "password" })<{theme: 'light' | 'dark'}>`
     margin-bottom: 0.9em;
     padding: 0.4em;
     border: none;

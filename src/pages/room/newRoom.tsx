@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, FormEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -7,21 +7,22 @@ import Select from 'react-select'
 import { useDispatch } from 'react-redux';
 import { addRoom } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
+import { ThemeInterface } from '../../types';
 
 function NewRoom() {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
   const dispatch = useDispatch()
  
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [images, setImages] = useState(["./room.jpg"]);
-  const [type, setType] = useState(null);
-  const [price, setPrice] = useState(null);
-  const [offer, setOffer] = useState(null);
-  const [amenities, setAmenities] = useState([]);
-  const [available, setAvailable] = useState(true);
+  const [id, setId] = useState<null | number>(null);
+  const [name, setName] = useState<null | string>(null);
+  const [images, setImages] = useState<string[]>(["./room.jpg"]);
+  const [type, setType] = useState<null | string>(null);
+  const [price, setPrice] = useState<null | number>(null);
+  const [offer, setOffer] = useState<null | number>(null);
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [available, setAvailable] = useState<boolean>(true);
   
   const amenitieOptions = [
     {value: 'AC', label: 'AC'},
@@ -41,7 +42,7 @@ function NewRoom() {
     {value: 'Suite', label: 'Suite'},
   ]
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null && amenities !== null)
     { 
@@ -94,27 +95,27 @@ function NewRoom() {
             }}
             closeMenuOnSelect={true}
             options={roomOptions}
-            onChange={(event) => setType(event.value)}
+            onChange={(event: any) => setType(event.value)}
           />
           <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' onChange={(event) => setId(event.target.value)}/>
+              <input type='number' onChange={(event: any) => setId(event.target.value)}/>
             </div>
             <div>
               <h4>Name</h4>
-              <input type='text' onChange={(event) => setName(event.target.value)}/>
+              <input type='text' onChange={(event: any) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Price</h4>
-              <input type='number' onChange={(event) => setPrice(event.target.value)}/>
+              <input type='number' onChange={(event: any) => setPrice(event.target.value)}/>
             </div>
             <div>
               <h4>Offer</h4>
-              <input type='number' onChange={(event) => setOffer(event.target.value)}/>
+              <input type='number' onChange={(event: any) => setOffer(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>Amenities</h4>
@@ -142,8 +143,8 @@ function NewRoom() {
             <input type='checkbox' defaultChecked onChange={(event) => setAvailable(event.target.checked)}/>
           </CheckboxContainer>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>ADD ROOM</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>ADD ROOM</button>
+            <button onClick={(event) => {
                 event.preventDefault()
                 navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

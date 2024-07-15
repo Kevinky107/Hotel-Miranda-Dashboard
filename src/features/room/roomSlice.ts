@@ -1,14 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { getRoomListThunk, getRoomThunk } from "./roomThunk"
+import { Room } from "../../types"
+import { RootState } from "../../app/store"
+
+interface Slice {
+    status: 'idle' | 'pending' | 'fulfilled' | 'rejected'
+    dataList: Room[]
+    data: null | Room
+    error: null | string
+}
+  
+const initialState: Slice = {
+    status: "idle",
+    dataList: [],
+    data: null,
+    error: null,
+}
 
 export const roomSlice = createSlice({
     name: "room",
-    initialState: {
-        status: "idle",
-        dataList: [],
-        data: null,
-        error: null,
-    },
+    initialState,
     reducers: {
         removeRoom: (state, action) => {
             state.dataList = [...state.dataList.filter(room => room.id !== action.payload.id)]
@@ -33,28 +44,28 @@ export const roomSlice = createSlice({
                 state.status = "pending"
             })
             .addCase(getRoomListThunk.fulfilled, (state, action) => {
-                state.dataList = [...action.payload]
+                state.dataList = action.payload as Room[]
                 state.status = "fulfilled"
             })
             .addCase(getRoomListThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message
+                state.error = action.error.message as string
             })
             .addCase(getRoomThunk.pending, (state, action) => {
                 state.status = "pending"
             })
             .addCase(getRoomThunk.fulfilled, (state, action) => {
-                state.data = action.payload
+                state.data = action.payload as Room
                 state.status = "fulfilled"
             })
             .addCase(getRoomThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message
+                state.error = action.error.message as string
             })
     }
 })
 export const { removeRoom, addRoom, editRoom } = roomSlice.actions
-export const roomDataSelector = (state) => state.room.data
-export const roomDataListSelector = (state) => state.room.dataList
-export const roomStatusSelector = (state) => state.room.status
-export const roomErrorSelector = (state) => state.room.error
+export const roomDataSelector = (state: RootState) => state.room.data
+export const roomDataListSelector = (state: RootState) => state.room.dataList
+export const roomStatusSelector = (state: RootState) => state.room.status
+export const roomErrorSelector = (state: RootState) => state.room.error

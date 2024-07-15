@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const ActualUser = styled.div`
+export const ActualUser = styled.div<{theme: 'light' | 'dark'}>`
     text-align: center;
     margin: auto;
     margin-inline: 3em;

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const FormStyledWrapper = styled.div`
+export const FormStyledWrapper = styled.div<{theme: 'light' | 'dark'}>`
     margin-top: 4em;
     margin-inline: auto;
     width: fit-content;

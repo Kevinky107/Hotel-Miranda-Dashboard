@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const KPI = styled.div`
+export const KPI = styled.div<{theme: 'light' | 'dark'}>`
     padding: 1em;
     width: 120%;
     height: 6em;
@@ -16,7 +16,7 @@ export const KPI = styled.div`
     }
 `
 
-export const KPIpicture = styled.picture`
+export const KPIpicture = styled.picture<{type: 'regular' | 'red'}>`
     display: inline-flex;
     padding: 0.6em;
     font-size: 2rem;

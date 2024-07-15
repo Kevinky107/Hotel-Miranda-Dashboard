@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
 import { getRoomThunk } from '../../features/room/roomThunk';
+import { ThemeInterface } from '../../types';
 
 function EditRoom() {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const roomData = useSelector(roomDataSelector)

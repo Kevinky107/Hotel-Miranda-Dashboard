@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const NavBar = styled.nav`
+export const NavBar = styled.nav<{theme: 'light' | 'dark'}>`
     width: 100%;
     height: 6em;
     position: fixed;
@@ -25,7 +25,7 @@ export const NavBar = styled.nav`
     }
 `
 
-export const LeftNavBar = styled.div`
+export const LeftNavBar = styled.div<{size: 'big' | 'small'}>`
     display: flex;
     align-items: center;
 

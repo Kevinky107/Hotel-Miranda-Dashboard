@@ -1,24 +1,26 @@
 import { createContext, useReducer } from "react";
+import { AuthAction, AuthInterface, User } from "../types";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext<null | AuthInterface>(null);
 
-const authContextReducer = (state, action) => {
+const authContextReducer = (state: User, action: AuthAction) => {
     switch (action.type) {
         case 'LOGIN':
-            return state = action.payload
+            return state = action.payload as User
         case 'LOGOUT':
             return state = initialState
         case 'UPDATE':
+            const user = action.payload as User
             return {
                 "id": state.id,
-                "password": action.payload.password,
-                "email": action.payload.email,
+                "password": user.password,
+                "email": user.email,
                 "name": state.name,
                 "picture": state.picture,
                 "post": state.post,
                 "phone": state.phone,
                 "postdescription" : state.postdescription,
-                "startdate" : state.stardate,
+                "startdate" : state.startdate,
                 "state": state.state
             }
         default:
@@ -26,7 +28,7 @@ const authContextReducer = (state, action) => {
     }
 }
 
-const initialState = JSON.parse(localStorage.getItem('user')) || {
+const initialState = JSON.parse(localStorage.getItem('user') as string) || {
     "id": null,
     "password": null,
     "email": null,
@@ -40,7 +42,7 @@ const initialState = JSON.parse(localStorage.getItem('user')) || {
 }
 
 
-export const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }: any) => {
     const [ contextAuth, contextAuthDispatch ] = useReducer(authContextReducer, initialState)
 
     return (
