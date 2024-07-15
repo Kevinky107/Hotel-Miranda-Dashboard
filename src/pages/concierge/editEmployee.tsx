@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -9,35 +9,38 @@ import { addUser, editUser, userDataListSelector, userDataSelector, userErrorSel
 import Swal from 'sweetalert2'
 import { getUserThunk } from '../../features/user/userThunk';
 import { AuthContext } from '../../context/auth';
+import { AuthInterface, ThemeInterface, User } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 
-function EditEmployee() {
+function EditEmployee(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const userData = useSelector(userDataSelector)
   const userStatus = useSelector(userStatusSelector)
   const userError = useSelector(userErrorSelector)
   const userDataList = useSelector(userDataListSelector)
   const { userID } = useParams()
-  const {contextAuth, contextAuthDispatch} = useContext(AuthContext)
+  const {contextAuth, contextAuthDispatch} = useContext<AuthInterface>(AuthContext as Context<AuthInterface>)
   const [isLoading, setIsLoading] = useState(true)
   
+  const [user, setUser] = useState<User>({} as User)
  
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [picture, setPicture] = useState(null);
-  const [post, setPost] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [postdescription, setPostdescription] = useState(null);
-  const [startdate, setStartdate] = useState(null)
-  const [state, setState] = useState(true);
-  const [password, setPassword] = useState(null);
+  const [id, setId] = useState<null | number>(null);
+  const [name, setName] = useState<null | string>(null);
+  const [picture, setPicture] = useState<string>("./profile.jpg");
+  const [post, setPost] = useState<null | string>(null);
+  const [email, setEmail] = useState<null | string>(null);
+  const [phone, setPhone] = useState<null | string>(null);
+  const [postdescription, setPostdescription] = useState<null | string>(null);
+  const [startdate, setStartdate] = useState<null | string>(null)
+  const [state, setState] = useState<boolean>(true);
+  const [password, setPassword] = useState<null | string>(null);
 
   useEffect(() => {
-    dispatch(getUserThunk({id :userID, list: userDataList}))
+    dispatch(getUserThunk({id :userID as string, list: userDataList}))
   },[])
 
   useEffect(() => {   
@@ -47,6 +50,7 @@ function EditEmployee() {
     else if (userStatus === "fulfilled") {
       if(userData !== null) {
         setIsLoading(false)
+        setUser(userData)
         setId(userData.id)
         setName(userData.name)
         setPicture(userData.picture)
@@ -70,11 +74,11 @@ function EditEmployee() {
     {value: 'Reception', label: 'Reception'},
   ]
 
-  const postOptionSelected = () => {
-    return postOptions.filter((option) => option.value === userData.post)
+  const postOptionSelected = (): {value: string, label: string}[] => {
+    return postOptions.filter((option) => option.value === user.post)
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault()
     if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null)
     { 
@@ -92,7 +96,7 @@ function EditEmployee() {
       }
       dispatch(editUser(newEmployee))
       if(id === contextAuth.id)
-        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
+        contextAuthDispatch({type: 'UPDATE', payload: newEmployee as User})
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -121,31 +125,31 @@ function EditEmployee() {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={userData.id} onChange={(event) => setId(event.target.value)}/>
+              <input type='number' defaultValue={user.id} onChange={(event: any) => setId(event.target.value)}/>
             </div>
             <div>
               <h4>NAME</h4>
-              <input type='text' defaultValue={userData.name} onChange={(event) => setName(event.target.value)}/>
+              <input type='text' defaultValue={user.name} onChange={(event) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>EMAIL</h4>
-              <input type='email' defaultValue={userData.email} onChange={(event) => setEmail(event.target.value)}/>
+              <input type='email' defaultValue={user.email} onChange={(event) => setEmail(event.target.value)}/>
             </div>
             <div>
               <h4>PASSWORD</h4>
-              <input type='text' defaultValue={userData.password} onChange={(event) => setPassword(event.target.value)}/>
+              <input type='text' defaultValue={user.password} onChange={(event) => setPassword(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
                 <h4>PHONE</h4>
-                <input type='tel' defaultValue={userData.phone} onChange={(event) => setPhone(event.target.value)}/>
+                <input type='tel' defaultValue={user.phone} onChange={(event) => setPhone(event.target.value)}/>
             </div>
             <div>
                 <h4>START DATE</h4>
-                <input type='date' defaultValue={userData.startdate} onChange={(event) => setStartdate(event.target.value)}/>
+                <input type='date' defaultValue={user.startdate} onChange={(event) => setStartdate(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>JOB</h4>
@@ -163,21 +167,21 @@ function EditEmployee() {
             closeMenuOnSelect={true}
             options={postOptions}
             defaultValue={postOptionSelected}
-            onChange={(event) => 
+            onChange={(event: any) => 
               setPost(event.value)
             }
           />
           <br></br>
           <h4>JOB DESCRIPTION</h4>
-          <textarea defaultValue={userData.postdescription} onChange={(event) => setPostdescription(event.target.value)}/>
+          <textarea defaultValue={user.postdescription} onChange={(event) => setPostdescription(event.target.value)}/>
           <br></br>
           <CheckboxContainer>
             <h4>ACTIVE</h4>
-            <input type='checkbox' defaultChecked={userData.state} onChange={(event) => setState(event.target.checked)} />
+            <input type='checkbox' defaultChecked={user.state} onChange={(event) => setState(event.target.checked)} />
           </CheckboxContainer>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>SAVE CHANGES</button>
+            <button onClick={(event) => {
                 event.preventDefault()
                 navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

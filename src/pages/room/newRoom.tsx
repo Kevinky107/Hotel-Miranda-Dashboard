@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import { ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
-function NewRoom() {
+function NewRoom(): React.JSX.Element {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()

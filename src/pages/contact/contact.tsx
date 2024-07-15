@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { Comment, ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
-function Contact() {
+function Contact(): React.JSX.Element {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const pageSize = 10

@@ -23,7 +23,7 @@ import { ThemeInterface } from '../../types';
 import { Room as RoomClass } from '../../types';
 import { AppDispatch } from '../../app/store';
 
-function Room() {
+function Room(): React.JSX.Element {
   
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const pageSize: number = 10

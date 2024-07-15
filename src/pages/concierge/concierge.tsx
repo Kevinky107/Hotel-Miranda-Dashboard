@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
@@ -18,20 +18,22 @@ import { useNavigate } from 'react-router-dom';
 import { TbEyePlus } from 'react-icons/tb';
 import { Details } from '../../components/detailsStyled';
 import ConciergeDetails from '../../components/conciergeDetails';
+import { ThemeInterface, User } from '../../types';
+import { AppDispatch } from '../../app/store';
 
-function Concierge() {
+function Concierge(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const pageSize = 10
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const pageSize: number = 10
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const userStatus = useSelector(userStatusSelector)
   const userDataList = useSelector(userDataListSelector)
   const userData = useSelector(userDataSelector)
   const userError = useSelector(userErrorSelector)
 
-  const createPagination = (array, size) => {
+  const createPagination = (array: User[], size: number) => {
     const aux = []
     for (let i = 0; i < array.length; i+= size)
       aux.push(array.slice(i, i + size));
@@ -39,13 +41,13 @@ function Concierge() {
     return aux 
   }
 
-  const [option, setOption] = useState(0)
-  const [list, setList] = useState([])
-  const [userPages, setUserPages] = useState(createPagination(list, pageSize))
-  const [page, setPage] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [showDetails, setShowDetails] = useState(false)
-  const [user, setUser] = useState(null)
+  const [option, setOption] = useState<number>(0)
+  const [list, setList] = useState<User[]>([])
+  const [userPages, setUserPages] = useState<User[][]>(createPagination(list, pageSize))
+  const [page, setPage] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [showDetails, setShowDetails] = useState<boolean>(false)
+  const [user, setUser] = useState<User |null>(null)
 
   useEffect(() => {
     if (userStatus === "idle") {
@@ -87,7 +89,7 @@ function Concierge() {
     setUserPages(createPagination(aux, pageSize))
   }
 
-  const popUpDelete = (user) => {
+  const popUpDelete = (user: User) => {
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the ${user.name} data back!`,
@@ -108,7 +110,7 @@ function Concierge() {
     });
   }
 
-  const openDetails = (user) => {
+  const openDetails = (user: User) => {
     setUser(user)
     setShowDetails(true)
   }

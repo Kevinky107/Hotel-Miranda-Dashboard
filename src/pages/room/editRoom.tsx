@@ -11,7 +11,7 @@ import { getRoomThunk } from '../../features/room/roomThunk';
 import { Room, ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
-function EditRoom() {
+function EditRoom(): React.JSX.Element {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
@@ -78,11 +78,11 @@ function EditRoom() {
     {value: 'Suite', label: 'Suite'},
   ]
 
-  const amenitieOptionsSelected = () => {
+  const amenitieOptionsSelected = (): {value: string, label: string}[] => {
     return amenitieOptions.filter((option) => room.amenities.includes(option.value))
   }
 
-  const roomOptionSelected = () => {
+  const roomOptionSelected = (): {value: string, label: string}[] => {
     return roomOptions.filter((option) => option.value === room.type)
   }
 

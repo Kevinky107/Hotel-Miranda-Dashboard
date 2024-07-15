@@ -7,13 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { editUser } from '../features/user/userSlice';
 import { AuthInterface, ThemeInterface } from '../types';
+import { AppDispatch } from '../app/store';
 
 function EditUser(): React.JSX.Element {
 
   const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const {contextAuth, contextAuthDispatch} = useContext<AuthInterface>(AuthContext as Context<AuthInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   const [password, setPassword] = useState(contextAuth.password);
   const [email, setEmail] = useState(contextAuth.email);

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, FormEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -7,24 +7,26 @@ import Select from 'react-select'
 import { useDispatch } from 'react-redux';
 import { addUser } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
+import { AppDispatch } from '../../app/store';
+import { ThemeInterface } from '../../types';
 
 
-function NewEmployee() {
+function NewEmployee(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
  
-  const [id, setId] = useState(null);
-  const [name, setName] = useState(null);
-  const [picture, setPicture] = useState("./profile.jpg");
-  const [post, setPost] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [postdescription, setPostdescription] = useState(null);
-  const [startdate, setStartdate] = useState(null)
-  const [state, setState] = useState(true);
-  const [password, setPassword] = useState(true);
+  const [id, setId] = useState<null | number>(null);
+  const [name, setName] = useState<null | string>(null);
+  const [picture, setPicture] = useState<string>("./profile.jpg");
+  const [post, setPost] = useState<null | string>(null);
+  const [email, setEmail] = useState<null | string>(null);
+  const [phone, setPhone] = useState<null | string>(null);
+  const [postdescription, setPostdescription] = useState<null | string>(null);
+  const [startdate, setStartdate] = useState<null | string>(null)
+  const [state, setState] = useState<boolean>(true);
+  const [password, setPassword] = useState<null | string>(null);
 
   const postOptions = [
     {value: 'Managet', label: 'Manager'},
@@ -32,7 +34,7 @@ function NewEmployee() {
     {value: 'Reception', label: 'Reception'},
   ]
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null)
     { 
@@ -76,31 +78,31 @@ function NewEmployee() {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' onChange={(event) => setId(event.target.value)}/>
+              <input type='number' onChange={(event: any) => setId(event.target.value)}/>
             </div>
             <div>
               <h4>NAME</h4>
-              <input type='text' onChange={(event) => setName(event.target.value)}/>
+              <input type='text' onChange={(event: any) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>EMAIL</h4>
-              <input type='email' onChange={(event) => setEmail(event.target.value)}/>
+              <input type='email' onChange={(event: any) => setEmail(event.target.value)}/>
             </div>
             <div>
               <h4>PASSWORD</h4>
-              <input type='text' onChange={(event) => setPassword(event.target.value)}/>
+              <input type='text' onChange={(event: any) => setPassword(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
                 <h4>PHONE</h4>
-                <input type='tel' onChange={(event) => setPhone(event.target.value)}/>
+                <input type='tel' onChange={(event: any) => setPhone(event.target.value)}/>
             </div>
             <div>
                 <h4>START DATE</h4>
-                <input type='date' onChange={(event) => setStartdate(event.target.value)}/>
+                <input type='date' onChange={(event: any) => setStartdate(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>JOB</h4>
@@ -117,21 +119,21 @@ function NewEmployee() {
             }}
             closeMenuOnSelect={true}
             options={postOptions}
-            onChange={(event) => 
+            onChange={(event: any) => 
               setPost(event.value)
             }
           />
           <br></br>
           <h4>JOB DESCRIPTION</h4>
-          <textarea onChange={(event) => setPostdescription(event.target.value)}/>
+          <textarea onChange={(event: any) => setPostdescription(event.target.value)}/>
           <br></br>
           <CheckboxContainer>
             <h4>ACTIVE</h4>
             <input type='checkbox' defaultChecked onChange={(event) => setState(event.target.checked)}/>
           </CheckboxContainer>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>ADD EMPLOYEE</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>ADD EMPLOYEE</button>
+            <button onClick={(event) => {
                 event.preventDefault()
                 navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

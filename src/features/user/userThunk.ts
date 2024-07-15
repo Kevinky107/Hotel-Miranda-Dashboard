@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import users from '../../assets/users.json'
+import { User } from "../../types";
 
 export const getUserListThunk = createAsyncThunk("user/getUserList", async() => {
     const myUserListPromise = new Promise((resolve, reject) => {
@@ -17,7 +18,7 @@ export const getUserListThunk = createAsyncThunk("user/getUserList", async() => 
         .catch((error) => {throw new Error(error)})
 })
 
-export const getUserThunk = createAsyncThunk("user/getUser", async({id, list}) => {
+export const getUserThunk = createAsyncThunk("user/getUser", async({id, list}: {id: string, list: User[]}) => {
     const myUserListPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             const userObject = list.filter(user => `${user.id}` === id)

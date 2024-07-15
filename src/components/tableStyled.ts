@@ -335,7 +335,7 @@ export const CommentAction= styled.p<{type: 'publish' | 'archive'}>`
 
 //Concierge
 
-export const UserStatus = styled.p`
+export const UserStatus = styled.p<{state: 'active' | 'inactive'}>`
     ${props => props.state === 'active' ? ` 
         color: green;
         `:`
