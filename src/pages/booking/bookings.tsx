@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import { PageContainer } from '../../components/pageStyled';
 import { Column, ColumnTitle, TableOption, Row, TableSelect, Table, 
@@ -17,13 +17,15 @@ import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, boo
 import { getBookingListThunk } from '../../features/booking/bookingThunk';
 import Swal from 'sweetalert2'
 import BookingDetails from '../../components/bookingDetails';
+import { Booking, ThemeInterface } from '../../types';
+import { AppDispatch } from '../../app/store';
 
 
-function Bookings() {
+function Bookings(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const pageSize = 10
-  const dispatch = useDispatch()
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const pageSize: number = 10
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
   const bookingStatus = useSelector(bookingStatusSelector)
@@ -31,7 +33,7 @@ function Bookings() {
   const bookingData = useSelector(bookingDataSelector)
   const bookingError = useSelector(bookingErrorSelector)
 
-  const createPagination = (array, size) => {
+  const createPagination = (array: Booking[], size: number): Booking[][] => {
     const aux = []
     for (let i = 0; i < array.length; i+= size)
       aux.push(array.slice(i, i + size));
@@ -39,13 +41,13 @@ function Bookings() {
     return aux 
   }
 
-  const [option, setOption] = useState(0)
-  const [list, setList] = useState([])
-  const [bookingPages, setBookingPages] = useState(createPagination(list, pageSize))
-  const [page, setPage] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [showDetails, setShowDetails] = useState(false)
-  const [booking, setBooking] = useState(null)
+  const [option, setOption] = useState<number>(0)
+  const [list, setList] = useState<Booking[]>([])
+  const [bookingPages, setBookingPages] = useState<Booking[][]>(createPagination(list, pageSize))
+  const [page, setPage] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [showDetails, setShowDetails] = useState<boolean>(false)
+  const [booking, setBooking] = useState<Booking | null>(null)
 
   useEffect(() => {
     if (bookingStatus === "idle") {
@@ -95,7 +97,7 @@ function Bookings() {
     setBookingPages(createPagination(aux, pageSize))
   }
 
-  const popUpDelete = (booking) => {
+  const popUpDelete = (booking: Booking) => {
     Swal.fire({
       title: "Are you sure?",
       text: `You won't be able to get the #${booking.id} booking back!`,
@@ -116,15 +118,15 @@ function Bookings() {
     });
   }
 
-  const showNote = (booking) => {
+  const showNote = (booking: Booking) => {
     Swal.fire({
       title: `${booking.guest} requested:`,
       text: booking.note,
       icon: "info"
-    });
+    } as any);
   }
 
-  const openDetails = (booking) => {
+  const openDetails = (booking: Booking) => {
     setBooking(booking)
     setShowDetails(true)
   }
@@ -200,7 +202,7 @@ function Bookings() {
         </TableButtons>
       </TableFooter>
       </>}
-      {showDetails && <BookingDetails close={() => setShowDetails(false)} booking={booking}></BookingDetails>}
+      {showDetails && <BookingDetails close={() => setShowDetails(false)} booking={booking as Booking}></BookingDetails>}
     </PageContainer>
   )
 }

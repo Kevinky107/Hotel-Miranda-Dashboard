@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -8,34 +8,36 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editBooking, bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
 import Swal from 'sweetalert2'
 import { getBookingThunk } from '../../features/booking/bookingThunk';
+import { Booking, ThemeInterface } from '../../types';
+import { AppDispatch } from '../../app/store';
 
-function EditBooking() {
+function EditBooking(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const bookingData = useSelector(bookingDataSelector)
   const bookingStatus = useSelector(bookingStatusSelector)
   const bookingError = useSelector(bookingErrorSelector)
   const bookingDataList = useSelector(bookingDataListSelector)
   const { bookingID } = useParams()
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
  
-  const [booking, setbooking] = useState(null)
+  const [booking, setbooking] = useState<Booking>({} as Booking)
 
-  const [id, setId] = useState(null);
-  const [guest, setGuest] = useState(null);
-  const [picture, setPicture] = useState(["./profile.jpg"]);
-  const [orderdate, setOrderdate] = useState(null);
-  const [checkin, setCheckin] = useState(null);
-  const [checkout, setCheckout] = useState(null);
-  const [note, setNote] = useState(null);
-  const [roomtype, setRoomtype] = useState(null);
-  const [roomid, setRoomid] = useState(null);
-  const [status, setStatus] = useState(null);
+  const [id, setId] = useState<number | null>(null);
+  const [guest, setGuest] = useState<string | null>(null);
+  const [picture, setPicture] = useState<string[]>(["./profile.jpg"]);
+  const [orderdate, setOrderdate] = useState<string | null>(null);
+  const [checkin, setCheckin] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<string | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+  const [roomtype, setRoomtype] = useState<'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior' | null>(null);
+  const [roomid, setRoomid] = useState<string | null>(null);
+  const [status, setStatus] = useState<'check in' | 'check out' | 'in progress' | null>(null);
 
   useEffect(() => {
-    dispatch(getBookingThunk({id :bookingID, list: bookingDataList}))
+    dispatch(getBookingThunk({id :bookingID as string, list: bookingDataList}))
   },[])
 
   useEffect(() => {   
@@ -83,7 +85,7 @@ function EditBooking() {
     return statusOptions.filter((option) => option.value === booking.status)
   }
 
-  const submitHandler = (event) => {
+  const submitHandler = (event: any) => {
     event.preventDefault()
     if(id !== null)
     { 
@@ -139,14 +141,14 @@ function EditBooking() {
             }}
             closeMenuOnSelect={true}
             options={roomOptions}
-            onChange={(event) => setRoomtype(event.value)}
+            onChange={(event: any) => setRoomtype(event.value)}
             defaultValue={roomOptionSelected}
           />
           <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={booking.id} onChange={(event) => setId(event.target.value)}/>
+              <input type='number' defaultValue={booking.id} onChange={(event: any) => setId(event.target.value)}/>
             </div>
             <div>
               <h4>ROOM ID</h4>
@@ -187,20 +189,20 @@ function EditBooking() {
             }}
             closeMenuOnSelect={true}
             options={statusOptions}
-            onChange={(event) => setStatus(event.value)}
+            onChange={(event: any) => setStatus(event.value)}
             defaultValue={statusOptionSelected}
            />
            <br></br>
             <h4>NOTE</h4>
-            <textarea defaultValue={booking.note} onChange={(event) => {
+            <textarea defaultValue={booking.note as string} onChange={(event) => {
                 if(event.target.value.length > 0)
                     setNote(event.target.value)
                 else
                     setNote(null)
             }}/>
           <FormButtonsContainer>
-            <button theme={themeSelector} type='submit'>SAVE CHANGES</button>
-            <button theme={themeSelector} onClick={(event) => {
+            <button type='submit'>SAVE CHANGES</button>
+            <button onClick={(event) => {
                 event.preventDefault()
                 navigate(-1)}}>GO BACK</button>
           </FormButtonsContainer>

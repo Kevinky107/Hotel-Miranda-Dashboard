@@ -282,7 +282,7 @@ export const Notes = styled.button<{theme: 'light' | 'dark'}>`
 `
 
 
-export const BookingStatus = styled.p`
+export const BookingStatus = styled.p<{status: 'check in' | 'check out' | 'in progress'}>`
     width: 6em;
     color: white;
     text-align: center;

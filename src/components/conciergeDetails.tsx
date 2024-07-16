@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, MouseEventHandler, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../context/theme';
 import { Close, Details, Info } from './detailsStyled';
 import { IoIosClose } from "react-icons/io";
+import { ThemeInterface, User } from '../types';
 
-function ConciergeDetails({close, user}) {
+function ConciergeDetails({close, user}: {close: MouseEventHandler<HTMLHeadingElement>, user: User}): React.JSX.Element {
 
-  const themeSelector = useContext(ThemeContext)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
 
   return (
     <Details theme={themeSelector}>
-        <Info theme={themeSelector}>
+        <Info>
           <div>
             <h3>{user.name}</h3>
             <h3>#{user.id}</h3>
@@ -26,7 +27,7 @@ function ConciergeDetails({close, user}) {
           <img src={user.picture} />
         </div>
         
-        <Close theme={themeSelector}>
+        <Close>
             <h1 onClick={close}><IoIosClose /></h1>
         </Close>
     </Details>

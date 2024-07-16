@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const Details = styled.div`
+export const Details = styled.div<{theme: 'light' | 'dark'}>`
     position: fixed;
     top: 0;
     bottom: 0;

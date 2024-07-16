@@ -4,7 +4,7 @@ export const SwiperContainer = styled.div`
     padding-right: 4em;
 `
 
-export const CommentSliderWrap = styled.article`
+export const CommentSliderWrap = styled.article<{theme: 'light' | 'dark'}>`
     grid-column-start: 1;
     grid-column-end: 5;
     align-self: start;

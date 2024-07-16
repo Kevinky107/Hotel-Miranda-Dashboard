@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import comments from '../../assets/comments.json'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,11 +7,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { CommentSliderWrap, CommentTitle } from './commentStyled';
 import Comment from './comment';
+import { Comment as Contact, ThemeInterface } from '../../types';
 
-function CommentsSlider() {
+function CommentsSlider(): React.JSX.Element {
 
-  const {themeSelector} = useContext(ThemeContext)
-  const recentComments = comments.slice(0,10)
+  const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
+  const recentComments: Contact[] = comments.slice(0,10)
 
   return (
     <CommentSliderWrap theme={themeSelector}>

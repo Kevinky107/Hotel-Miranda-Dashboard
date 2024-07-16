@@ -1,14 +1,23 @@
-import { useContext, useEffect, useState } from 'react'
+import { Context, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../context/theme';
 import { CommentText, CommentActions, CommentCard, CommentCustomer, CommentFooter } from './commentStyled';
 import { RxCrossCircled, RxCheckCircled } from "react-icons/rx";
+import { ThemeInterface } from '../../types';
 
-function Comment({message, date, id, image, customer}) {
+interface Comment {
+    message: string
+    date: string
+    id: number
+    image: string
+    customer: string
+}
 
-    const {themeSelector} = useContext(ThemeContext)
+function Comment({message, date, id, image, customer}: Comment): React.JSX.Element {
+
+    const {themeSelector} = useContext<ThemeInterface>(ThemeContext as Context<ThemeInterface>)
 
   return (
-    <CommentCard theme={themeSelector}>
+    <CommentCard>
         <CommentText>{message}</CommentText>
         <CommentFooter>
             <CommentCustomer>
