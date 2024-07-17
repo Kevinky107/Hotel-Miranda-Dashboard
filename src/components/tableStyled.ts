@@ -30,11 +30,11 @@ export const Row = styled.tr<{type?: 'big'}>`
 `
 
 export const Column = styled.td`
-
+    padding-inline: 1em;
 `
 
 export const ColumnTitle = styled.th`
-    
+    padding-inline: 1em;
 `
 
 export const TableSelect = styled.div`
@@ -342,4 +342,12 @@ export const UserStatus = styled.p<{state: 'active' | 'inactive'}>`
         color: red;
     `
     }
+`
+export const ConciergeImage = styled.img`
+    width: 4em;
+    border-radius: 0.4em;
+`
+
+export const ConciergeDate = styled.p`
+    font-size: 0.8rem;
 `

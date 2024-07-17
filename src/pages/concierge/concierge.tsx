@@ -6,7 +6,9 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   TableElementIdentificator, TableElementId, TableElementName, TableFlexContainer, 
   RoomStatus, TableButton, TablePageButtons, TablePageButton,
   UserStatus,
-  TableElementActions} from '../../components/tableStyled';
+  TableElementActions,
+  ConciergeImage,
+  ConciergeDate} from '../../components/tableStyled';
 import { GreenButton } from '../../components/buttonStyled';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
@@ -139,13 +141,13 @@ function Concierge(): React.JSX.Element {
           {
             userPages[page].map((user, index) => 
               <Row key={index}>
-                <Column width='20%'>
+                <Column width='25%'>
                   <TableFlexContainer>
-                    <img width='60em' src={user.picture} />
+                    <ConciergeImage width='60em' src={user.picture} />
                     <TableElementIdentificator>
                       <TableElementName>{user.name}</TableElementName>
                       <TableElementId>#{user.id}</TableElementId>
-                      <p>{user.startdate}</p>
+                      <ConciergeDate>{user.startdate}</ConciergeDate>
                     </TableElementIdentificator>
                   </TableFlexContainer>
                 </Column>
@@ -177,7 +179,7 @@ function Concierge(): React.JSX.Element {
         </TableButtons>
       </TableFooter>
       </>} 
-      {showDetails && <ConciergeDetails close={() => setShowDetails(false)} user={user}></ConciergeDetails>}
+      {showDetails && <ConciergeDetails close={() => setShowDetails(false)} user={user as User}></ConciergeDetails>}
     </PageContainer>
   )
 }
