@@ -1,9 +1,9 @@
-import { Context, useContext, useEffect, useState } from 'react'
+import { Context, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
 import { useNavigate, useParams } from 'react-router-dom';
-import Select from 'react-select'
+import Select, { MultiValue, SingleValue } from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
 import { editRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
@@ -28,7 +28,7 @@ function EditRoom(): React.JSX.Element {
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
   const [images, setImages] = useState<string[]>(["./room.jpg"]);
-  const [type, setType] = useState<null | string>(null);
+  const [type, setType] = useState<null | 'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior'>(null);
   const [price, setPrice] = useState<null | number>(null);
   const [offer, setOffer] = useState<null | number>(null);
   const [amenities, setAmenities] = useState<string[]>([]);
@@ -86,11 +86,11 @@ function EditRoom(): React.JSX.Element {
     return roomOptions.filter((option) => option.value === room.type)
   }
 
-  const submitHandler = (event: any) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null)
+    if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null)
     { 
-      const newRoom = {
+      const newRoom: Room = {
         id: id,
         name: name,
         images: images,
@@ -140,28 +140,29 @@ function EditRoom(): React.JSX.Element {
             }}
             closeMenuOnSelect={true}
             options={roomOptions}
-            onChange={(event: any) => setType(event.value)}
+            onChange={(event: any) => setType(event.value)
+            }
             defaultValue={roomOptionSelected}
           />
           <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={room.id} onChange={(event: any) => setId(event.target.value)}/>
+              <input type='number' defaultValue={room.id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>Name</h4>
-              <input type='text' defaultValue={room.name} onChange={(event: any) => setName(event.target.value)}/>
+              <input type='text' defaultValue={room.name} onChange={(event) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Price</h4>
-              <input type='number' defaultValue={room.price} onChange={(event: any) => setPrice(event.target.value)}/>
+              <input type='number' defaultValue={room.price} onChange={(event) => setPrice(Number(event.target.value))}/>
             </div>
             <div>
               <h4>Offer</h4>
-              <input type='number' defaultValue={room.offer} onChange={(event: any) => setOffer(event.target.value)}/>
+              <input type='number' defaultValue={room.offer} onChange={(event) => setOffer(Number(event.target.value))}/>
             </div>
           </FormStyledSection>
           <h4>Amenities</h4>
@@ -179,9 +180,7 @@ function EditRoom(): React.JSX.Element {
             closeMenuOnSelect={false}
             isMulti
             options={amenitieOptions}
-            onChange={(event: any) => 
-              setAmenities(event.map((option: { value: string; }) => option.value))
-            }
+            onChange={(event: any) => setAmenities(event.map((option: { value: string; }) => option.value))}
             defaultValue={amenitieOptionsSelected}
           />
           <br></br>

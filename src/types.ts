@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export interface ThemeInterface {
     themeSelector: 'dark' | 'light'
     themeSelectorDispatch: React.Dispatch<ThemeAction>
@@ -15,6 +17,10 @@ export interface ThemeAction {
 export interface AuthAction {
     payload? : User
     type : string
+}
+
+export interface OutletContext {
+    children: ReactNode
 }
 
 export interface User {
@@ -39,7 +45,7 @@ export interface Booking {
     checkout: string
     note: string | null
     roomtype: 'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior'
-    roomid: string,
+    roomid: number,
     status: 'check in' | 'check out' | 'in progress'
 }
 

@@ -1,13 +1,13 @@
-import { Context, FormEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, Context, FormEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select'
+import Select, { SingleValue } from 'react-select'
 import { useDispatch } from 'react-redux';
 import { addRoom } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
-import { ThemeInterface } from '../../types';
+import { Room, ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
 function NewRoom(): React.JSX.Element {
@@ -19,7 +19,7 @@ function NewRoom(): React.JSX.Element {
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
   const [images, setImages] = useState<string[]>(["./room.jpg"]);
-  const [type, setType] = useState<null | string>(null);
+  const [type, setType] = useState<null | 'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior'>(null);
   const [price, setPrice] = useState<null | number>(null);
   const [offer, setOffer] = useState<null | number>(null);
   const [amenities, setAmenities] = useState<string[]>([]);
@@ -45,9 +45,9 @@ function NewRoom(): React.JSX.Element {
 
   const submitHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null && amenities !== null)
+    if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null)
     { 
-      const newRoom = {
+      const newRoom: Room = {
         id: id,
         name: name,
         images: images,
@@ -96,27 +96,31 @@ function NewRoom(): React.JSX.Element {
             }}
             closeMenuOnSelect={true}
             options={roomOptions}
-            onChange={(event: any) => setType(event.value)}
+            onChange={(event) => {
+              const e = event as SingleValue<{value: string, label: string}> || {value: 'Single Bed', label: 'Single Bed'}
+              const value = e.value as 'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior'
+              setType(value)}
+            }
           />
           <br></br>
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' onChange={(event: any) => setId(event.target.value)}/>
+              <input type='number' onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>Name</h4>
-              <input type='text' onChange={(event: any) => setName(event.target.value)}/>
+              <input type='text' onChange={(event) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Price</h4>
-              <input type='number' onChange={(event: any) => setPrice(event.target.value)}/>
+              <input type='number' onChange={(event) => setPrice(Number(event.target.value))}/>
             </div>
             <div>
               <h4>Offer</h4>
-              <input type='number' onChange={(event: any) => setOffer(event.target.value)}/>
+              <input type='number' onChange={(event) => setOffer(Number(event.target.value))}/>
             </div>
           </FormStyledSection>
           <h4>Amenities</h4>

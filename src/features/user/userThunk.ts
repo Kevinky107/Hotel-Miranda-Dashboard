@@ -3,10 +3,10 @@ import users from '../../assets/users.json'
 import { User } from "../../types";
 
 export const getUserListThunk = createAsyncThunk("user/getUserList", async() => {
-    const myUserListPromise = new Promise((resolve, reject) => {
+    const myUserListPromise = new Promise<User[]>((resolve, reject) => {
         setTimeout(() => {
             if (users.length > 0) {
-                resolve(users);
+                resolve(users as User[]);
             } else {
                 reject(`Void Array`);
             }
@@ -19,7 +19,7 @@ export const getUserListThunk = createAsyncThunk("user/getUserList", async() => 
 })
 
 export const getUserThunk = createAsyncThunk("user/getUser", async({id, list}: {id: string, list: User[]}) => {
-    const myUserListPromise = new Promise((resolve, reject) => {
+    const myUserListPromise = new Promise<User>((resolve, reject) => {
         setTimeout(() => {
             const userObject = list.filter(user => `${user.id}` === id)
             if (userObject.length > 0) {     

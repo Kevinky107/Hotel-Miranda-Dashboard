@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getUserListThunk, getUserThunk } from "./userThunk"
 import { User } from "../../types"
 import { RootState } from "../../app/store"
@@ -21,13 +21,13 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        removeUser: (state, action) => {
+        removeUser: (state, action: PayloadAction<User>) => {
             state.dataList = [...state.dataList.filter(user => user.id !== action.payload.id)]
         },
-        addUser: (state, action) => {
+        addUser: (state, action: PayloadAction<User>) => {
             state.dataList = [...state.dataList, action.payload]
         },
-        editUser: (state, action) => {
+        editUser: (state, action: PayloadAction<User>) => {
             const aux = state.dataList.map((user) => {
                 if(user.id === action.payload.id)
                 {
@@ -43,24 +43,24 @@ export const userSlice = createSlice({
             .addCase(getUserListThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getUserListThunk.fulfilled, (state, action) => {
-                state.dataList = action.payload as User[]
+            .addCase(getUserListThunk.fulfilled, (state, action: PayloadAction<User[]>) => {
+                state.dataList = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getUserListThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
             .addCase(getUserThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getUserThunk.fulfilled, (state, action) => {
-                state.data = action.payload as User
+            .addCase(getUserThunk.fulfilled, (state, action: PayloadAction<User>) => {
+                state.data = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getUserThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
     }
 })

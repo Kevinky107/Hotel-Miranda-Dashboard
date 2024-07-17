@@ -1,4 +1,4 @@
-import { Context, FormEvent, useContext, useEffect, useState } from 'react'
+import { Context, FormEvent, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { addUser } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
 import { AppDispatch } from '../../app/store';
-import { ThemeInterface } from '../../types';
+import { ThemeInterface, User } from '../../types';
 
 
 function NewEmployee(): React.JSX.Element {
@@ -20,7 +20,7 @@ function NewEmployee(): React.JSX.Element {
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
   const [picture, setPicture] = useState<string>("./profile.jpg");
-  const [post, setPost] = useState<null | string>(null);
+  const [post, setPost] = useState<null | 'Manager' | 'Room Service' | 'Reception'>(null);
   const [email, setEmail] = useState<null | string>(null);
   const [phone, setPhone] = useState<null | string>(null);
   const [postdescription, setPostdescription] = useState<null | string>(null);
@@ -34,11 +34,11 @@ function NewEmployee(): React.JSX.Element {
     {value: 'Reception', label: 'Reception'},
   ]
 
-  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null)
+    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
     { 
-      const newEmployee = {
+      const newEmployee: User = {
         id: id,
         name: name,
         picture: picture,
@@ -78,31 +78,31 @@ function NewEmployee(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' onChange={(event: any) => setId(event.target.value)}/>
+              <input type='number' onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>NAME</h4>
-              <input type='text' onChange={(event: any) => setName(event.target.value)}/>
+              <input type='text' onChange={(event) => setName(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>EMAIL</h4>
-              <input type='email' onChange={(event: any) => setEmail(event.target.value)}/>
+              <input type='email' onChange={(event) => setEmail(event.target.value)}/>
             </div>
             <div>
               <h4>PASSWORD</h4>
-              <input type='text' onChange={(event: any) => setPassword(event.target.value)}/>
+              <input type='text' onChange={(event) => setPassword(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
             <div>
                 <h4>PHONE</h4>
-                <input type='tel' onChange={(event: any) => setPhone(event.target.value)}/>
+                <input type='tel' onChange={(event) => setPhone(event.target.value)}/>
             </div>
             <div>
                 <h4>START DATE</h4>
-                <input type='date' onChange={(event: any) => setStartdate(event.target.value)}/>
+                <input type='date' onChange={(event) => setStartdate(event.target.value)}/>
             </div>
           </FormStyledSection>
           <h4>JOB</h4>
@@ -119,13 +119,11 @@ function NewEmployee(): React.JSX.Element {
             }}
             closeMenuOnSelect={true}
             options={postOptions}
-            onChange={(event: any) => 
-              setPost(event.value)
-            }
+            onChange={(event: any) => setPost(event.value)}
           />
           <br></br>
           <h4>JOB DESCRIPTION</h4>
-          <textarea onChange={(event: any) => setPostdescription(event.target.value)}/>
+          <textarea onChange={(event) => setPostdescription(event.target.value)}/>
           <br></br>
           <CheckboxContainer>
             <h4>ACTIVE</h4>

@@ -3,10 +3,10 @@ import bookings from '../../assets/bookings.json'
 import { Booking } from "../../types";
 
 export const getBookingListThunk = createAsyncThunk("booking/getBookingList", async() => {
-    const myBookingListPromise = new Promise((resolve, reject) => {
+    const myBookingListPromise = new Promise<Booking[]>((resolve, reject) => {
         setTimeout(() => {
             if (bookings.length > 0) {
-                resolve(bookings);
+                resolve(bookings as Booking[]);
             } else {
                 reject(`Void Array`);
             }
@@ -19,7 +19,7 @@ export const getBookingListThunk = createAsyncThunk("booking/getBookingList", as
 })
 
 export const getBookingThunk = createAsyncThunk("booking/getBooking", async({id, list}: {id: string, list: Booking[]}) => {
-    const myBookingListPromise = new Promise((resolve, reject) => {
+    const myBookingListPromise = new Promise<Booking>((resolve, reject) => {
         setTimeout(() => {
             const bookingObject = list.filter(booking => `${booking.id}` === id)
             if (bookingObject.length > 0) {     

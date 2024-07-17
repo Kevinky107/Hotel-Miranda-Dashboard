@@ -1,5 +1,5 @@
-import { createContext, useReducer } from "react";
-import { AuthAction, AuthInterface, User } from "../types";
+import { createContext, ReactNode, useReducer } from "react";
+import { AuthAction, AuthInterface, OutletContext, User } from "../types";
 
 export const AuthContext = createContext<null | AuthInterface>(null);
 
@@ -41,8 +41,7 @@ const initialState = JSON.parse(localStorage.getItem('user') as string) || {
     "state": null
 }
 
-
-export const AuthContextProvider = ({ children }: any) => {
+export const AuthContextProvider = ({ children }: OutletContext) => {
     const [ contextAuth, contextAuthDispatch ] = useReducer(authContextReducer, initialState)
 
     return (

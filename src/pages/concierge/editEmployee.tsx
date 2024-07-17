@@ -1,4 +1,4 @@
-import { Context, useContext, useEffect, useState } from 'react'
+import { Context, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -31,7 +31,7 @@ function EditEmployee(): React.JSX.Element {
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
   const [picture, setPicture] = useState<string>("./profile.jpg");
-  const [post, setPost] = useState<null | string>(null);
+  const [post, setPost] = useState<null | 'Manager' | 'Room Service' | 'Reception'>(null);
   const [email, setEmail] = useState<null | string>(null);
   const [phone, setPhone] = useState<null | string>(null);
   const [postdescription, setPostdescription] = useState<null | string>(null);
@@ -78,11 +78,11 @@ function EditEmployee(): React.JSX.Element {
     return postOptions.filter((option) => option.value === user.post)
   }
 
-  const submitHandler = (event: any) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null)
+    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
     { 
-      const newEmployee = {
+      const newEmployee: User = {
         id: id,
         name: name,
         picture: picture,
@@ -125,7 +125,7 @@ function EditEmployee(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={user.id} onChange={(event: any) => setId(event.target.value)}/>
+              <input type='number' defaultValue={user.id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>NAME</h4>
@@ -167,9 +167,7 @@ function EditEmployee(): React.JSX.Element {
             closeMenuOnSelect={true}
             options={postOptions}
             defaultValue={postOptionSelected}
-            onChange={(event: any) => 
-              setPost(event.value)
-            }
+            onChange={(event: any) => setPost(event.value)}
           />
           <br></br>
           <h4>JOB DESCRIPTION</h4>

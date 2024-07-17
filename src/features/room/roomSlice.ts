@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getRoomListThunk, getRoomThunk } from "./roomThunk"
 import { Room } from "../../types"
 import { RootState } from "../../app/store"
@@ -21,13 +21,13 @@ export const roomSlice = createSlice({
     name: "room",
     initialState,
     reducers: {
-        removeRoom: (state, action) => {
+        removeRoom: (state, action: PayloadAction<Room>) => {
             state.dataList = [...state.dataList.filter(room => room.id !== action.payload.id)]
         },
-        addRoom: (state, action) => {
+        addRoom: (state, action: PayloadAction<Room>) => {
             state.dataList = [...state.dataList, action.payload]
         },
-        editRoom: (state, action) => {
+        editRoom: (state, action: PayloadAction<Room>) => {
             const aux = state.dataList.map((room) => {
                 if(room.id === action.payload.id)
                 {
@@ -43,24 +43,24 @@ export const roomSlice = createSlice({
             .addCase(getRoomListThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getRoomListThunk.fulfilled, (state, action) => {
-                state.dataList = action.payload as Room[]
+            .addCase(getRoomListThunk.fulfilled, (state, action: PayloadAction<Room[]>) => {
+                state.dataList = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getRoomListThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
             .addCase(getRoomThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getRoomThunk.fulfilled, (state, action) => {
-                state.data = action.payload as Room
+            .addCase(getRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
+                state.data = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getRoomThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
     }
 })

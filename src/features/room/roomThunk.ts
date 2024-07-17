@@ -3,10 +3,10 @@ import rooms from '../../assets/rooms.json'
 import { Room } from "../../types";
 
 export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => {
-    const myRoomListPromise = new Promise((resolve, reject) => {
+    const myRoomListPromise = new Promise<Room[]>((resolve, reject) => {
         setTimeout(() => {
             if (rooms.length > 0) {
-                resolve(rooms);
+                resolve(rooms as Room[]);
             } else {
                 reject(`Void Array`);
             }
@@ -19,7 +19,7 @@ export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => 
 })
 
 export const getRoomThunk = createAsyncThunk("room/getRoom", async({id, list}: {id: string, list: Room[]}) => {
-    const myRoomListPromise = new Promise((resolve, reject) => {
+    const myRoomListPromise = new Promise<Room>((resolve, reject) => {
         setTimeout(() => {
             const roomObject = list.filter(room => `${room.id}` === id)
             if (roomObject.length > 0) {     

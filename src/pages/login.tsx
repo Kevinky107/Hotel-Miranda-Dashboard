@@ -1,4 +1,4 @@
-import { Context, useContext, useEffect, useState } from 'react'
+import { Context, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../context/theme';
 import users from '../assets/users.json'
 import { useNavigate } from 'react-router-dom';
@@ -22,11 +22,15 @@ function Login(): React.JSX.Element {
     }
   })
 
-  const submitHandler = (event: any) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
     let ok: boolean = false
+    const target = event.target as typeof event.target & {
+      0: {value: string},
+      1: {value: string}
+    }
     users.forEach( element => {
-      if(element.email === event.target[0].value && element.password === event.target[1].value)
+      if(element.email === target[0].value && element.password === target[1].value)
       {
         ok = true
         localStorage.setItem('user', JSON.stringify(element))

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { getBookingListThunk, getBookingThunk } from "./bookingThunk"
 import { Booking } from "../../types"
 import { RootState } from "../../app/store"
@@ -21,13 +21,13 @@ export const bookingSlice = createSlice({
     name: "booking",
     initialState,
     reducers: {
-        removeBooking: (state, action) => {
+        removeBooking: (state, action: PayloadAction<Booking>) => {
             state.dataList = [...state.dataList.filter(booking => booking.id !== action.payload.id)]
         },
-        addBooking: (state, action) => {
+        addBooking: (state, action: PayloadAction<Booking>) => {
             state.dataList = [...state.dataList, action.payload]
         },
-        editBooking: (state, action) => {
+        editBooking: (state, action: PayloadAction<Booking>) => {
             const aux = state.dataList.map((booking) => {
                 if(booking.id === action.payload.id)
                 {
@@ -43,24 +43,24 @@ export const bookingSlice = createSlice({
             .addCase(getBookingListThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getBookingListThunk.fulfilled, (state, action) => {
-                state.dataList = action.payload as Booking[]
+            .addCase(getBookingListThunk.fulfilled, (state, action: PayloadAction<Booking[]>) => {
+                state.dataList = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getBookingListThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
             .addCase(getBookingThunk.pending, (state, action) => {
                 state.status = "pending"
             })
-            .addCase(getBookingThunk.fulfilled, (state, action) => {
-                state.data = action.payload as Booking
+            .addCase(getBookingThunk.fulfilled, (state, action: PayloadAction<Booking>) => {
+                state.data = action.payload
                 state.status = "fulfilled"
             })
             .addCase(getBookingThunk.rejected, (state, action) => {
                 state.status = "rejected"
-                state.error = action.error.message as string
+                state.error = action.error.message || 'Unexpected Error'
             })
     }
 })

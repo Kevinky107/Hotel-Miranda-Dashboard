@@ -1,4 +1,4 @@
-import { Context, useContext, useEffect, useState } from 'react'
+import { Context, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../../components/pageStyled'
 import { ThemeContext } from '../../context/theme';
 import { FormStyledWrapper, FormButtonsContainer, FormStyledSection } from '../../components/formStyled'
@@ -27,13 +27,13 @@ function EditBooking(): React.JSX.Element {
 
   const [id, setId] = useState<number | null>(null);
   const [guest, setGuest] = useState<string | null>(null);
-  const [picture, setPicture] = useState<string[]>(["./profile.jpg"]);
+  const [picture, setPicture] = useState<string>("./profile.jpg");
   const [orderdate, setOrderdate] = useState<string | null>(null);
   const [checkin, setCheckin] = useState<string | null>(null);
   const [checkout, setCheckout] = useState<string | null>(null);
   const [note, setNote] = useState<string | null>(null);
   const [roomtype, setRoomtype] = useState<'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior' | null>(null);
-  const [roomid, setRoomid] = useState<string | null>(null);
+  const [roomid, setRoomid] = useState<number | null>(null);
   const [status, setStatus] = useState<'check in' | 'check out' | 'in progress' | null>(null);
 
   useEffect(() => {
@@ -85,11 +85,11 @@ function EditBooking(): React.JSX.Element {
     return statusOptions.filter((option) => option.value === booking.status)
   }
 
-  const submitHandler = (event: any) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null)
+    if(id !== null && guest != null && picture != null && orderdate != null && checkin != null && checkout != null && roomtype != null && roomid != null && status != null)
     { 
-      const newBooking = {
+      const newBooking: Booking = {
         guest: guest,
         picture: picture,
         id: id,
@@ -148,11 +148,11 @@ function EditBooking(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={booking.id} onChange={(event: any) => setId(event.target.value)}/>
+              <input type='number' defaultValue={booking.id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>ROOM ID</h4>
-              <input type='number' defaultValue={booking.roomid} onChange={(event) => setRoomid(event.target.value)}/>
+              <input type='number' defaultValue={booking.roomid} onChange={(event) => setRoomid(Number(event.target.value))}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>

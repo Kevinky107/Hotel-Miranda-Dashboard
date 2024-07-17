@@ -3,7 +3,7 @@ import comments from '../../assets/comments.json'
 import { Comment } from "../../types";
 
 export const getContactListThunk = createAsyncThunk("contact/getContactList", async() => {
-    const myContactListPromise = new Promise((resolve, reject) => {
+    const myContactListPromise = new Promise<Comment[]>((resolve, reject) => {
         setTimeout(() => {
             if (comments.length > 0) {
                 resolve(comments);
@@ -19,7 +19,7 @@ export const getContactListThunk = createAsyncThunk("contact/getContactList", as
 })
 
 export const getContactThunk = createAsyncThunk("contact/getContact", async({id, list}: {id: string, list: Comment[]}) => {
-    const myContactListPromise = new Promise((resolve, reject) => {
+    const myContactListPromise = new Promise<Comment>((resolve, reject) => {
         setTimeout(() => {
             const contactObject = list.filter(contact => `${contact.id}` === id)
             if (contactObject.length > 0) {     

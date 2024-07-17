@@ -1,4 +1,4 @@
-import { Context, useContext, useEffect, useState } from 'react'
+import { Context, SyntheticEvent, useContext, useEffect, useState } from 'react'
 import { PageContainer } from '../components/pageStyled'
 import { ThemeContext } from '../context/theme';
 import { FormButtonsContainer, FormStyledSection, FormStyledWrapper } from '../components/formStyled'
@@ -19,7 +19,7 @@ function EditUser(): React.JSX.Element {
   const [password, setPassword] = useState(contextAuth.password);
   const [email, setEmail] = useState(contextAuth.email);
 
-  const submitHandler = (event: any) => {
+  const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
     const user = {
       id: contextAuth.id,
