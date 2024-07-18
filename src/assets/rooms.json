@@ -3,6 +3,7 @@
         "id": 0,
         "name": "Deluxe A-91234",
         "images": [
+            "./room.jpg",
             "./room.jpg"
         ],
         "type": "Suite",

@@ -22,6 +22,7 @@ import Swal from 'sweetalert2'
 import { ThemeInterface } from '../../types';
 import { Room as RoomClass } from '../../types';
 import { AppDispatch } from '../../app/store';
+import RoomDetails from '../../components/roomDetails';
 
 function Room(): React.JSX.Element {
   
@@ -48,6 +49,8 @@ function Room(): React.JSX.Element {
   const [roomPages, setRoomPages] = useState<RoomClass[][]>(createPagination(list, pageSize))
   const [page, setPage] = useState<number>(0)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [showDetails, setShowDetails] = useState<boolean>(false)
+  const [room, setRoom] = useState<RoomClass |null>(null)
 
   useEffect(() => {
     if (roomStatus === "idle") {
@@ -110,6 +113,11 @@ function Room(): React.JSX.Element {
     });
   }
 
+  const openDetails = (room: RoomClass) => {
+    setRoom(room)
+    setShowDetails(true)
+  }
+
   return (
     <PageContainer>
       { !isLoading &&
@@ -159,7 +167,7 @@ function Room(): React.JSX.Element {
                       {room.available ? "Available" : "Booked"}
                     </RoomStatus>
                   </Column>
-                  <Column><TableElementActions><TbEyePlus className='more'/><FaRegEdit onClick={() => navigate(`/EditRoom/${room.id}`)} className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
+                  <Column><TableElementActions><TbEyePlus onClick={() => openDetails(room)} className='more'/><FaRegEdit onClick={() => navigate(`/EditRoom/${room.id}`)} className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
                 </Row>
               )
             }
@@ -183,6 +191,7 @@ function Room(): React.JSX.Element {
         </TableFooter>
         </> 
       }
+      {showDetails && <RoomDetails close={() => setShowDetails(false)} room={room as RoomClass}></RoomDetails>}
     </PageContainer>
   )
 }

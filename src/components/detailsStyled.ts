@@ -17,6 +17,11 @@ export const Details = styled.div<{theme: 'light' | 'dark'}>`
         display: inline-flex;
     }
 
+    .swiper{
+        width: 20em;
+        height: 20em;
+    }
+
     img{
         width: 20em;
         height: 20em;
@@ -29,6 +34,7 @@ export const Details = styled.div<{theme: 'light' | 'dark'}>`
         background-color: #171717;
     `}
 `
+
 export const Info = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,7 +46,8 @@ export const Info = styled.div`
 
 export const Close = styled.div`
     position: absolute;
-    right: 0em;
+    right: 0.2em;
+    z-index: 2;
 
     &:hover{
         cursor: pointer;
@@ -77,4 +84,20 @@ export const BookingNote = styled.div`
 
 export const Facilitie = styled.h4`
 
+`
+
+export const Amenities = styled.div`
+    display: inline-flex;
+    flex-wrap: wrap;
+`
+
+export const Amenitie = styled.p`
+    display: inline-flex;
+    height: fit-content;
+    margin: 0.4em 0.4em 0 0;
+    padding: 0.5em;
+    border-radius: 0.7em;
+    width: fit-content;
+    color: #5AD07A;
+    background-color: #BFFF9F55;
 `
