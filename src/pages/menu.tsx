@@ -35,7 +35,7 @@ function Menu(): React.JSX.Element {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(contextAuth.id === null || !contextAuth.state ) {
+    if(contextAuth === null) {
         navigate("/")
     }
   })

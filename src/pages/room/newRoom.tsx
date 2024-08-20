@@ -48,7 +48,7 @@ function NewRoom(): React.JSX.Element {
     if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null)
     { 
       const newRoom: Room = {
-        id: id,
+        _id: id,
         name: name,
         images: images,
         type: type,

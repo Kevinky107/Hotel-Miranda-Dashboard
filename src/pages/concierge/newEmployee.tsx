@@ -39,7 +39,7 @@ function NewEmployee(): React.JSX.Element {
     if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
     { 
       const newEmployee: User = {
-        id: id,
+        _id: id,
         name: name,
         picture: picture,
         password: password,

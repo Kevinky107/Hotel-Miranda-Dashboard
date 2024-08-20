@@ -95,7 +95,7 @@ function Room(): React.JSX.Element {
   const popUpDelete = (room: RoomClass) => {
     Swal.fire({
       title: "Are you sure?",
-      text: `You won't be able to get the #${room.id} room back!`,
+      text: `You won't be able to get the #${room._id} room back!`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -105,7 +105,7 @@ function Room(): React.JSX.Element {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: `The room #${room.id} has been removed.`,
+          text: `The room #${room._id} has been removed.`,
           icon: "success"
         });
         dispatch(removeRoom(room))
@@ -147,7 +147,7 @@ function Room(): React.JSX.Element {
                     <TableFlexContainer>
                       <TableRoomImg src={room.images[0]} />
                       <TableElementIdentificator>
-                        <TableElementId>#{room.id}</TableElementId>
+                        <TableElementId>#{room._id}</TableElementId>
                         <TableElementName>{room.name}</TableElementName>
                       </TableElementIdentificator>
                     </TableFlexContainer>
@@ -167,7 +167,7 @@ function Room(): React.JSX.Element {
                       {room.available ? "Available" : "Booked"}
                     </RoomStatus>
                   </Column>
-                  <Column><TableElementActions><TbEyePlus onClick={() => openDetails(room)} className='more'/><FaRegEdit onClick={() => navigate(`/EditRoom/${room.id}`)} className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
+                  <Column><TableElementActions><TbEyePlus onClick={() => openDetails(room)} className='more'/><FaRegEdit onClick={() => navigate(`/EditRoom/${room._id}`)} className='edit' /><MdDeleteOutline className='delete' onClick={() => popUpDelete(room)}/></TableElementActions></Column>
                 </Row>
               )
             }

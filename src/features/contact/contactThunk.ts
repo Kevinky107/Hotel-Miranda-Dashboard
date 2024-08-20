@@ -6,7 +6,7 @@ export const getContactListThunk = createAsyncThunk("contact/getContactList", as
     const myContactListPromise = new Promise<Comment[]>((resolve, reject) => {
         setTimeout(() => {
             if (comments.length > 0) {
-                resolve(comments);
+                resolve(comments as any);
             } else {
                 reject(`Void Array`);
             }
@@ -21,7 +21,7 @@ export const getContactListThunk = createAsyncThunk("contact/getContactList", as
 export const getContactThunk = createAsyncThunk("contact/getContact", async({id, list}: {id: string, list: Comment[]}) => {
     const myContactListPromise = new Promise<Comment>((resolve, reject) => {
         setTimeout(() => {
-            const contactObject = list.filter(contact => `${contact.id}` === id)
+            const contactObject = list.filter(contact => `${contact._id}` === id)
             if (contactObject.length > 0) {     
                 resolve(contactObject[0])
             } else {

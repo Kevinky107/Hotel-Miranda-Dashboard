@@ -5,8 +5,14 @@ export interface ThemeInterface {
     themeSelectorDispatch: React.Dispatch<ThemeAction>
 }
 
+export interface auth {
+    password: string,
+    email: string,
+    name?: string,
+    picture?: string
+}
 export interface AuthInterface {
-    contextAuth: User
+    contextAuth: auth
     contextAuthDispatch: React.Dispatch<AuthAction>
 }
 
@@ -15,7 +21,7 @@ export interface ThemeAction {
 }
 
 export interface AuthAction {
-    payload? : User
+    payload? : auth
     type : string
 }
 
@@ -24,7 +30,7 @@ export interface OutletContext {
 }
 
 export interface User {
-    id: number
+    _id: number
     password: string
     email: string
     name: string
@@ -39,7 +45,7 @@ export interface User {
 export interface Booking {
     guest: string
     picture: string
-    id: number
+    _id: number
     orderdate: string
     checkin: string
     checkout: string
@@ -51,7 +57,7 @@ export interface Booking {
 
 export interface Comment {
     date: string
-    id: number
+    _id: number
     customer: string
     email: string
     phone: string
@@ -60,7 +66,7 @@ export interface Comment {
 }
 
 export interface Room {
-    id: number
+    _id: number
     name: string
     images: string[]
     type: 'Suite' | 'Single Bed' | 'Double Bed' | 'Double Superior'

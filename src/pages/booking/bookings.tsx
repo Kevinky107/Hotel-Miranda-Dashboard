@@ -100,7 +100,7 @@ function Bookings(): React.JSX.Element {
   const popUpDelete = (booking: Booking) => {
     Swal.fire({
       title: "Are you sure?",
-      text: `You won't be able to get the #${booking.id} booking back!`,
+      text: `You won't be able to get the #${booking._id} booking back!`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -110,7 +110,7 @@ function Bookings(): React.JSX.Element {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: `The booking #${booking.id} has been removed.`,
+          text: `The booking #${booking._id} has been removed.`,
           icon: "success"
         });
         dispatch(removeBooking(booking))
@@ -162,7 +162,7 @@ function Bookings(): React.JSX.Element {
                     <TableBookingImg src={booking.picture} />
                     <TableElementIdentificator>
                       <TableElementName>{booking.guest}</TableElementName>
-                      <TableElementId>#{booking.id}</TableElementId>
+                      <TableElementId>#{booking._id}</TableElementId>
                     </TableElementIdentificator>
                   </TableFlexContainer>
                 </Column>
@@ -179,7 +179,7 @@ function Bookings(): React.JSX.Element {
                     {booking.status}
                   </BookingStatus>
                 </Column>
-                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(booking)} className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking.id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(booking)} className='more'/><FaRegEdit onClick={() => navigate(`/EditBooking/${booking._id}`)} className='edit' /><MdDeleteOutline onClick={() => popUpDelete(booking)} className='delete'/></TableElementActions></Column>
               </Row>
             )
           }

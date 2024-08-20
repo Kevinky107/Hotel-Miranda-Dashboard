@@ -22,14 +22,14 @@ export const bookingSlice = createSlice({
     initialState,
     reducers: {
         removeBooking: (state, action: PayloadAction<Booking>) => {
-            state.dataList = [...state.dataList.filter(booking => booking.id !== action.payload.id)]
+            state.dataList = [...state.dataList.filter(booking => booking._id !== action.payload._id)]
         },
         addBooking: (state, action: PayloadAction<Booking>) => {
             state.dataList = [...state.dataList, action.payload]
         },
         editBooking: (state, action: PayloadAction<Booking>) => {
             const aux = state.dataList.map((booking) => {
-                if(booking.id === action.payload.id)
+                if(booking._id === action.payload._id)
                 {
                     return action.payload
                 }

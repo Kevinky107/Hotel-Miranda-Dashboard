@@ -108,7 +108,7 @@ function Contact(): React.JSX.Element {
             commentPages[page].map((comment, index) => 
               <Row type='big' key={index}>
                 <Column width='10%'>
-                      #{comment.id}
+                      #{comment._id}
                 </Column>
                 <Column width='10%'>{comment.date}</Column>
                 <Column width='15%'>{comment.customer}</Column>

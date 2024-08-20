@@ -22,14 +22,14 @@ export const contactSlice = createSlice({
     initialState,
     reducers: {
         removeContact: (state, action: PayloadAction<Comment>) => {
-            state.dataList = [...state.dataList.filter(contact => contact.id !== action.payload.id)]
+            state.dataList = [...state.dataList.filter(contact => contact._id !== action.payload._id)]
         },
         addContact: (state, action: PayloadAction<Comment>) => {
             state.dataList = [...state.dataList, action.payload]
         },
         editContact: (state, action: PayloadAction<Comment>) => {
             const aux = state.dataList.map((contact) => {
-                if(contact.id === action.payload.id)
+                if(contact._id === action.payload._id)
                 {
                     return action.payload
                 }

@@ -22,14 +22,14 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         removeUser: (state, action: PayloadAction<User>) => {
-            state.dataList = [...state.dataList.filter(user => user.id !== action.payload.id)]
+            state.dataList = [...state.dataList.filter(user => user._id !== action.payload._id)]
         },
         addUser: (state, action: PayloadAction<User>) => {
             state.dataList = [...state.dataList, action.payload]
         },
         editUser: (state, action: PayloadAction<User>) => {
             const aux = state.dataList.map((user) => {
-                if(user.id === action.payload.id)
+                if(user._id === action.payload._id)
                 {
                     return action.payload
                 }

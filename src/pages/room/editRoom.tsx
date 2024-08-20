@@ -48,7 +48,7 @@ function EditRoom(): React.JSX.Element {
         setRoom(roomData)
         setAmenities(roomData.amenities)
         setType(roomData.type)
-        setId(roomData.id)
+        setId(roomData._id)
         setName(roomData.name)
         setPrice(roomData.price)
         setOffer(roomData.offer)
@@ -91,7 +91,7 @@ function EditRoom(): React.JSX.Element {
     if(id !== null && name !== null && images.length > 0 && type !== null && price !== null  && offer !== null)
     { 
       const newRoom: Room = {
-        id: id,
+        _id: id,
         name: name,
         images: images,
         type: type,
@@ -148,7 +148,7 @@ function EditRoom(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={room.id} onChange={(event) => setId(Number(event.target.value))}/>
+              <input type='number' defaultValue={room._id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>Name</h4>

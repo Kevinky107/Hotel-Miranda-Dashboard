@@ -6,7 +6,7 @@ export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => 
     const myRoomListPromise = new Promise<Room[]>((resolve, reject) => {
         setTimeout(() => {
             if (rooms.length > 0) {
-                resolve(rooms as Room[]);
+                resolve(rooms as any);
             } else {
                 reject(`Void Array`);
             }
@@ -21,7 +21,7 @@ export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => 
 export const getRoomThunk = createAsyncThunk("room/getRoom", async({id, list}: {id: string, list: Room[]}) => {
     const myRoomListPromise = new Promise<Room>((resolve, reject) => {
         setTimeout(() => {
-            const roomObject = list.filter(room => `${room.id}` === id)
+            const roomObject = list.filter(room => `${room._id}` === id)
             if (roomObject.length > 0) {     
                 resolve(roomObject[0])
             } else {

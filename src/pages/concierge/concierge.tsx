@@ -146,7 +146,7 @@ function Concierge(): React.JSX.Element {
                     <ConciergeImage width='60em' src={user.picture} />
                     <TableElementIdentificator>
                       <TableElementName>{user.name}</TableElementName>
-                      <TableElementId>#{user.id}</TableElementId>
+                      <TableElementId>#{user._id}</TableElementId>
                       <ConciergeDate>{user.startdate}</ConciergeDate>
                     </TableElementIdentificator>
                   </TableFlexContainer>
@@ -156,7 +156,7 @@ function Concierge(): React.JSX.Element {
                 <Column>{user.email}</Column>
                 <Column >{user.phone}</Column>
                 <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
-                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(user)} className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user.id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
+                <Column><TableElementActions><TbEyePlus onClick={() => openDetails(user)} className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user._id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
               </Row>
             )
           }

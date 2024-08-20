@@ -49,7 +49,7 @@ function EditBooking(): React.JSX.Element {
         setIsLoading(false)
         setbooking(bookingData)
         setCheckout(bookingData.checkout)
-        setId(bookingData.id)
+        setId(bookingData._id)
         setGuest(bookingData.guest)
         setOrderdate(bookingData.orderdate)
         setCheckin(bookingData.checkin)
@@ -92,7 +92,7 @@ function EditBooking(): React.JSX.Element {
       const newBooking: Booking = {
         guest: guest,
         picture: picture,
-        id: id,
+        _id: id,
         orderdate: orderdate,
         checkin: checkin,
         checkout: checkout,
@@ -148,7 +148,7 @@ function EditBooking(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={booking.id} onChange={(event) => setId(Number(event.target.value))}/>
+              <input type='number' defaultValue={booking._id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>ROOM ID</h4>

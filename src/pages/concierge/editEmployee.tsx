@@ -51,7 +51,7 @@ function EditEmployee(): React.JSX.Element {
       if(userData !== null) {
         setIsLoading(false)
         setUser(userData)
-        setId(userData.id)
+        setId(userData._id)
         setName(userData.name)
         setPicture(userData.picture)
         setPost(userData.post)
@@ -83,7 +83,7 @@ function EditEmployee(): React.JSX.Element {
     if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
     { 
       const newEmployee: User = {
-        id: id,
+        _id: id,
         name: name,
         picture: picture,
         password: password,
@@ -95,8 +95,8 @@ function EditEmployee(): React.JSX.Element {
         state: state
       }
       dispatch(editUser(newEmployee))
-      if(id === contextAuth.id)
-        contextAuthDispatch({type: 'UPDATE', payload: newEmployee as User})
+      if(email === contextAuth.email)
+        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -125,7 +125,7 @@ function EditEmployee(): React.JSX.Element {
           <FormStyledSection>
             <div>
               <h4>ID</h4>
-              <input type='number' defaultValue={user.id} onChange={(event) => setId(Number(event.target.value))}/>
+              <input type='number' defaultValue={user._id} onChange={(event) => setId(Number(event.target.value))}/>
             </div>
             <div>
               <h4>NAME</h4>
