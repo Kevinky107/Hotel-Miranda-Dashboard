@@ -154,7 +154,7 @@ function Concierge(): React.JSX.Element {
                 <Column width='10%'>{user.post}</Column>
                 <Column width='35%'>{user.postdescription}</Column>
                 <Column>{user.email}</Column>
-                <Column >{user.phone}</Column>
+                <Column width='20%' >{user.phone}</Column>
                 <Column width='6%'><UserStatus state={user.state ? 'active' : 'inactive'}>{user.state ? 'Active' : 'Inactive'}</UserStatus></Column>
                 <Column><TableElementActions><TbEyePlus onClick={() => openDetails(user)} className='more'/><FaRegEdit onClick={() => navigate(`/EditEmployee/${user._id}`)} className='edit' /><MdDeleteOutline  onClick={() => popUpDelete(user)} className='delete' /></TableElementActions></Column>
               </Row>
