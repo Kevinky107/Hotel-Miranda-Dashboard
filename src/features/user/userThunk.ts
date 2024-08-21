@@ -1,36 +1,49 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import users from '../../assets/users.json'
 import { User } from "../../types";
+import { backendAPIcall } from "../backendAPIcall";
 
-export const getUserListThunk = createAsyncThunk("user/getUserList", async() => {
-    const myUserListPromise = new Promise<User[]>((resolve, reject) => {
-        setTimeout(() => {
-            if (users.length > 0) {
-                resolve(users as any);
-            } else {
-                reject(`Void Array`);
-            }
-        }, 200);
-    });
-
-    return myUserListPromise
-        .then((list) => {return list})
-        .catch((error) => {throw new Error(error)})
+export const getUserListThunk = createAsyncThunk("User/getUserList", async() => {
+    try {
+        const user: User[] = await backendAPIcall("/Users");
+        return user;
+    } catch (error) {
+        throw new Error();
+    }
 })
 
-export const getUserThunk = createAsyncThunk("user/getUser", async({id, list}: {id: string, list: User[]}) => {
-    const myUserListPromise = new Promise<User>((resolve, reject) => {
-        setTimeout(() => {
-            const userObject = list.filter(user => `${user._id}` === id)
-            if (userObject.length > 0) {     
-                resolve(userObject[0])
-            } else {
-                reject(`User Not Found `)
-            }
-        }, 200);
-    });
+export const getUserThunk = createAsyncThunk("User/getUser", async(id: string) => {
+    try {
+        const user: User = await backendAPIcall(`/Users/${id}`);
+        return user;
+    } catch (error) {
+        throw new Error();
+    }
+})
 
-    return myUserListPromise
-        .then((object) => {return object})
-        .catch((error) => {throw new Error(error)})
+export const removeUserThunk = createAsyncThunk("User/removeUser", async(id: string) => {
+    try {
+        const user: User = await backendAPIcall(`/Users/delete/${id}`, "DELETE");
+        return user;
+    } catch (error) {
+        throw new Error();
+    }
+})
+
+export const addUserThunk = createAsyncThunk("User/addUser", async(userData: Partial<User>) => {
+    try {
+        const user: User = await backendAPIcall(`/Users/add`, "POST", userData);
+        return user;
+    } catch (error) {
+        throw new Error();
+    }
+})
+
+export const updateUserThunk = createAsyncThunk("User/updateUser", async(userData: Partial<User>) => {
+    try {
+        const user: User = await backendAPIcall(`/Users/update/${userData._id}`, "PUT", userData);
+        return user;
+    } catch (error) {
+        throw new Error();
+    }
 })

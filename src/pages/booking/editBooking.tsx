@@ -5,9 +5,9 @@ import { FormStyledWrapper, FormButtonsContainer, FormStyledSection } from '../.
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
-import { editBooking, bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
+import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
 import Swal from 'sweetalert2'
-import { getBookingThunk } from '../../features/booking/bookingThunk';
+import { getBookingThunk, updateBookingThunk } from '../../features/booking/bookingThunk';
 import { Booking, ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
@@ -27,7 +27,7 @@ function EditBooking(): React.JSX.Element {
 
   const [id, setId] = useState<number | null>(null);
   const [guest, setGuest] = useState<string | null>(null);
-  const [picture, setPicture] = useState<string>("./profile.jpg");
+  const [picture, setPicture] = useState<string | null>(null);
   const [orderdate, setOrderdate] = useState<string | null>(null);
   const [checkin, setCheckin] = useState<string | null>(null);
   const [checkout, setCheckout] = useState<string | null>(null);
@@ -37,7 +37,7 @@ function EditBooking(): React.JSX.Element {
   const [status, setStatus] = useState<'check in' | 'check out' | 'in progress' | null>(null);
 
   useEffect(() => {
-    dispatch(getBookingThunk({id :bookingID as string, list: bookingDataList}))
+    dispatch(getBookingThunk(bookingID as string))
   },[])
 
   useEffect(() => {   
@@ -57,6 +57,7 @@ function EditBooking(): React.JSX.Element {
         setRoomtype(bookingData.roomtype)
         setRoomid(bookingData.roomid)
         setStatus(bookingData.status)
+        setPicture(bookingData.picture)
       }
     }
     else if (bookingStatus === "rejected") {
@@ -101,7 +102,7 @@ function EditBooking(): React.JSX.Element {
         roomid: roomid,
         status: status
       }
-      dispatch(editBooking(newBooking))
+      dispatch(updateBookingThunk(newBooking))
       navigate('/Bookings')
       Swal.fire({
         position: "top-end",
@@ -124,9 +125,6 @@ function EditBooking(): React.JSX.Element {
       {!isLoading && 
       <FormStyledWrapper theme={themeSelector}>
         <form onSubmit={(event) => submitHandler(event)}>
-          <h4>PICTURE</h4>
-          <input type='file' />
-          <br></br>
           <h4>RROOM TYPE</h4>
           <Select
             styles={{
@@ -145,16 +143,6 @@ function EditBooking(): React.JSX.Element {
             defaultValue={roomOptionSelected}
           />
           <br></br>
-          <FormStyledSection>
-            <div>
-              <h4>ID</h4>
-              <input type='number' defaultValue={booking._id} onChange={(event) => setId(Number(event.target.value))}/>
-            </div>
-            <div>
-              <h4>ROOM ID</h4>
-              <input type='number' defaultValue={booking.roomid} onChange={(event) => setRoomid(Number(event.target.value))}/>
-            </div>
-          </FormStyledSection>
           <FormStyledSection>
             <div>
               <h4>Guest</h4>

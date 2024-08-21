@@ -13,8 +13,8 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector, removeBooking } from '../../features/booking/bookingSlice';
-import { getBookingListThunk } from '../../features/booking/bookingThunk';
+import { bookingDataListSelector, bookingDataSelector, bookingErrorSelector, bookingStatusSelector } from '../../features/booking/bookingSlice';
+import { getBookingListThunk, removeBookingThunk } from '../../features/booking/bookingThunk';
 import Swal from 'sweetalert2'
 import BookingDetails from '../../components/bookingDetails';
 import { Booking, ThemeInterface } from '../../types';
@@ -113,7 +113,7 @@ function Bookings(): React.JSX.Element {
           text: `The booking #${booking._id} has been removed.`,
           icon: "success"
         });
-        dispatch(removeBooking(booking))
+        dispatch(removeBookingThunk(String(booking._id)))
       }
     });
   }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getBookingListThunk, getBookingThunk } from "./bookingThunk"
+import { addBookingThunk, getBookingListThunk, getBookingThunk, removeBookingThunk, updateBookingThunk } from "./bookingThunk"
 import { Booking } from "../../types"
 import { RootState } from "../../app/store"
 
@@ -21,22 +21,6 @@ export const bookingSlice = createSlice({
     name: "booking",
     initialState,
     reducers: {
-        removeBooking: (state, action: PayloadAction<Booking>) => {
-            state.dataList = [...state.dataList.filter(booking => booking._id !== action.payload._id)]
-        },
-        addBooking: (state, action: PayloadAction<Booking>) => {
-            state.dataList = [...state.dataList, action.payload]
-        },
-        editBooking: (state, action: PayloadAction<Booking>) => {
-            const aux = state.dataList.map((booking) => {
-                if(booking._id === action.payload._id)
-                {
-                    return action.payload
-                }
-                return booking
-            })
-            state.dataList = JSON.parse(JSON.stringify(aux))
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,9 +46,48 @@ export const bookingSlice = createSlice({
                 state.status = "rejected"
                 state.error = action.error.message || 'Unexpected Error'
             })
+            .addCase(removeBookingThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(removeBookingThunk.fulfilled, (state, action: PayloadAction<Booking>) => {
+                state.dataList = [...state.dataList.filter(booking => booking._id !== action.payload._id)]
+                state.status = "fulfilled"
+            })
+            .addCase(removeBookingThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(addBookingThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(addBookingThunk.fulfilled, (state, action: PayloadAction<Booking>) => {
+                state.dataList = [...state.dataList, action.payload]
+                state.status = "fulfilled"
+            })
+            .addCase(addBookingThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(updateBookingThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(updateBookingThunk.fulfilled, (state, action: PayloadAction<Booking>) => {
+                const aux = state.dataList.map((booking) => {
+                    if(booking._id === action.payload._id)
+                    {
+                        return action.payload
+                    }
+                    return booking
+                })
+                state.dataList = JSON.parse(JSON.stringify(aux))
+                state.status = "fulfilled"
+            })
+            .addCase(updateBookingThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
     }
 })
-export const { removeBooking, addBooking, editBooking } = bookingSlice.actions
 export const bookingDataSelector = ((state: RootState) => state.booking.data)
 export const bookingDataListSelector = (state: RootState) => state.booking.dataList
 export const bookingStatusSelector = (state: RootState) => state.booking.status

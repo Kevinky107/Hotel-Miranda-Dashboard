@@ -5,9 +5,9 @@ import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledS
 import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
-import { addUser, editUser, userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector } from '../../features/user/userSlice';
+import { userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
-import { getUserThunk } from '../../features/user/userThunk';
+import { getUserThunk, updateUserThunk } from '../../features/user/userThunk';
 import { AuthContext } from '../../context/auth';
 import { AuthInterface, ThemeInterface, User } from '../../types';
 import { AppDispatch } from '../../app/store';
@@ -40,7 +40,7 @@ function EditEmployee(): React.JSX.Element {
   const [password, setPassword] = useState<null | string>(null);
 
   useEffect(() => {
-    dispatch(getUserThunk({id :userID as string, list: userDataList}))
+    dispatch(getUserThunk(userID as string))
   },[])
 
   useEffect(() => {   
@@ -94,7 +94,7 @@ function EditEmployee(): React.JSX.Element {
         startdate: startdate,
         state: state
       }
-      dispatch(editUser(newEmployee))
+      dispatch(updateUserThunk(newEmployee))
       if(email === contextAuth.email)
         contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
       navigate('/Concierge')

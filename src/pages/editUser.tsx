@@ -5,9 +5,9 @@ import { FormButtonsContainer, FormStyledSection, FormStyledWrapper } from '../c
 import { AuthContext } from '../context/auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { editUser } from '../features/user/userSlice';
 import { AuthInterface, ThemeInterface } from '../types';
 import { AppDispatch } from '../app/store';
+import { updateUserThunk } from '../features/user/userThunk';
 
 function EditUser(): React.JSX.Element {
 
@@ -22,19 +22,11 @@ function EditUser(): React.JSX.Element {
   const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
     const user = {
-      id: contextAuth.id,
       password: password,
-      email: email,
-      name: contextAuth.name,
-      picture: contextAuth.picture,
-      post: contextAuth.post,
-      phone: contextAuth.phone,
-      postdescription: contextAuth.postdescription,
-      startdate: contextAuth.startdate,
-      state: contextAuth.state
+      email: email
     }
     contextAuthDispatch({type: 'UPDATE', payload: user})
-    dispatch(editUser(user))
+    dispatch(updateUserThunk(user))
   }
 
   return (

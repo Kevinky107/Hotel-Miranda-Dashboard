@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getContactListThunk, getContactThunk } from "./contactThunk"
+import { addContactThunk, getContactListThunk, getContactThunk, removeContactThunk, updateContactThunk } from "./contactThunk"
 import { Comment } from "../../types"
 import { RootState } from "../../app/store"
 
@@ -21,22 +21,6 @@ export const contactSlice = createSlice({
     name: "contact",
     initialState,
     reducers: {
-        removeContact: (state, action: PayloadAction<Comment>) => {
-            state.dataList = [...state.dataList.filter(contact => contact._id !== action.payload._id)]
-        },
-        addContact: (state, action: PayloadAction<Comment>) => {
-            state.dataList = [...state.dataList, action.payload]
-        },
-        editContact: (state, action: PayloadAction<Comment>) => {
-            const aux = state.dataList.map((contact) => {
-                if(contact._id === action.payload._id)
-                {
-                    return action.payload
-                }
-                return contact
-            })
-            state.dataList = JSON.parse(JSON.stringify(aux))
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,9 +46,49 @@ export const contactSlice = createSlice({
                 state.status = "rejected"
                 state.error = action.error.message || 'Unexpected Error'
             })
+            .addCase(removeContactThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(removeContactThunk.fulfilled, (state, action: PayloadAction<Comment>) => {
+                state.dataList = [...state.dataList.filter(comment => comment._id !== action.payload._id)]
+                state.status = "fulfilled"
+            })
+            .addCase(removeContactThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(addContactThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(addContactThunk.fulfilled, (state, action: PayloadAction<Comment>) => {
+                state.dataList = [...state.dataList, action.payload]
+                state.status = "fulfilled"
+            })
+            .addCase(addContactThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(updateContactThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(updateContactThunk.fulfilled, (state, action: PayloadAction<Comment>) => {
+                const aux = state.dataList.map((comment) => {
+                    if(comment._id === action.payload._id)
+                    {
+                        return action.payload
+                    }
+                    return comment
+                })
+                state.dataList = JSON.parse(JSON.stringify(aux))
+                state.status = "fulfilled"
+            })
+            .addCase(updateContactThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
     }
 })
-export const { removeContact, addContact, editContact } = contactSlice.actions
+
 export const contactDataSelector = (state: RootState) => state.contact.data
 export const contactDataListSelector = (state: RootState) => state.contact.dataList
 export const contactStatusSelector = (state: RootState) => state.contact.status

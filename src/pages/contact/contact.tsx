@@ -7,7 +7,7 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
   CommentAction} from '../../components/tableStyled';
 import { SwiperContainer } from '../../components/comment-slider/commentStyled';
 import CommentsSlider from '../../components/comment-slider/commentsSlider';
-import { contactDataListSelector, contactDataSelector, contactErrorSelector, contactStatusSelector, removeContact } from '../../features/contact/contactSlice';
+import { contactDataListSelector, contactDataSelector, contactErrorSelector, contactStatusSelector } from '../../features/contact/contactSlice';
 import { getContactListThunk } from '../../features/contact/contactThunk';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';

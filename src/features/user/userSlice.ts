@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getUserListThunk, getUserThunk } from "./userThunk"
+import { addUserThunk, getUserListThunk, getUserThunk, removeUserThunk, updateUserThunk } from "./userThunk"
 import { User } from "../../types"
 import { RootState } from "../../app/store"
 
@@ -21,22 +21,6 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        removeUser: (state, action: PayloadAction<User>) => {
-            state.dataList = [...state.dataList.filter(user => user._id !== action.payload._id)]
-        },
-        addUser: (state, action: PayloadAction<User>) => {
-            state.dataList = [...state.dataList, action.payload]
-        },
-        editUser: (state, action: PayloadAction<User>) => {
-            const aux = state.dataList.map((user) => {
-                if(user._id === action.payload._id)
-                {
-                    return action.payload
-                }
-                return user
-            })
-            state.dataList = JSON.parse(JSON.stringify(aux))
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,9 +46,49 @@ export const userSlice = createSlice({
                 state.status = "rejected"
                 state.error = action.error.message || 'Unexpected Error'
             })
+            .addCase(removeUserThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(removeUserThunk.fulfilled, (state, action: PayloadAction<User>) => {
+                state.dataList = [...state.dataList.filter(comment => comment._id !== action.payload._id)]
+                state.status = "fulfilled"
+            })
+            .addCase(removeUserThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(addUserThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(addUserThunk.fulfilled, (state, action: PayloadAction<User>) => {
+                state.dataList = [...state.dataList, action.payload]
+                state.status = "fulfilled"
+            })
+            .addCase(addUserThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(updateUserThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(updateUserThunk.fulfilled, (state, action: PayloadAction<User>) => {
+                const aux = state.dataList.map((user) => {
+                    if(user._id === action.payload._id)
+                    {
+                        return action.payload
+                    }
+                    return user
+                })
+                state.dataList = JSON.parse(JSON.stringify(aux))
+                state.status = "fulfilled"
+            })
+            .addCase(updateUserThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
     }
 })
-export const { removeUser, addUser, editUser } = userSlice.actions
+
 export const userDataSelector = (state: RootState) => state.user.data
 export const userDataListSelector = (state: RootState) => state.user.dataList
 export const userStatusSelector = (state: RootState) => state.user.status

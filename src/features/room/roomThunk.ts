@@ -1,36 +1,48 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import rooms from '../../assets/rooms.json'
 import { Room } from "../../types";
+import { backendAPIcall } from "../backendAPIcall";
 
 export const getRoomListThunk = createAsyncThunk("room/getRoomList", async() => {
-    const myRoomListPromise = new Promise<Room[]>((resolve, reject) => {
-        setTimeout(() => {
-            if (rooms.length > 0) {
-                resolve(rooms as any);
-            } else {
-                reject(`Void Array`);
-            }
-        }, 200);
-    });
-
-    return myRoomListPromise
-        .then((list) => {return list})
-        .catch((error) => {throw new Error(error)})
+    try {
+        const Room: Room[] = await backendAPIcall("/Rooms");
+        return Room;
+    } catch (error) {
+        throw new Error();
+    }
 })
 
-export const getRoomThunk = createAsyncThunk("room/getRoom", async({id, list}: {id: string, list: Room[]}) => {
-    const myRoomListPromise = new Promise<Room>((resolve, reject) => {
-        setTimeout(() => {
-            const roomObject = list.filter(room => `${room._id}` === id)
-            if (roomObject.length > 0) {     
-                resolve(roomObject[0])
-            } else {
-                reject(`Room Not Found `)
-            }
-        }, 200);
-    });
+export const getRoomThunk = createAsyncThunk("room/getRoom", async(id: string) => {
+    try {
+        const room: Room = await backendAPIcall(`/Rooms/${id}`);
+        return room;
+    } catch (error) {
+        throw new Error();
+    }
+})
 
-    return myRoomListPromise
-        .then((object) => {return object})
-        .catch((error) => {throw new Error(error)})
+export const removeRoomThunk = createAsyncThunk("room/removeRoom", async(id: string) => {
+    try {
+        const room: Room = await backendAPIcall(`/Rooms/delete/${id}`, "DELETE");
+        return room;
+    } catch (error) {
+        throw new Error();
+    }
+})
+
+export const addroomThunk = createAsyncThunk("room/addRoom", async(roomData: Partial<Room>) => {
+    try {
+        const Room: Room = await backendAPIcall(`/Rooms/add`, "POST", roomData);
+        return Room;
+    } catch (error) {
+        throw new Error();
+    }
+})
+
+export const updateRoomThunk = createAsyncThunk("room/updateRoom", async(roomData: Room) => {
+    try {
+        const room: Room = await backendAPIcall(`/Rooms/update/${roomData._id}`, "PUT", roomData);
+        return room;
+    } catch (error) {
+        throw new Error();
+    }
 })

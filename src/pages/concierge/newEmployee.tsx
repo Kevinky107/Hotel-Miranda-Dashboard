@@ -5,10 +5,10 @@ import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledS
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 import { useDispatch } from 'react-redux';
-import { addUser } from '../../features/user/userSlice';
 import Swal from 'sweetalert2'
 import { AppDispatch } from '../../app/store';
 import { ThemeInterface, User } from '../../types';
+import { addUserThunk } from '../../features/user/userThunk';
 
 
 function NewEmployee(): React.JSX.Element {
@@ -17,7 +17,6 @@ function NewEmployee(): React.JSX.Element {
   const navigate = useNavigate()
   const dispatch = useDispatch<AppDispatch>()
  
-  const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
   const [picture, setPicture] = useState<string>("./profile.jpg");
   const [post, setPost] = useState<null | 'Manager' | 'Room Service' | 'Reception'>(null);
@@ -36,10 +35,9 @@ function NewEmployee(): React.JSX.Element {
 
   const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
+    if(name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
     { 
-      const newEmployee: User = {
-        _id: id,
+      const newEmployee: Partial<User> = {
         name: name,
         picture: picture,
         password: password,
@@ -50,7 +48,7 @@ function NewEmployee(): React.JSX.Element {
         startdate: startdate,
         state: state
       }
-      dispatch(addUser(newEmployee))
+      dispatch(addUserThunk(newEmployee))
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -76,10 +74,6 @@ function NewEmployee(): React.JSX.Element {
           <input type='file' />
           <br></br>
           <FormStyledSection>
-            <div>
-              <h4>ID</h4>
-              <input type='number' onChange={(event) => setId(Number(event.target.value))}/>
-            </div>
             <div>
               <h4>NAME</h4>
               <input type='text' onChange={(event) => setName(event.target.value)}/>

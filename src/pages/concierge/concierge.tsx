@@ -12,8 +12,8 @@ import { Column, ColumnTitle, TableOption, Row, TableSelect, Table,
 import { GreenButton } from '../../components/buttonStyled';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector, removeUser } from '../../features/user/userSlice';
-import { getUserListThunk } from '../../features/user/userThunk';
+import { userDataListSelector, userDataSelector, userErrorSelector, userStatusSelector} from '../../features/user/userSlice';
+import { getUserListThunk, removeUserThunk } from '../../features/user/userThunk';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -107,7 +107,7 @@ function Concierge(): React.JSX.Element {
           text: `The user ${user.name} has been removed.`,
           icon: "success"
         });
-        dispatch(removeUser(user))
+        dispatch(removeUserThunk(String(user._id)))
       }
     });
   }

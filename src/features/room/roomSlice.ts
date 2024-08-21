@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getRoomListThunk, getRoomThunk } from "./roomThunk"
+import { addroomThunk, getRoomListThunk, getRoomThunk, removeRoomThunk, updateRoomThunk } from "./roomThunk"
 import { Room } from "../../types"
 import { RootState } from "../../app/store"
 
@@ -21,22 +21,6 @@ export const roomSlice = createSlice({
     name: "room",
     initialState,
     reducers: {
-        removeRoom: (state, action: PayloadAction<Room>) => {
-            state.dataList = [...state.dataList.filter(room => room._id !== action.payload._id)]
-        },
-        addRoom: (state, action: PayloadAction<Room>) => {
-            state.dataList = [...state.dataList, action.payload]
-        },
-        editRoom: (state, action: PayloadAction<Room>) => {
-            const aux = state.dataList.map((room) => {
-                if(room._id === action.payload._id)
-                {
-                    return action.payload
-                }
-                return room
-            })
-            state.dataList = JSON.parse(JSON.stringify(aux))
-        },
     },
     extraReducers: (builder) => {
         builder
@@ -62,9 +46,49 @@ export const roomSlice = createSlice({
                 state.status = "rejected"
                 state.error = action.error.message || 'Unexpected Error'
             })
+            .addCase(removeRoomThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(removeRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
+                state.dataList = [...state.dataList.filter(comment => comment._id !== action.payload._id)]
+                state.status = "fulfilled"
+            })
+            .addCase(removeRoomThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(addroomThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(addroomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
+                state.dataList = [...state.dataList, action.payload]
+                state.status = "fulfilled"
+            })
+            .addCase(addroomThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
+            .addCase(updateRoomThunk.pending, (state, action) => {
+                state.status = "pending"
+            })
+            .addCase(updateRoomThunk.fulfilled, (state, action: PayloadAction<Room>) => {
+                const aux = state.dataList.map((room) => {
+                    if(room._id === action.payload._id)
+                    {
+                        return action.payload
+                    }
+                    return room
+                })
+                state.dataList = JSON.parse(JSON.stringify(aux))
+                state.status = "fulfilled"
+            })
+            .addCase(updateRoomThunk.rejected, (state, action) => {
+                state.status = "rejected"
+                state.error = action.error.message || 'Unexpected Error'
+            })
     }
 })
-export const { removeRoom, addRoom, editRoom } = roomSlice.actions
+
 export const roomDataSelector = (state: RootState) => state.room.data
 export const roomDataListSelector = (state: RootState) => state.room.dataList
 export const roomStatusSelector = (state: RootState) => state.room.status

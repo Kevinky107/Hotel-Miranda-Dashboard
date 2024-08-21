@@ -5,9 +5,9 @@ import { FormStyledWrapper, CheckboxContainer, FormButtonsContainer, FormStyledS
 import { useNavigate, useParams } from 'react-router-dom';
 import Select, { MultiValue, SingleValue } from 'react-select'
 import { useDispatch, useSelector } from 'react-redux';
-import { editRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
+import { roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
 import Swal from 'sweetalert2'
-import { getRoomThunk } from '../../features/room/roomThunk';
+import { getRoomThunk, updateRoomThunk } from '../../features/room/roomThunk';
 import { Room, ThemeInterface } from '../../types';
 import { AppDispatch } from '../../app/store';
 
@@ -35,7 +35,7 @@ function EditRoom(): React.JSX.Element {
   const [available, setAvailable] = useState<boolean>(true);
 
   useEffect(() => {
-    dispatch(getRoomThunk({id :roomID as string, list: roomDataList}))
+    dispatch(getRoomThunk(roomID as string))
   },[])
 
   useEffect(() => {   
@@ -100,7 +100,7 @@ function EditRoom(): React.JSX.Element {
         amenities: amenities,
         available: available
       }
-      dispatch(editRoom(newRoom))
+      dispatch(updateRoomThunk(newRoom))
       navigate('/Room')
       Swal.fire({
         position: "top-end",

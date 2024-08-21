@@ -15,8 +15,8 @@ import { TbEyePlus } from "react-icons/tb";
 import { useNavigate } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import { removeRoom, roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
-import { getRoomListThunk } from '../../features/room/roomThunk';
+import { roomDataListSelector, roomDataSelector, roomErrorSelector, roomStatusSelector } from '../../features/room/roomSlice';
+import { getRoomListThunk, removeRoomThunk } from '../../features/room/roomThunk';
 
 import Swal from 'sweetalert2'
 import { ThemeInterface } from '../../types';
@@ -108,7 +108,7 @@ function Room(): React.JSX.Element {
           text: `The room #${room._id} has been removed.`,
           icon: "success"
         });
-        dispatch(removeRoom(room))
+        dispatch(removeRoomThunk(String(room._id)))
       }
     });
   }
