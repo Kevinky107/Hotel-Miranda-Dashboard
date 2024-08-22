@@ -23,7 +23,8 @@ function EditUser(): React.JSX.Element {
     event.preventDefault()
     const user = {
       password: password,
-      email: email
+      email: email,
+      _id: contextAuth._id
     }
     contextAuthDispatch({type: 'UPDATE', payload: user})
     dispatch(updateUserThunk(user))

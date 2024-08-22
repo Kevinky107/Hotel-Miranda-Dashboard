@@ -6,7 +6,8 @@ export interface ThemeInterface {
 }
 
 export interface auth {
-    password: string,
+    _id : number,
+    password?: string,
     email: string,
     name?: string,
     picture?: string

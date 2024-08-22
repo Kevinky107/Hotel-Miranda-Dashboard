@@ -15,9 +15,10 @@ const authContextReducer = (state: auth, action: AuthAction) => {
         case 'UPDATE':
             const user = action.payload as auth
             const newState = {
+                "_id" : state._id,
                 "name" : state.name,
                 "picture" : state.picture,
-                "password": user.password,
+                "password": user.password ? user.password : state.password,
                 "email": user.email,
             }
             localStorage.setItem('user', JSON.stringify(newState))
@@ -28,6 +29,7 @@ const authContextReducer = (state: auth, action: AuthAction) => {
 }
 
 const initialState = JSON.parse(localStorage.getItem('user') as string) || {
+    "_id" : null,
     "password": null,
     "email": null,
     "name": null,

@@ -37,7 +37,6 @@ function EditEmployee(): React.JSX.Element {
   const [postdescription, setPostdescription] = useState<null | string>(null);
   const [startdate, setStartdate] = useState<null | string>(null)
   const [state, setState] = useState<boolean>(true);
-  const [password, setPassword] = useState<null | string>(null);
 
   useEffect(() => {
     dispatch(getUserThunk(userID as string))
@@ -60,7 +59,6 @@ function EditEmployee(): React.JSX.Element {
         setPostdescription(userData.postdescription)
         setStartdate(userData.startdate)
         setState(userData.state)
-        setPassword(userData.password)
       }
     }
     else if (userStatus === "rejected") {
@@ -80,13 +78,12 @@ function EditEmployee(): React.JSX.Element {
 
   const submitHandler = (event: SyntheticEvent) => {
     event.preventDefault()
-    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && password != null && startdate != null)
+    if(id !== null && name !== null && picture != null && post !== null && email !== null  && phone !== null && postdescription !== null && startdate != null)
     { 
-      const newEmployee: User = {
+      const newEmployee: Partial<User> = {
         _id: id,
         name: name,
         picture: picture,
-        password: password,
         post: post,
         email: email,
         phone: phone,
@@ -96,7 +93,7 @@ function EditEmployee(): React.JSX.Element {
       }
       dispatch(updateUserThunk(newEmployee))
       if(email === contextAuth.email)
-        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}}) // CAMBIAR EL UPDATE 
+        contextAuthDispatch({type: 'UPDATE', payload: {_id: id, email: email}})
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -129,10 +126,6 @@ function EditEmployee(): React.JSX.Element {
             <div>
               <h4>EMAIL</h4>
               <input type='email' defaultValue={user.email} onChange={(event) => setEmail(event.target.value)}/>
-            </div>
-            <div>
-              <h4>PASSWORD</h4>
-              <input type='text' defaultValue={user.password} onChange={(event) => setPassword(event.target.value)}/>
             </div>
           </FormStyledSection>
           <FormStyledSection>
