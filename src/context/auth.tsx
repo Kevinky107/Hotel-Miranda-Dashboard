@@ -14,10 +14,14 @@ const authContextReducer = (state: auth, action: AuthAction) => {
             return initialState
         case 'UPDATE':
             const user = action.payload as auth
-            return {
+            const newState = {
+                "name" : state.name,
+                "picture" : state.picture,
                 "password": user.password,
                 "email": user.email,
             }
+            localStorage.setItem('user', JSON.stringify(newState))
+            return newState
         default:
             return state
     }

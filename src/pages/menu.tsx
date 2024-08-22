@@ -35,10 +35,10 @@ function Menu(): React.JSX.Element {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if(contextAuth === null) {
+    if(!JSON.parse(localStorage.getItem('user') as string)) {
         navigate("/")
     }
-  })
+  },[])
 
   const logout = () => {
     localStorage.removeItem('user')

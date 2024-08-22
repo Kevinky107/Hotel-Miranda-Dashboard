@@ -30,7 +30,7 @@ function EditEmployee(): React.JSX.Element {
  
   const [id, setId] = useState<null | number>(null);
   const [name, setName] = useState<null | string>(null);
-  const [picture, setPicture] = useState<string>("./profile.jpg");
+  const [picture, setPicture] = useState<null |string>(null);
   const [post, setPost] = useState<null | 'Manager' | 'Room Service' | 'Reception'>(null);
   const [email, setEmail] = useState<null | string>(null);
   const [phone, setPhone] = useState<null | string>(null);
@@ -96,7 +96,7 @@ function EditEmployee(): React.JSX.Element {
       }
       dispatch(updateUserThunk(newEmployee))
       if(email === contextAuth.email)
-        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}})
+        contextAuthDispatch({type: 'UPDATE', payload: {email: email, password: password}}) // CAMBIAR EL UPDATE 
       navigate('/Concierge')
       Swal.fire({
         position: "top-end",
@@ -119,14 +119,7 @@ function EditEmployee(): React.JSX.Element {
     {!isLoading && <>
       <FormStyledWrapper theme={themeSelector}>
         <form onSubmit={(event) => submitHandler(event)}>
-          <h4>PICTURE</h4>
-          <input type='file' />
-          <br></br>
           <FormStyledSection>
-            <div>
-              <h4>ID</h4>
-              <input type='number' defaultValue={user._id} onChange={(event) => setId(Number(event.target.value))}/>
-            </div>
             <div>
               <h4>NAME</h4>
               <input type='text' defaultValue={user.name} onChange={(event) => setName(event.target.value)}/>
