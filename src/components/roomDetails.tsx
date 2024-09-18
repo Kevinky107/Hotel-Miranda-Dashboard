@@ -18,7 +18,7 @@ function RoomDetails({close , room}: {close: MouseEventHandler<HTMLHeadingElemen
         <Info>
           <Profile>
             <h3>{room.name}</h3>
-            <h4>ID {room.id}</h4>
+            <h4>ID {room._id}</h4>
           </Profile>
           <Amenities>
           {

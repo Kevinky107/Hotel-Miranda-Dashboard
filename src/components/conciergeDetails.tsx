@@ -13,7 +13,7 @@ function ConciergeDetails({close, user}: {close: MouseEventHandler<HTMLHeadingEl
         <Info>
           <div>
             <h3>{user.name}</h3>
-            <h3>#{user.id}</h3>
+            <h3>#{user._id}</h3>
           </div>
           <h4>Email: {user.email}</h4>
           <h4>Password: {user.password}</h4>

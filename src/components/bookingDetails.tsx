@@ -16,7 +16,7 @@ function BookingDetails({close, booking}: {close: MouseEventHandler<HTMLHeadingE
         <Info>
           <Profile>
             <h3>{booking.guest}</h3>
-            <h4>ID {booking.id}</h4>
+            <h4>ID {booking._id}</h4>
             <div>
               <CallButton><BsTelephoneFill /></CallButton>
               <MessageButton><AiFillMessage /> Send Message</MessageButton>

@@ -44,9 +44,9 @@ function Login(): React.JSX.Element {
       <form onSubmit={submitHandler}> 
         <h2>LOGIN HERE</h2>
         <p>EMAIL</p>
-        <LoginInputText id='email'/>
+        <LoginInputText id='email' defaultValue='Kevinagudomontil@gmail.com'/>
         <p>PASSWORD</p>
-        <LoginInputPassword id='password' />
+        <LoginInputPassword id='password' defaultValue='1234'/>
         <br></br>
         <button>LOGIN</button>
       </form>
